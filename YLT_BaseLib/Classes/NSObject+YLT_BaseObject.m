@@ -6,8 +6,9 @@
 //
 
 #import "NSObject+YLT_BaseObject.h"
-#include <sys/types.h>
-#include <sys/sysctl.h>
+#import <sys/types.h>
+#import <sys/sysctl.h>
+#import <objc/message.h>
 
 @implementation NSObject (YLT_BaseObject)
 
@@ -32,7 +33,6 @@
         return ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone);
     return NO;
 }
-
 
 /**
  设备名称
@@ -122,25 +122,62 @@
 }
 
 /**
- 显示提示框
- 
- @param tips 提示框显示
- */
-+ (void)YLT_ShowTips:(NSString *)tips;
-
-/**
  获取当前的控制器
  
  @return 当前控制器
  */
-+ (UIViewController *)YLT_CurrentVC;
++ (UIViewController *)YLT_CurrentVC {
+    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    if (window.windowLevel != UIWindowLevelNormal) {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(window in windows) {
+            if (window.windowLevel == UIWindowLevelNormal) {
+                break;
+            }
+        }
+    }
+    for (UIView *subView in [window subviews]) {
+        UIResponder *responder = [subView nextResponder];
+        if ([responder isEqual:window]) {
+            if ([[subView subviews] count]) {
+                UIView *subSubView = [subView subviews][0];
+                responder = [subSubView nextResponder];
+            }
+        }
+        if([responder isKindOfClass:[UIViewController class]]) {
+            return [NSObject YLT_TopViewController:((UIViewController *) responder)];
+        }
+    }
+    
+    return window.rootViewController;
+}
+
++ (UIViewController *)YLT_TopViewController:(UIViewController *)controller {
+    BOOL isPresenting = NO;
+    do {
+        UIViewController *presented = [controller presentedViewController];
+        isPresenting = presented != nil;
+        if(presented != nil) {
+            controller = presented;
+        }
+    } while (isPresenting);
+    if ([controller isKindOfClass:[UITabBarController class]]) {
+        controller = ((UITabBarController *) controller).selectedViewController;
+    }
+    if ([controller isKindOfClass:[UINavigationController class]]) {
+        controller = [((UINavigationController *) controller).viewControllers lastObject];
+    }
+    return controller;
+}
 
 /**
  生成6位随机码 （数字和英文）
  
  @return 随机码
  */
-+ (NSString *)YLT_MakeCode;
++ (NSString *)YLT_MakeCode {
+    return [NSObject YLT_MakeCodeIsNumber:NO length:6];
+}
 
 /**
  生成随机码
@@ -149,7 +186,20 @@
  @param length 长度
  @return 随机码
  */
-+ (NSString *)YLT_MakeCodeIsNumber:(BOOL)isNumber length:(NSInteger)length;
++ (NSString *)YLT_MakeCodeIsNumber:(BOOL)isNumber length:(NSInteger)length {
+    NSInteger ver = 0;
+    if (isNumber) {
+        for (int i = 0; i < length; i++) {
+            ver = ver*10 + arc4random()%10;
+        }
+        return [NSString stringWithFormat:@"%06li", (long)ver];
+    } else {
+        char data[length];
+        for (int x=0;x<length;data[x++] = (char)('A' + (arc4random_uniform(26))));
+        return [[NSString alloc] initWithBytes:data length:length encoding:NSUTF8StringEncoding];
+    }
+    return @"";
+}
 
 /**
  方法交换
@@ -157,8 +207,11 @@
  @param theClass 方法交换的类
  @param originalSel 原始方法
  @param replaceSel 替换的方法
- @return 交换结果
  */
-+ (BOOL)YLT_SwizzleSelectorInClass:(Class)theClass originalSel:(SEL)originalSel replaceSel:(SEL)replaceSel;
++ (void)YLT_SwizzleSelectorInClass:(Class)theClass originalSel:(SEL)originalSel replaceSel:(SEL)replaceSel {
+    Method originalMethod = class_getInstanceMethod(theClass, originalSel);
+    Method swizzledMethod = class_getInstanceMethod(theClass, replaceSel);
+    method_exchangeImplementations(originalMethod, swizzledMethod);
+}
 
 @end

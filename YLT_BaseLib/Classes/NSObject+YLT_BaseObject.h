@@ -32,13 +32,6 @@
 + (NSString *)YLT_DeviceName;
 
 /**
- 显示提示框
-
- @param tips 提示框显示
- */
-+ (void)YLT_ShowTips:(NSString *)tips;
-
-/**
  获取当前的控制器
 
  @return 当前控制器
@@ -67,9 +60,8 @@
  @param theClass 方法交换的类
  @param originalSel 原始方法
  @param replaceSel 替换的方法
- @return 交换结果
  */
-+ (BOOL)YLT_SwizzleSelectorInClass:(Class)theClass originalSel:(SEL)originalSel replaceSel:(SEL)replaceSel;
++ (void)YLT_SwizzleSelectorInClass:(Class)theClass originalSel:(SEL)originalSel replaceSel:(SEL)replaceSel;
 
 
 @end
