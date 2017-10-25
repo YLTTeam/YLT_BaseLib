@@ -52,10 +52,10 @@
 #if DEBUG
 //输出日志信息
 #define YLT_LogAll(type,format,...) NSLog(@"%@ %s+%d " format,type,__func__,__LINE__,##__VA_ARGS__)
-#define YLT_Log(format,...) PHLogAll(@"",format,##__VA_ARGS__)
-#define YLT_LogInfo(format,...) PHLogAll(@"",format,##__VA_ARGS__)
-#define YLT_LogWarn(format,...) PHLogAll(@"‼️",format,##__VA_ARGS__)
-#define YLT_LogError(format,...) PHLogAll(@"❌❌",format,##__VA_ARGS__)
+#define YLT_Log(format,...) YLT_LogAll(@"",format,##__VA_ARGS__)
+#define YLT_LogInfo(format,...) YLT_LogAll(@"",format,##__VA_ARGS__)
+#define YLT_LogWarn(format,...) YLT_LogAll(@"‼️",format,##__VA_ARGS__)
+#define YLT_LogError(format,...) YLT_LogAll(@"❌❌",format,##__VA_ARGS__)
 #else
 #define YLT_Log(format,...)
 #define YLT_LogInfo(format,...)
