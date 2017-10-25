@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "sys/utsname.h"
 
 @interface NSObject (YLT_BaseObject)
