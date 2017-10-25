@@ -1,0 +1,12 @@
+use_frameworks!
+platform :ios, "9.0"
+
+target 'YLT_BaseLib_Example' do
+  pod 'YLT_BaseLib', :path => '../'
+
+  target 'YLT_BaseLib_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
