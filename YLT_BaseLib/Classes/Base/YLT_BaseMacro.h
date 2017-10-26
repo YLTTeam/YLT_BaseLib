@@ -71,13 +71,13 @@
 //当前应用程序的 bundle ID
 #define YLT_BundleIdentifier [[NSBundle mainBundle] bundleIdentifier]
 // app名称
-#define YLT_AppName [PH_InfoDictionary objectForKey:@"CFBundleDisplayName"]
+#define YLT_AppName [YLT_InfoDictionary objectForKey:@"CFBundleDisplayName"]
 //将URLTypes 中的第一个当做当前的回调参数
-#define YLT_URL_SCHEME [[PH_InfoDictionary[@"CFBundleURLTypes"] firstObject][@"CFBundleURLSchemes"] firstObject]
+#define YLT_URL_SCHEME [[YLT_InfoDictionary[@"CFBundleURLTypes"] firstObject][@"CFBundleURLSchemes"] firstObject]
 // app版本
-#define YLT_AppVersion [PH_InfoDictionary objectForKey:@"CFBundleShortVersionString"]
+#define YLT_AppVersion [YLT_InfoDictionary objectForKey:@"CFBundleShortVersionString"]
 // app build版本
-#define YLT_BuildVersion [PH_InfoDictionary objectForKey:@"CFBundleVersion"]
+#define YLT_BuildVersion [YLT_InfoDictionary objectForKey:@"CFBundleVersion"]
 // iPhone 别名
 #define YLT_PhoneName [[UIDevice currentDevice] name]
 //当前Bundle
@@ -89,5 +89,52 @@
 #define YLT_RGBA(r,g,b,a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
 #define YLT_RGB(r,g,b) RGBA(r,g,b,1.0f)
 #define YLT_HEXCOLOR(hex) [UIColor colorWithRed:((float)((hex & 0xFF0000) >> 16)) / 255.0 green:((float)((hex & 0xFF00) >> 8)) / 255.0 blue:((float)(hex & 0xFF)) / 255.0 alpha:1]
+
+
+
+//快速生成单例对象
+#define YLT_ShareInstanceHeader(cls)    + (cls *)shareInstance;
+#define YLT_ShareInstance(cls)          static cls *share_cls = nil;\
+                                        + (cls *)shareInstance {\
+                                            static dispatch_once_t onceToken;\
+                                            dispatch_once(&onceToken, ^{\
+                                            share_cls = [[cls alloc] init];\
+                                                if ([share_cls respondsToSelector:@selector(YLT_init)]) {\
+                                                    [share_cls performSelector:@selector(YLT_init) withObject:nil afterDelay:0];\
+                                                    }\
+                                                });\
+                                                return share_cls;\
+                                            }\
+                                            + (instancetype)allocWithZone:(struct _NSZone *)zone {\
+                                                if (share_cls == nil) {\
+                                                    static dispatch_once_t onceToken;\
+                                                    dispatch_once(&onceToken, ^{\
+                                                        share_cls = [super allocWithZone:zone];\
+                                                        if ([share_cls respondsToSelector:@selector(YLT_init)]) {\
+                                                            [share_cls performSelector:@selector(YLT_init) withObject:nil afterDelay:0];\
+                                                        }\
+                                                    });\
+                                                }\
+                                                return share_cls;\
+                                            }
+//懒加载宏定义
+#define PHLazy(cls, sel, _sel) \
+                                    - (cls *)sel {\
+                                        if (!_sel) {\
+                                            _sel = [[cls alloc] init];\
+                                        }\
+                                        return _sel;\
+                                    }
+
+#define PHLazyCategory(cls, fun) - (cls *)fun {\
+                                        cls *result = objc_getAssociatedObject(self, @selector(fun));\
+                                        if (result == nil) {\
+                                            result = [[cls alloc] init];\
+                                            objc_setAssociatedObject(self, @selector(fun), result, OBJC_ASSOCIATION_RETAIN_NONATOMIC);\
+                                        }\
+                                        return result;\
+                                    }
+
+
 
 #endif /* YLT_BaseMacro_h */
