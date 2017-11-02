@@ -100,7 +100,7 @@
                                             dispatch_once(&onceToken, ^{\
                                             share_cls = [[cls alloc] init];\
                                                 if ([share_cls respondsToSelector:@selector(YLT_init)]) {\
-                                                    [share_cls performSelector:@selector(YLT_init) withObject:nil afterDelay:0];\
+                                                    [share_cls performSelector:@selector(YLT_init) withObject:nil];\
                                                     }\
                                                 });\
                                                 return share_cls;\
@@ -111,7 +111,7 @@
                                                     dispatch_once(&onceToken, ^{\
                                                         share_cls = [super allocWithZone:zone];\
                                                         if ([share_cls respondsToSelector:@selector(YLT_init)]) {\
-                                                            [share_cls performSelector:@selector(YLT_init) withObject:nil afterDelay:0];\
+                                                            [share_cls performSelector:@selector(YLT_init) withObject:nil];\
                                                         }\
                                                     });\
                                                 }\
