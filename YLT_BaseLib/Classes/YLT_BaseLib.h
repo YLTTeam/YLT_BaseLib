@@ -12,5 +12,6 @@
 #import "NSString+YLT_BaseString.h"
 #import "NSObject+YLT_BaseObject.h"
 #import "YLT_BaseModel.h"
+#import "YLT_DBHelper.h"
 
 #endif /* YLT_BaseLib_h */
