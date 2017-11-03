@@ -118,7 +118,7 @@
                                                 return share_cls;\
                                             }
 //懒加载宏定义
-#define PHLazy(cls, sel, _sel) \
+#define YLT_Lazy(cls, sel, _sel) \
                                     - (cls *)sel {\
                                         if (!_sel) {\
                                             _sel = [[cls alloc] init];\
@@ -126,7 +126,7 @@
                                         return _sel;\
                                     }
 
-#define PHLazyCategory(cls, fun) - (cls *)fun {\
+#define YLT_LazyCategory(cls, fun) - (cls *)fun {\
                                         cls *result = objc_getAssociatedObject(self, @selector(fun));\
                                         if (result == nil) {\
                                             result = [[cls alloc] init];\

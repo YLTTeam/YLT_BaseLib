@@ -41,4 +41,4 @@ YLT_ShareInstanceHeader(YLT_KeyChainHelper);
 
 @end
 
-#define PH_UUID [YLT_KeyChainHelper ph_uuid]
+#define YLT_UUID [YLT_KeyChainHelper YLT_uuid]
