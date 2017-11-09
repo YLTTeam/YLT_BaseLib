@@ -17,7 +17,7 @@
  
  @return 是否是iPad YES:是 NO:不是
  */
-+ (BOOL)YLT_DeviceIsiPad {
+- (BOOL)YLT_DeviceIsiPad {
     if ([[UIDevice currentDevice] respondsToSelector:@selector(userInterfaceIdiom)])
         return ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad);
     return NO;
@@ -28,7 +28,7 @@
  
  @return 是否是iPhone YES:是 NO:不是
  */
-+ (BOOL)YLT_DeviceIsiPhone {
+- (BOOL)YLT_DeviceIsiPhone {
     if ([[UIDevice currentDevice] respondsToSelector:@selector(userInterfaceIdiom)])
         return ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone);
     return NO;
@@ -39,7 +39,7 @@
  
  @return 设备名称
  */
-+ (NSString *)YLT_DeviceName {
+- (NSString *)YLT_DeviceName {
     int mib[2];
     size_t len;
     char *machine;
@@ -126,7 +126,7 @@
  
  @return 当前控制器
  */
-+ (UIViewController *)YLT_CurrentVC {
+- (UIViewController *)YLT_CurrentVC {
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     if (window.windowLevel != UIWindowLevelNormal) {
         NSArray *windows = [[UIApplication sharedApplication] windows];
@@ -152,7 +152,7 @@
     return window.rootViewController;
 }
 
-+ (UIViewController *)YLT_TopViewController:(UIViewController *)controller {
+- (UIViewController *)YLT_TopViewController:(UIViewController *)controller {
     BOOL isPresenting = NO;
     do {
         UIViewController *presented = [controller presentedViewController];
@@ -175,7 +175,7 @@
  
  @return 随机码
  */
-+ (NSString *)YLT_MakeCode {
+- (NSString *)YLT_MakeCode {
     return [NSObject YLT_MakeCodeIsNumber:NO length:6];
 }
 
@@ -186,7 +186,7 @@
  @param length 长度
  @return 随机码
  */
-+ (NSString *)YLT_MakeCodeIsNumber:(BOOL)isNumber length:(NSInteger)length {
+- (NSString *)YLT_MakeCodeIsNumber:(BOOL)isNumber length:(NSInteger)length {
     NSInteger ver = 0;
     if (isNumber) {
         for (int i = 0; i < length; i++) {
@@ -208,7 +208,7 @@
  @param originalSel 原始方法
  @param replaceSel 替换的方法
  */
-+ (void)YLT_SwizzleSelectorInClass:(Class)theClass originalSel:(SEL)originalSel replaceSel:(SEL)replaceSel {
+- (void)YLT_SwizzleSelectorInClass:(Class)theClass originalSel:(SEL)originalSel replaceSel:(SEL)replaceSel {
     Method originalMethod = class_getInstanceMethod(theClass, originalSel);
     Method swizzledMethod = class_getInstanceMethod(theClass, replaceSel);
     method_exchangeImplementations(originalMethod, swizzledMethod);
