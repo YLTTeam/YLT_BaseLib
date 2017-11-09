@@ -13,5 +13,6 @@
 #import "NSObject+YLT_BaseObject.h"
 #import "YLT_BaseModel.h"
 #import "YLT_DBHelper.h"
+#import "YLT_AuthorizationHelper.h"
 
 #endif /* YLT_BaseLib_h */
