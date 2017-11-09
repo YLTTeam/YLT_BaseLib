@@ -14,5 +14,6 @@
 #import "YLT_BaseModel.h"
 #import "YLT_DBHelper.h"
 #import "YLT_AuthorizationHelper.h"
+#import "YLT_PhotoHelper.h"
 
 #endif /* YLT_BaseLib_h */
