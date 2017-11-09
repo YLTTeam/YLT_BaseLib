@@ -91,7 +91,7 @@
 #define YLT_HEXCOLOR(hex) [UIColor colorWithRed:((float)((hex & 0xFF0000) >> 16)) / 255.0 green:((float)((hex & 0xFF00) >> 8)) / 255.0 blue:((float)(hex & 0xFF)) / 255.0 alpha:1]
 #define YLT_HEXCOLORA(hex, alpha) [UIColor colorWithRed:((float)((hex & 0xFF0000) >> 16)) / 255.0 green:((float)((hex & 0xFF00) >> 8)) / 255.0 blue:((float)(hex & 0xFF)) / 255.0 alpha:alpha]
 #define YLT_StringColor(color) [color YLT_ColorFromHexString]
-#definf YLT_StringValue(str) [str YLT_CheckString]?str:@""
+#define YLT_StringValue(str) [str YLT_CheckString]?str:@""
 
 
 //快速生成单例对象
