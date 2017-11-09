@@ -247,10 +247,10 @@ YLT_ShareInstance(YLT_PhotoHelper);
 #pragma mark - UIImagePickerControllerDelegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    [self.pickerVC dismissViewControllerAnimated:YES completion:nil];
     if ([YLT_PhotoHelper shareInstance].success) {
         [YLT_PhotoHelper shareInstance].success(info);
     }
+    [self.pickerVC dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     NSError *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey:@"用户取消"}];
