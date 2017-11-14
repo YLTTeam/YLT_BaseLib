@@ -214,4 +214,14 @@
     method_exchangeImplementations(originalMethod, swizzledMethod);
 }
 
+/**
+ 获取弱指针
+ 
+ @return 当前对象
+ */
+- (instancetype)YLT_WeakSelf {
+    __weak typeof(self) weakSelf = self;
+    return weakSelf;
+}
+
 @end
