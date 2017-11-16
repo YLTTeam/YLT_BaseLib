@@ -255,6 +255,7 @@ YLT_ShareInstance(YLT_PhotoHelper);
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     NSError *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey:@"用户取消"}];
     [YLT_PhotoHelper shareInstance].failed(error);
+    [self.pickerVC dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - get
