@@ -13,6 +13,13 @@
 #define iPad [NSObject YLT_DeviceIsiPad]
 #define iPhone [NSObject YLT_DeviceIsiPhone]
 
+//屏幕信息
+#define iPhone_3_5 ([UIScreen mainScreen].bounds.size.width==320&&[UIScreen mainScreen].bounds.size.height==480)
+#define iPhone_4 ([UIScreen mainScreen].bounds.size.width==320&&[UIScreen mainScreen].bounds.size.height==568)
+#define iPhone_4_7 ([UIScreen mainScreen].bounds.size.width==375&&[UIScreen mainScreen].bounds.size.height==667)
+#define iPhone_5_5 ([UIScreen mainScreen].bounds.size.width==414&&[UIScreen mainScreen].bounds.size.height==736)
+#define iPhone_x ([UIScreen mainScreen].bounds.size.width==375&&[UIScreen mainScreen].bounds.size.height==812)
+
 // iOS系统信息
 #define YLT_iOS_VERSION [[UIDevice currentDevice] systemVersion]
 
