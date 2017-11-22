@@ -58,7 +58,7 @@
 
 #if DEBUG
 //输出日志信息
-#define YLT_LogAll(type,format,...) NSLog(@"%@ %@ %s+%d " format,type,NSStringFromClass([self class]),__func__,__LINE__,##__VA_ARGS__)
+#define YLT_LogAll(type,format,...) NSLog(@"%@ %s %s+%d " format,type,__FILE__,__func__,__LINE__,##__VA_ARGS__)
 #define YLT_Log(format,...) YLT_LogAll(@"",format,##__VA_ARGS__)
 #define YLT_LogInfo(format,...) YLT_LogAll(@"",format,##__VA_ARGS__)
 #define YLT_LogWarn(format,...) YLT_LogAll(@"‼️",format,##__VA_ARGS__)
