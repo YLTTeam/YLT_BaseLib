@@ -10,9 +10,6 @@
 
 @interface YLT_ModularManager : YLT_BaseModular
 
-
-YLT_ShareInstanceHeader(YLT_ModularManager);
-
 /**
  模块初始化
  
