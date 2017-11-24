@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 YLT_ShareInstance(YLT_BaseModular);
 
+- (void)YLT_init {
+}
+
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     
 }
