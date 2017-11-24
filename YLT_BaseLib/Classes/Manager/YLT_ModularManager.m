@@ -34,7 +34,12 @@ YLT_ShareInstance(YLT_ModularManager);
  */
 + (void)modularWithPlistPath:(NSString *)plistPath {
     [[NSArray arrayWithContentsOfFile:plistPath] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [[YLT_ModularManager shareInstance].modularList addObject:[[NSClassFromString(obj) alloc] init]];
+        Class cls = NSClassFromString(obj);
+        if ([cls respondsToSelector:@selector(shareInstance)]) {
+            [[YLT_ModularManager shareInstance].modularList addObject:[cls shareInstance]];
+        } else {
+            YLT_LogError(@"%@ 未添加单例方法", obj);
+        }
     }];
 }
 

@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "YLT_BaseMacro.h"
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
 #endif
@@ -15,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wstrict-prototypes"
 @interface YLT_BaseModular : NSObject
+
+YLT_ShareInstanceHeader(YLT_BaseModular);
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application;
 #if UIKIT_STRING_ENUMS
