@@ -18,8 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong) NSMutableArray *modularList;
 
-YLT_ShareInstanceHeader(YLT_ModularManager);
-
 @end
 
 @implementation YLT_ModularManager
