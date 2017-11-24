@@ -27,7 +27,13 @@ YLT_ShareInstanceHeader(YLT_ModularManager);
 YLT_ShareInstance(YLT_ModularManager);
 
 - (void)YLT_init {
-    [YLT_ModularManager shareInstance].modularList = [[NSMutableArray alloc] init];
+}
+
+- (NSMutableArray *)modularList {
+    if (!_modularList) {
+        _modularList = [[NSMutableArray alloc] init];
+    }
+    return _modularList;
 }
 /**
  模块初始化
