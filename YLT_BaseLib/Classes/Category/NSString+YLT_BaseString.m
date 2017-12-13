@@ -90,7 +90,11 @@
 - (BOOL)YLT_CheckURL {
     NSString *pattern = @"^(http||https)://([\\w-]+\.)+[\\w-]+(/[\\w-./?%&=]*)?$";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
-    return [pred evaluateWithObject:self];
+    if ([pred evaluateWithObject:self]) {
+        BOOL res = [[NSURL URLWithString:self] checkResourceIsReachableAndReturnError:nil];
+        return res;
+    }
+    return NO;
 }
 
 /**
