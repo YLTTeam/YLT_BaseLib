@@ -91,8 +91,8 @@
     NSString *pattern = @"^(http||https)://([\\w-]+\.)+[\\w-]+(/[\\w-./?%&=]*)?$";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
     if ([pred evaluateWithObject:self]) {
-        BOOL res = [[NSURL URLWithString:self] checkResourceIsReachableAndReturnError:nil];
-        return res;
+//        BOOL res = [[NSURL URLWithString:self] checkResourceIsReachableAndReturnError:nil];
+        return YES;
     }
     return NO;
 }
