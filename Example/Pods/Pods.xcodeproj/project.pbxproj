@@ -7,79 +7,81 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		030E3C9DBE53A068408CACA3C4C62A86 /* YLT_ModularManager.h in Headers */ = {isa = PBXBuildFile; fileRef = CA52D5F53B42BAB956A35BD05E610C90 /* YLT_ModularManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		068F6DF04EF0371EEC29C6787B63910B /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3523E1952C9F34C9A3CFD094E132BD /* NSObject+MJProperty.m */; };
+		08B287B3C921C4C91F92BFBA051B5111 /* NSObject+YLT_BaseObject.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF71AB05916D629DECD3F1FDEB44CD8 /* NSObject+YLT_BaseObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		094E6ECE34F0CCB085FAA095D24708F4 /* MJPropertyType.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E15FC6E56D617BE003C21722EC170F0 /* MJPropertyType.m */; };
 		0A1D1BA5F4A6861F59960AE501A61367 /* MJPropertyKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C12CD20C35D657F1419AF25D769B752 /* MJPropertyKey.m */; };
+		0A9376FECF049D46992708E7476617B4 /* YLT_BaseLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 1ECB6FB0CF03295DDFFE646A067D6276 /* YLT_BaseLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B67D51C35E79EE135E38084317053DA /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B870CACF3A7756BC0C1FF0EDF24732 /* NSObject+MJKeyValue.m */; };
 		110FA5DB7C29E7BE47F7C9FA23AC21D6 /* MJExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8337EF9C9E3D7993B472B0B28D340459 /* MJExtension.framework */; };
 		11BF0A3C217C5233EF08A6A2623CEA80 /* NSObject+MJClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D9CF3D3834EC4C9FE30F5AD4D05E717 /* NSObject+MJClass.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		13994CFDFEAE749A81C3F44093412C6A /* YLT_BaseModular.m in Sources */ = {isa = PBXBuildFile; fileRef = AF03217378BA8F680B1247CFB869B931 /* YLT_BaseModular.m */; };
-		186277EF4353A84D795E8FAD2E6A3A7E /* UIView+YLT_BaseView.h in Headers */ = {isa = PBXBuildFile; fileRef = C4DF79113491D599E7C6F6EDC2B74E15 /* UIView+YLT_BaseView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		193DFDEF21CCC507C72FA0A4B868D9F5 /* YLT_BaseModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 91DFAA7ED14CAA3A914D64D2C83EF33F /* YLT_BaseModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C9CA45E5903527F8DA9260AD66064B1 /* YLT_BaseMacro.h in Headers */ = {isa = PBXBuildFile; fileRef = 481704066C46A312FCAB2BFF558D3AEC /* YLT_BaseMacro.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1F3AA5B9EBAAD134BF25B0B89FDF108B /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 08861DCA61A8746115BCFB003DEE718A /* NSString+MJExtension.m */; };
 		1FBFD94316326DCB9485F8704696806B /* MJExtensionConst.h in Headers */ = {isa = PBXBuildFile; fileRef = 86ACDC173B9FC8970E4DA11ACF63D722 /* MJExtensionConst.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		216BA074299FF1A4EDDEC6A658E1AF92 /* YLT_BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FDE080D5AC6E5AFF4927DF8ED9813F /* YLT_BaseModel.m */; };
 		22554065FA07F1BFE5308A685394CB12 /* FMDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E34CB89669A84355C2D3B4641834D26 /* FMDatabaseQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		271443631BD1F2E27281E46D52A463AF /* NSString+YLT_BaseString.m in Sources */ = {isa = PBXBuildFile; fileRef = FA17B688D9A852242FCE99CBAF640A17 /* NSString+YLT_BaseString.m */; };
-		2BF195CA2D0DD1B7C2ED8623883222DD /* UIView+YLT_BaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6AC53BCA146FBA15BD6F170557CD7F /* UIView+YLT_BaseView.m */; };
+		22D6F9D09B6D9436A4E99893BEAA451A /* YLT_ModularManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E00BE00D3AEDFBED4E93471BBA76F1B1 /* YLT_ModularManager.m */; };
 		2E04F7FD19DB0B64EA10207786F864EB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5163B54640B97B9577F9BCE6AF09F9C /* Foundation.framework */; };
-		34E821178F18E5EB55F71AB8D93B8956 /* YLT_ModularManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E57D937A8926195766834BBE8C24D487 /* YLT_ModularManager.m */; };
-		373FAEE300D332F4F8C14DD5C01658AA /* NSString+YLT_BaseString.h in Headers */ = {isa = PBXBuildFile; fileRef = 31BAF8AA71633952D2AEE8D62F14A61A /* NSString+YLT_BaseString.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37F097E2269EF1BD238AD7449D796445 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9C5FE8E5EDEBB39916BE1A7DDE898D /* FMDatabase.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		383448308BB9C5CB67073E0A8DED4A43 /* NSObject+MJProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AC944C657FEAE893BF8756EDF50AADE /* NSObject+MJProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3CA593E547D218940B869079576279AA /* UIView+YLT_BaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7545D3B3521CC0DAD1DAC343D65447 /* UIView+YLT_BaseView.m */; };
+		3DF03D2CA7DF97A3CE21CA3EA360452E /* YLT_BaseLib-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 648175440E8C8CB6C34509B1B72CF9EF /* YLT_BaseLib-dummy.m */; };
 		3E43906B70EB01C06F3AE17008B853B9 /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C0D9C04B6D40D9C32C3D4F14C250B53 /* FMResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		43262E72AD9903684E9DA2A8C59A323D /* YLT_AuthorizationHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = A2A71639555AF66002836219109678B6 /* YLT_AuthorizationHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		45AB16D42ECA9857FCFCA50F5DFBC2DA /* YLT_FileHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 422FFA226EFC51E80F38C7EAC6025A35 /* YLT_FileHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5416351D53F6E56FC3FC83E11D879EA4 /* YLT_PhotoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F89D3573C6605F9C8AC691C0F0D03 /* YLT_PhotoHelper.m */; };
+		402D046BBF1820F4FBC90CD6C4D3BE9F /* YLT_KeyChainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC044A7ACD69A08F8BC3DD275AC8811 /* YLT_KeyChainHelper.m */; };
+		56ECE1D28928D490F50EFDA0726CEFF4 /* YLT_BaseLib-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A53A0B6769BD3D78A0813ED770F584A1 /* YLT_BaseLib-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		58EFF22FEFA78894F9F808799F961BD5 /* MJProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AB39B28B00A8C3BA888AE9EF5F8257F /* MJProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		59A28C2CEFC4537C9DAF55D01C4ACED1 /* MJExtension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 14176A3916C227EB0A4A2A79A653ED3B /* MJExtension-dummy.m */; };
-		59C3A7693DCCD85C7824BF243568296B /* YLT_BaseLib-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 63EBE0D43FF68C8032225AD82DDB9E0B /* YLT_BaseLib-dummy.m */; };
-		5B6CA837FE4A00B47278CD4658704D84 /* YLT_BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2195446DE718D595C9AB5D981E85FE95 /* YLT_BaseModel.m */; };
 		5BD2A9D0D752792C18F1E7F6CDBEB0FA /* NSString+MJExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 1890F7A91BAF669E1DC8D4C64DF33410 /* NSString+MJExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5C4C455891805564A84001B04CBF24CF /* YLT_KeyChainHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 513AB9465BB2982D5297D23863A992A1 /* YLT_KeyChainHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5CDA1B8A4E428E94B246E4FFB791A3E9 /* NSString+YLT_BaseString.h in Headers */ = {isa = PBXBuildFile; fileRef = DFF83796F6782454B6D25CD2DBAD3ED3 /* NSString+YLT_BaseString.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5E89ED15FDB4CE7F92544DDF4589C242 /* MJPropertyType.h in Headers */ = {isa = PBXBuildFile; fileRef = 48242EC225A534C7A96DDAE6A596CB70 /* MJPropertyType.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		62C6C351F1887B24B6AF8B27F7B747E3 /* NSObject+YLT_BaseObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 90F07CE8F316B87DDA54358B3D4C4627 /* NSObject+YLT_BaseObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63200E79BCB6D17EE06F9EB3ABE2682E /* NSObject+YLT_BaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8342DC6384A28531AA224DCAF2C206 /* NSObject+YLT_BaseObject.m */; };
 		64298620A2F1EFAB12386F3861E08D40 /* NSObject+MJCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 754E0ADB218F126D355968FFD927576D /* NSObject+MJCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		676E59D01B74E4B57176463267300C75 /* Pods-YLT_BaseLib_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0802B73149B5220845D21FF352EFD2E7 /* Pods-YLT_BaseLib_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		691FF60FC2902E3F61CF9CB231D900DE /* YLT_FileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7654B92424E5837045607BC97A6C6606 /* YLT_FileHelper.m */; };
 		69928D6EC36E562F013C07C30C8F8AE6 /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 883E01145E0A94B5AFA4B1BF0AAD363A /* FMDB.framework */; };
+		699B2EA332C58560353BC0227AD4BABA /* YLT_DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AF36F414ACC55A8F8329D604C5FDDDFF /* YLT_DBHelper.m */; };
 		6DA14D61DB56E00FF18F2F75C51454AE /* MJExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = AA966EC9CA8514747837DC8CD238AAD8 /* MJExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6DCC194AC75F9CE9BB3D25EE7ADE57A4 /* YLT_DBHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 448AFF70D0D0D3EE96C394185BD86F44 /* YLT_DBHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72563ADE99DC9E753B27D48B16AA3654 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5163B54640B97B9577F9BCE6AF09F9C /* Foundation.framework */; };
+		7358FE05AF13F06CD7161287911CB19B /* YLT_BaseMacro.h in Headers */ = {isa = PBXBuildFile; fileRef = 55574C6ADD2D93E20DDBA58F921FED1B /* YLT_BaseMacro.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7410B2A65C0651D85D3B173865D3026B /* NSObject+MJClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5EF82933606274B50BF849C06E7176 /* NSObject+MJClass.m */; };
+		74392EC0B6E42FA09558AE53BB703221 /* NSString+YLT_BaseString.m in Sources */ = {isa = PBXBuildFile; fileRef = 84348F26CD85C0AEED8EC3C987E64927 /* NSString+YLT_BaseString.m */; };
+		743BD1A55BE71A21BEA63E9246CC00D6 /* YLT_AuthorizationHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FE0326AEB33F706EDEC87C6C5FA696C /* YLT_AuthorizationHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		80F0AF1B6A7C1D67BC2E5DCE4B44685A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5163B54640B97B9577F9BCE6AF09F9C /* Foundation.framework */; };
+		87E48061A9AB7AF921E0988809215A09 /* YLT_FileHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = DBFF93C2195599117C4F45299B30E367 /* YLT_FileHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		87ECA447DB887426665260651B7F147E /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E91349F6CDDEBE37BAE8C559421BC /* FMResultSet.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		8C7A2CF54464A4B3E0302721E07B2BDF /* UIView+YLT_BaseView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3462829338C632FB38CE4735A8E67C5A /* UIView+YLT_BaseView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8EBD746FB73AC08623BD453886BD56B8 /* YLT_AuthorizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BAFB1469B746C619E0F42FC82BC59DD5 /* YLT_AuthorizationHelper.m */; };
 		8EC1C8F8C76EDF5D019E8EBA01C2ABB3 /* NSObject+MJCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C72AA9379EA948EEA7004424B137D21 /* NSObject+MJCoding.m */; };
-		9073BE1F1D651864956009F7117E405B /* YLT_DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1A395CC2E7256FDAEBC4B042E398D0 /* YLT_DBHelper.m */; };
+		92BB29795519EF2D5411097D09172BF0 /* YLT_DownloaderHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C367DA28A96E5B15EFBE378180FDAC1A /* YLT_DownloaderHelper.m */; };
 		96E70B43FC04BC99AED1BBD4FB1D7581 /* FMDB-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B8E046BCD32A0152D67B63C867CC7A2D /* FMDB-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		99EAD8101C0E0741927124143FF05D68 /* YLT_FileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A614CCC7F47E26B908AFDCA0281805B /* YLT_FileHelper.m */; };
 		9B8D84996694C541CD3434386E0A081A /* FMDatabasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E96A80D0BB972984A97EFFCE5F7472B /* FMDatabasePool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9C11A290C9C5866A185A54F1EC04E2BB /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C00C1C8280BB0A202AA3CEF0552182DB /* FMDatabaseAdditions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		A1B5D80A8998311B8C9043E6942925E6 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AB39C2211342E05EF7AFEA9AFF1370 /* FMDatabaseQueue.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		A42826FE7218B2D1B080CA816E9B9C8F /* YLT_KeyChainHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A9AAEFBF4407BE5605AD756518B077B /* YLT_KeyChainHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A548833BE5FAD40830428F36E77D0F52 /* FMDatabaseAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 951B840A84E82DEEEE05F74E9A9EE547 /* FMDatabaseAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A61CBA1B7EC469C602F47186539239E0 /* MJPropertyKey.h in Headers */ = {isa = PBXBuildFile; fileRef = B7C6A306E65EA986A682B808967846A4 /* MJPropertyKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ACA66A1A183BD931CF163A4612A9756E /* YLT_BaseModel.h in Headers */ = {isa = PBXBuildFile; fileRef = C2EEDF7F8482AFDD927655D8F027E314 /* YLT_BaseModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B0E690051EB42E9EE689959E51E6363D /* Pods-YLT_BaseLib_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F31D3719EACF44F8184EA70565CD5106 /* Pods-YLT_BaseLib_Tests-dummy.m */; };
+		B4AA303F732284AA9515B0CB8B68C513 /* YLT_ModularManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 314ABB5110CF4ADA3E31F23715728BED /* YLT_ModularManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B7B68FDABB146B87FA3C9E987D2014DE /* NSObject+MJKeyValue.h in Headers */ = {isa = PBXBuildFile; fileRef = E36B7C87428DC9D8688E3E1E3DC53EF7 /* NSObject+MJKeyValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BCD0480A932032130C7547C21B381A9C /* Pods-YLT_BaseLib_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5662ABC147898669D29B061CC762ABEC /* Pods-YLT_BaseLib_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BFD9EF8FF993A6451CAE397532170AD9 /* YLT_BaseLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 1580001922D560CFFD0B5CE6776D42B4 /* YLT_BaseLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1151CB4057968EABC44922C10A1A859 /* YLT_DBHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = FFD94183C0E16380C3E2182E7369F18E /* YLT_DBHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1B9F55BDEC344C9E7EBBF4A8BB3FBA8 /* YLT_KeyChainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC60D7C56F80F91C385B818A923AA05 /* YLT_KeyChainHelper.m */; };
+		C0125E2B62EAE765A896BBB29BC42CEB /* YLT_PhotoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B75BB12E0857D73F2D8FD0C20954B3 /* YLT_PhotoHelper.m */; };
+		C215BC79B06D801C3851F06E09D6EBCE /* YLT_PhotoHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 7630B0C1D85D75CA9B35256FD8AE458B /* YLT_PhotoHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C605A44DF96E7FCACF7D6E37B62F795D /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = ED780D50B980DD1091DBF73F310B0413 /* FMDatabasePool.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		C7C256EDE0E0BBCD6C24E1173872B870 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5163B54640B97B9577F9BCE6AF09F9C /* Foundation.framework */; };
 		CCB74062CE0F4B8E5B7483599BC398DA /* FMDB.h in Headers */ = {isa = PBXBuildFile; fileRef = C2033626387E3504931A1A88FCA003DE /* FMDB.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD4D283A61707C386754BBD31F5BEABB /* MJExtensionConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DF78710F0BAD29C6C11D37A0EFB0F6 /* MJExtensionConst.m */; };
-		D0DD8972C978B9BB7677F94825A0B115 /* YLT_BaseModular.h in Headers */ = {isa = PBXBuildFile; fileRef = C0E1FAC0DE33B70B735EAEC072174404 /* YLT_BaseModular.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D5991941DC41DDDDDACAE0B5D47A4639 /* FMDB-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A8951345EE1FCEE1197C46F760A7B8F7 /* FMDB-dummy.m */; };
-		D60AC32B87A93E4BB41EB778E2211D48 /* NSObject+YLT_BaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6602FB03C1F67E3F6DD9A63ED9B1322A /* NSObject+YLT_BaseObject.m */; };
+		E26AA642EE8ACBA4AA87936A10AFC956 /* YLT_BaseModular.h in Headers */ = {isa = PBXBuildFile; fileRef = 22FEEEB76E5D2323899AEEC827700DDF /* YLT_BaseModular.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E5FCA2ABBE2C5EF75F004103BC26D472 /* MJFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = D9B5AB634C0AADED2388BC433A35722F /* MJFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E697D14E581CAEE081A1F6B467A014B7 /* MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BCD3E6BF58488654B0FF2E9D6105CD /* MJProperty.m */; };
-		EFFF1968691405BAEF1B63A5C048CEB0 /* YLT_BaseLib-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F48E43DD65B3D997E96F628B50606065 /* YLT_BaseLib-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F11FAB91014130EE233A3429439D38D7 /* FMDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B9931438201A446730E6FC39833FDE7 /* FMDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F184D215FFA8E2FB470FCA83CA25A1F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5163B54640B97B9577F9BCE6AF09F9C /* Foundation.framework */; };
+		F2693408AB165FBDB002D38919E6B872 /* YLT_DownloaderHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C1D3E03932D4FE3A0CCBC6306F14D58 /* YLT_DownloaderHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F53BE19B2CB360AC554A04B27DED8519 /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A262D1806969DBF13605691833CA25 /* MJFoundation.m */; };
-		F67353575F8F2AAADF5F7930C5A21162 /* YLT_PhotoHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 312C3FB5416A1C72582E4C342123654F /* YLT_PhotoHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F75E2AE2D12480AE889D1D3B7A654FAA /* MJExtension-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 919325F9AEEFEFB7998E0FFC45D7CB67 /* MJExtension-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F7DC35C25320F982CCAC56979FEC481E /* YLT_BaseModular.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E734C0D81947662D1343CDBFD6C0F19 /* YLT_BaseModular.m */; };
 		F873DDED40A289CCE426EE3F511DFB9A /* Pods-YLT_BaseLib_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2AB1C7509840337FF92A4C5D7EAAD6 /* Pods-YLT_BaseLib_Example-dummy.m */; };
-		FDAD3A88C0E698681302AB462A2252C5 /* YLT_AuthorizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DCBA94F7FB546DCD09FFE0B1F9D3A9 /* YLT_AuthorizationHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,106 +126,108 @@
 		0799DB6E2564038C3F4106F07E30E040 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0802B73149B5220845D21FF352EFD2E7 /* Pods-YLT_BaseLib_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-YLT_BaseLib_Example-umbrella.h"; sourceTree = "<group>"; };
 		08861DCA61A8746115BCFB003DEE718A /* NSString+MJExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+MJExtension.m"; path = "MJExtension/NSString+MJExtension.m"; sourceTree = "<group>"; };
+		0AC044A7ACD69A08F8BC3DD275AC8811 /* YLT_KeyChainHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YLT_KeyChainHelper.m; sourceTree = "<group>"; };
+		0C1D3E03932D4FE3A0CCBC6306F14D58 /* YLT_DownloaderHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YLT_DownloaderHelper.h; sourceTree = "<group>"; };
 		0CFC3BAF7374CAFD7E12F8CBEA3BCBF6 /* Pods-YLT_BaseLib_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YLT_BaseLib_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		0FE0326AEB33F706EDEC87C6C5FA696C /* YLT_AuthorizationHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YLT_AuthorizationHelper.h; sourceTree = "<group>"; };
 		14176A3916C227EB0A4A2A79A653ED3B /* MJExtension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MJExtension-dummy.m"; sourceTree = "<group>"; };
-		1580001922D560CFFD0B5CE6776D42B4 /* YLT_BaseLib.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YLT_BaseLib.h; path = YLT_BaseLib/Classes/YLT_BaseLib.h; sourceTree = "<group>"; };
 		17077A1C02B6B317FC29E8215FCC9FCD /* MJExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MJExtension.framework; path = MJExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1890F7A91BAF669E1DC8D4C64DF33410 /* NSString+MJExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+MJExtension.h"; path = "MJExtension/NSString+MJExtension.h"; sourceTree = "<group>"; };
 		1C6F8535D6FA8992CEA0F8DA20D58447 /* Pods-YLT_BaseLib_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YLT_BaseLib_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		1ECB6FB0CF03295DDFFE646A067D6276 /* YLT_BaseLib.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YLT_BaseLib.h; path = YLT_BaseLib/Classes/YLT_BaseLib.h; sourceTree = "<group>"; };
 		1F56B7084EBC4E03DD5F420061D6D46B /* Pods-YLT_BaseLib_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-YLT_BaseLib_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		2195446DE718D595C9AB5D981E85FE95 /* YLT_BaseModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YLT_BaseModel.m; sourceTree = "<group>"; };
+		22FEEEB76E5D2323899AEEC827700DDF /* YLT_BaseModular.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YLT_BaseModular.h; sourceTree = "<group>"; };
+		23B242BC5D4482E5A03D0BD95CDF360B /* YLT_BaseLib-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YLT_BaseLib-prefix.pch"; sourceTree = "<group>"; };
 		261EA595358C1FE38A8EE968B6D48AF4 /* Pods-YLT_BaseLib_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-YLT_BaseLib_Example-frameworks.sh"; sourceTree = "<group>"; };
+		26FDE080D5AC6E5AFF4927DF8ED9813F /* YLT_BaseModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YLT_BaseModel.m; sourceTree = "<group>"; };
 		28AB39C2211342E05EF7AFEA9AFF1370 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseQueue.m; path = src/fmdb/FMDatabaseQueue.m; sourceTree = "<group>"; };
 		29FE901E0FDEDDE548B68B05EC38A444 /* Pods-YLT_BaseLib_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-YLT_BaseLib_Tests-resources.sh"; sourceTree = "<group>"; };
+		2A614CCC7F47E26B908AFDCA0281805B /* YLT_FileHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YLT_FileHelper.m; sourceTree = "<group>"; };
+		2A9AAEFBF4407BE5605AD756518B077B /* YLT_KeyChainHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YLT_KeyChainHelper.h; sourceTree = "<group>"; };
 		2C72AA9379EA948EEA7004424B137D21 /* NSObject+MJCoding.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+MJCoding.m"; path = "MJExtension/NSObject+MJCoding.m"; sourceTree = "<group>"; };
 		2CBD40C0675024C814C0C2CAC24F5876 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		312C3FB5416A1C72582E4C342123654F /* YLT_PhotoHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YLT_PhotoHelper.h; sourceTree = "<group>"; };
-		31BAF8AA71633952D2AEE8D62F14A61A /* NSString+YLT_BaseString.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSString+YLT_BaseString.h"; sourceTree = "<group>"; };
+		314ABB5110CF4ADA3E31F23715728BED /* YLT_ModularManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YLT_ModularManager.h; sourceTree = "<group>"; };
+		3462829338C632FB38CE4735A8E67C5A /* UIView+YLT_BaseView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+YLT_BaseView.h"; sourceTree = "<group>"; };
 		3598855BC126E2DD7A56B8859E604DCE /* FMDB.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = FMDB.modulemap; sourceTree = "<group>"; };
 		37BCD3E6BF58488654B0FF2E9D6105CD /* MJProperty.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJProperty.m; path = MJExtension/MJProperty.m; sourceTree = "<group>"; };
 		3956D39B944F920A08A85EC734113DB6 /* Pods-YLT_BaseLib_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-YLT_BaseLib_Tests.modulemap"; sourceTree = "<group>"; };
-		422FFA226EFC51E80F38C7EAC6025A35 /* YLT_FileHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YLT_FileHelper.h; sourceTree = "<group>"; };
+		3AA90EBF12D67942C914C9FCA419D72F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43DF78710F0BAD29C6C11D37A0EFB0F6 /* MJExtensionConst.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJExtensionConst.m; path = MJExtension/MJExtensionConst.m; sourceTree = "<group>"; };
-		481704066C46A312FCAB2BFF558D3AEC /* YLT_BaseMacro.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YLT_BaseMacro.h; sourceTree = "<group>"; };
+		448AFF70D0D0D3EE96C394185BD86F44 /* YLT_DBHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YLT_DBHelper.h; sourceTree = "<group>"; };
 		48242EC225A534C7A96DDAE6A596CB70 /* MJPropertyType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJPropertyType.h; path = MJExtension/MJPropertyType.h; sourceTree = "<group>"; };
 		4A3523E1952C9F34C9A3CFD094E132BD /* NSObject+MJProperty.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+MJProperty.m"; path = "MJExtension/NSObject+MJProperty.m"; sourceTree = "<group>"; };
 		4AB39B28B00A8C3BA888AE9EF5F8257F /* MJProperty.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJProperty.h; path = MJExtension/MJProperty.h; sourceTree = "<group>"; };
 		4C0D9C04B6D40D9C32C3D4F14C250B53 /* FMResultSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = src/fmdb/FMResultSet.h; sourceTree = "<group>"; };
 		4E96A80D0BB972984A97EFFCE5F7472B /* FMDatabasePool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabasePool.h; path = src/fmdb/FMDatabasePool.h; sourceTree = "<group>"; };
-		513AB9465BB2982D5297D23863A992A1 /* YLT_KeyChainHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YLT_KeyChainHelper.h; sourceTree = "<group>"; };
+		55574C6ADD2D93E20DDBA58F921FED1B /* YLT_BaseMacro.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YLT_BaseMacro.h; sourceTree = "<group>"; };
 		5662ABC147898669D29B061CC762ABEC /* Pods-YLT_BaseLib_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-YLT_BaseLib_Tests-umbrella.h"; sourceTree = "<group>"; };
 		5B9931438201A446730E6FC39833FDE7 /* FMDatabase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = src/fmdb/FMDatabase.h; sourceTree = "<group>"; };
 		5C12CD20C35D657F1419AF25D769B752 /* MJPropertyKey.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJPropertyKey.m; path = MJExtension/MJPropertyKey.m; sourceTree = "<group>"; };
 		5EE6B0F6DEFA868A32650BCA12560D09 /* Pods_YLT_BaseLib_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_YLT_BaseLib_Example.framework; path = "Pods-YLT_BaseLib_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5EF82933606274B50BF849C06E7176 /* NSObject+MJClass.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+MJClass.m"; path = "MJExtension/NSObject+MJClass.m"; sourceTree = "<group>"; };
-		63EBE0D43FF68C8032225AD82DDB9E0B /* YLT_BaseLib-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "YLT_BaseLib-dummy.m"; sourceTree = "<group>"; };
-		6602FB03C1F67E3F6DD9A63ED9B1322A /* NSObject+YLT_BaseObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YLT_BaseObject.m"; sourceTree = "<group>"; };
+		648175440E8C8CB6C34509B1B72CF9EF /* YLT_BaseLib-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "YLT_BaseLib-dummy.m"; sourceTree = "<group>"; };
 		6A86B2CCB77C75C9A470A620E7FA919D /* Pods-YLT_BaseLib_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-YLT_BaseLib_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		6AC944C657FEAE893BF8756EDF50AADE /* NSObject+MJProperty.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+MJProperty.h"; path = "MJExtension/NSObject+MJProperty.h"; sourceTree = "<group>"; };
-		6DC60D7C56F80F91C385B818A923AA05 /* YLT_KeyChainHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YLT_KeyChainHelper.m; sourceTree = "<group>"; };
 		6DD8FE6E41492E782A97B017F2301371 /* FMDB.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FMDB.xcconfig; sourceTree = "<group>"; };
+		6E734C0D81947662D1343CDBFD6C0F19 /* YLT_BaseModular.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YLT_BaseModular.m; sourceTree = "<group>"; };
 		71623E388B0697BDE102657A76B19B89 /* Pods-YLT_BaseLib_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-YLT_BaseLib_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		73BDACB772F7A06AD0B523C204618B5F /* MJExtension.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = MJExtension.modulemap; sourceTree = "<group>"; };
 		754E0ADB218F126D355968FFD927576D /* NSObject+MJCoding.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+MJCoding.h"; path = "MJExtension/NSObject+MJCoding.h"; sourceTree = "<group>"; };
-		7654B92424E5837045607BC97A6C6606 /* YLT_FileHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YLT_FileHelper.m; sourceTree = "<group>"; };
+		7630B0C1D85D75CA9B35256FD8AE458B /* YLT_PhotoHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YLT_PhotoHelper.h; sourceTree = "<group>"; };
 		77A1AD37A97006B4B8E59300A29BB5D1 /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FMDB.framework; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ABC9A7388EFD02F1B05B569536BF616 /* Pods-YLT_BaseLib_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YLT_BaseLib_Example.release.xcconfig"; sourceTree = "<group>"; };
 		7D9CF3D3834EC4C9FE30F5AD4D05E717 /* NSObject+MJClass.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+MJClass.h"; path = "MJExtension/NSObject+MJClass.h"; sourceTree = "<group>"; };
-		81463B5E345FFE6F1006F4F2128A13C4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8337EF9C9E3D7993B472B0B28D340459 /* MJExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MJExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		833EB2C112C1F4ACB2F691AC33B271CE /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84348F26CD85C0AEED8EC3C987E64927 /* NSString+YLT_BaseString.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSString+YLT_BaseString.m"; sourceTree = "<group>"; };
 		86ACDC173B9FC8970E4DA11ACF63D722 /* MJExtensionConst.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJExtensionConst.h; path = MJExtension/MJExtensionConst.h; sourceTree = "<group>"; };
 		86FB0B733B38D78F38A8AE5BDE100AC7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		883E01145E0A94B5AFA4B1BF0AAD363A /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C8342DC6384A28531AA224DCAF2C206 /* NSObject+YLT_BaseObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YLT_BaseObject.m"; sourceTree = "<group>"; };
+		8D3C54B32F69E2B369980EF477870770 /* YLT_BaseLib.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = YLT_BaseLib.modulemap; sourceTree = "<group>"; };
 		8E15FC6E56D617BE003C21722EC170F0 /* MJPropertyType.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJPropertyType.m; path = MJExtension/MJPropertyType.m; sourceTree = "<group>"; };
 		8E34CB89669A84355C2D3B4641834D26 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabaseQueue.h; path = src/fmdb/FMDatabaseQueue.h; sourceTree = "<group>"; };
-		90F07CE8F316B87DDA54358B3D4C4627 /* NSObject+YLT_BaseObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSObject+YLT_BaseObject.h"; sourceTree = "<group>"; };
 		919325F9AEEFEFB7998E0FFC45D7CB67 /* MJExtension-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MJExtension-umbrella.h"; sourceTree = "<group>"; };
-		91DFAA7ED14CAA3A914D64D2C83EF33F /* YLT_BaseModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YLT_BaseModel.h; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		951B840A84E82DEEEE05F74E9A9EE547 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabaseAdditions.h; path = src/fmdb/FMDatabaseAdditions.h; sourceTree = "<group>"; };
 		99B870CACF3A7756BC0C1FF0EDF24732 /* NSObject+MJKeyValue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+MJKeyValue.m"; path = "MJExtension/NSObject+MJKeyValue.m"; sourceTree = "<group>"; };
 		9D89986E28B222580B3D746B884A742F /* Pods-YLT_BaseLib_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YLT_BaseLib_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		9E2877A10344834E8FE18AEB96E8CC4A /* Pods_YLT_BaseLib_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_YLT_BaseLib_Tests.framework; path = "Pods-YLT_BaseLib_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A2A71639555AF66002836219109678B6 /* YLT_AuthorizationHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YLT_AuthorizationHelper.h; sourceTree = "<group>"; };
 		A2F6AE922A8089C52B16AEC6545C8418 /* Pods-YLT_BaseLib_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-YLT_BaseLib_Example-resources.sh"; sourceTree = "<group>"; };
+		A53A0B6769BD3D78A0813ED770F584A1 /* YLT_BaseLib-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YLT_BaseLib-umbrella.h"; sourceTree = "<group>"; };
 		A5408793706AEC44C25D0175A83C8A79 /* Pods-YLT_BaseLib_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-YLT_BaseLib_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		A8951345EE1FCEE1197C46F760A7B8F7 /* FMDB-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FMDB-dummy.m"; sourceTree = "<group>"; };
 		AA966EC9CA8514747837DC8CD238AAD8 /* MJExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJExtension.h; path = MJExtension/MJExtension.h; sourceTree = "<group>"; };
-		AE6AC53BCA146FBA15BD6F170557CD7F /* UIView+YLT_BaseView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIView+YLT_BaseView.m"; sourceTree = "<group>"; };
-		AF03217378BA8F680B1247CFB869B931 /* YLT_BaseModular.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YLT_BaseModular.m; sourceTree = "<group>"; };
+		AF36F414ACC55A8F8329D604C5FDDDFF /* YLT_DBHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YLT_DBHelper.m; sourceTree = "<group>"; };
 		B5163B54640B97B9577F9BCE6AF09F9C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		B78064B536CD80236AAF4265840C2EBA /* MJExtension-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MJExtension-prefix.pch"; sourceTree = "<group>"; };
 		B7C6A306E65EA986A682B808967846A4 /* MJPropertyKey.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJPropertyKey.h; path = MJExtension/MJPropertyKey.h; sourceTree = "<group>"; };
 		B8E046BCD32A0152D67B63C867CC7A2D /* FMDB-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FMDB-umbrella.h"; sourceTree = "<group>"; };
-		BB4B97C2343565A427B9C928D5CFAF65 /* YLT_BaseLib-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YLT_BaseLib-prefix.pch"; sourceTree = "<group>"; };
+		BAFB1469B746C619E0F42FC82BC59DD5 /* YLT_AuthorizationHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YLT_AuthorizationHelper.m; sourceTree = "<group>"; };
 		BB9C5FE8E5EDEBB39916BE1A7DDE898D /* FMDatabase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = src/fmdb/FMDatabase.m; sourceTree = "<group>"; };
+		BC7545D3B3521CC0DAD1DAC343D65447 /* UIView+YLT_BaseView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIView+YLT_BaseView.m"; sourceTree = "<group>"; };
 		C00C1C8280BB0A202AA3CEF0552182DB /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseAdditions.m; path = src/fmdb/FMDatabaseAdditions.m; sourceTree = "<group>"; };
-		C0E1FAC0DE33B70B735EAEC072174404 /* YLT_BaseModular.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YLT_BaseModular.h; sourceTree = "<group>"; };
 		C18E91349F6CDDEBE37BAE8C559421BC /* FMResultSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = src/fmdb/FMResultSet.m; sourceTree = "<group>"; };
 		C2033626387E3504931A1A88FCA003DE /* FMDB.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDB.h; path = src/fmdb/FMDB.h; sourceTree = "<group>"; };
 		C22BB4CFB74A7BFEA070693D72E7A3FA /* Pods-YLT_BaseLib_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-YLT_BaseLib_Example.modulemap"; sourceTree = "<group>"; };
-		C4DF79113491D599E7C6F6EDC2B74E15 /* UIView+YLT_BaseView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+YLT_BaseView.h"; sourceTree = "<group>"; };
-		C9DCBA94F7FB546DCD09FFE0B1F9D3A9 /* YLT_AuthorizationHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YLT_AuthorizationHelper.m; sourceTree = "<group>"; };
-		CA52D5F53B42BAB956A35BD05E610C90 /* YLT_ModularManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YLT_ModularManager.h; sourceTree = "<group>"; };
+		C2EEDF7F8482AFDD927655D8F027E314 /* YLT_BaseModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YLT_BaseModel.h; sourceTree = "<group>"; };
+		C367DA28A96E5B15EFBE378180FDAC1A /* YLT_DownloaderHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YLT_DownloaderHelper.m; sourceTree = "<group>"; };
 		CBC4E77C95BDA06B08EDC95D93226F79 /* YLT_BaseLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = YLT_BaseLib.framework; path = YLT_BaseLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2AB1C7509840337FF92A4C5D7EAAD6 /* Pods-YLT_BaseLib_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-YLT_BaseLib_Example-dummy.m"; sourceTree = "<group>"; };
-		D8A2E3201853FB7FED0EA4D438795D29 /* YLT_BaseLib.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = YLT_BaseLib.modulemap; sourceTree = "<group>"; };
 		D9B5AB634C0AADED2388BC433A35722F /* MJFoundation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJFoundation.h; path = MJExtension/MJFoundation.h; sourceTree = "<group>"; };
-		DF1A395CC2E7256FDAEBC4B042E398D0 /* YLT_DBHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YLT_DBHelper.m; sourceTree = "<group>"; };
+		DBFF93C2195599117C4F45299B30E367 /* YLT_FileHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YLT_FileHelper.h; sourceTree = "<group>"; };
+		DFF83796F6782454B6D25CD2DBAD3ED3 /* NSString+YLT_BaseString.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSString+YLT_BaseString.h"; sourceTree = "<group>"; };
+		E00BE00D3AEDFBED4E93471BBA76F1B1 /* YLT_ModularManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YLT_ModularManager.m; sourceTree = "<group>"; };
 		E36B7C87428DC9D8688E3E1E3DC53EF7 /* NSObject+MJKeyValue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+MJKeyValue.h"; path = "MJExtension/NSObject+MJKeyValue.h"; sourceTree = "<group>"; };
-		E4C7BB1434A2EC48C4DC7B3BC109A6B2 /* YLT_BaseLib.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = YLT_BaseLib.xcconfig; sourceTree = "<group>"; };
-		E57D937A8926195766834BBE8C24D487 /* YLT_ModularManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YLT_ModularManager.m; sourceTree = "<group>"; };
-		E80F89D3573C6605F9C8AC691C0F0D03 /* YLT_PhotoHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YLT_PhotoHelper.m; sourceTree = "<group>"; };
 		E8A262D1806969DBF13605691833CA25 /* MJFoundation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJFoundation.m; path = MJExtension/MJFoundation.m; sourceTree = "<group>"; };
 		EAF2BCDBE035E87D3933CD8E3642FF20 /* Pods-YLT_BaseLib_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-YLT_BaseLib_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		EAF71AB05916D629DECD3F1FDEB44CD8 /* NSObject+YLT_BaseObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSObject+YLT_BaseObject.h"; sourceTree = "<group>"; };
 		ED780D50B980DD1091DBF73F310B0413 /* FMDatabasePool.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabasePool.m; path = src/fmdb/FMDatabasePool.m; sourceTree = "<group>"; };
 		EF1328D07E477309E3FBE9C77A95A848 /* MJExtension.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MJExtension.xcconfig; sourceTree = "<group>"; };
 		EFF86D81CCFD243BD74289FA530038EE /* FMDB-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FMDB-prefix.pch"; sourceTree = "<group>"; };
 		F31D3719EACF44F8184EA70565CD5106 /* Pods-YLT_BaseLib_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-YLT_BaseLib_Tests-dummy.m"; sourceTree = "<group>"; };
-		F48E43DD65B3D997E96F628B50606065 /* YLT_BaseLib-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YLT_BaseLib-umbrella.h"; sourceTree = "<group>"; };
-		FA17B688D9A852242FCE99CBAF640A17 /* NSString+YLT_BaseString.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSString+YLT_BaseString.m"; sourceTree = "<group>"; };
-		FFD94183C0E16380C3E2182E7369F18E /* YLT_DBHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YLT_DBHelper.h; sourceTree = "<group>"; };
+		F4B75BB12E0857D73F2D8FD0C20954B3 /* YLT_PhotoHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YLT_PhotoHelper.m; sourceTree = "<group>"; };
+		F55F4381713B2AB2695F53390065F010 /* YLT_BaseLib.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = YLT_BaseLib.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,25 +298,25 @@
 			path = FMDB;
 			sourceTree = "<group>";
 		};
-		1BEE6EB962B79FCFC19818088469C6E2 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				481704066C46A312FCAB2BFF558D3AEC /* YLT_BaseMacro.h */,
-				91DFAA7ED14CAA3A914D64D2C83EF33F /* YLT_BaseModel.h */,
-				2195446DE718D595C9AB5D981E85FE95 /* YLT_BaseModel.m */,
-				C0E1FAC0DE33B70B735EAEC072174404 /* YLT_BaseModular.h */,
-				AF03217378BA8F680B1247CFB869B931 /* YLT_BaseModular.m */,
-			);
-			name = Base;
-			path = YLT_BaseLib/Classes/Base;
-			sourceTree = "<group>";
-		};
 		2580728667082A2D8BF132BDC6EA3FE0 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B3C5004E5B8FCACC47060E8EA7328302 /* YLT_BaseLib */,
+				D440FB4184D4A67138CDF22CCA801F09 /* YLT_BaseLib */,
 			);
 			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		2BF144C779599AE991EDD6CAA5D29253 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				55574C6ADD2D93E20DDBA58F921FED1B /* YLT_BaseMacro.h */,
+				C2EEDF7F8482AFDD927655D8F027E314 /* YLT_BaseModel.h */,
+				26FDE080D5AC6E5AFF4927DF8ED9813F /* YLT_BaseModel.m */,
+				22FEEEB76E5D2323899AEEC827700DDF /* YLT_BaseModular.h */,
+				6E734C0D81947662D1343CDBFD6C0F19 /* YLT_BaseModular.m */,
+			);
+			name = Base;
+			path = YLT_BaseLib/Classes/Base;
 			sourceTree = "<group>";
 		};
 		2FC6E21C109B54AE28FEC8CA03D95B48 /* Targets Support Files */ = {
@@ -322,6 +326,26 @@
 				CA72A85F2547A2E9277633A4ECC5C410 /* Pods-YLT_BaseLib_Tests */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		339F7AA81D4D34ED8DA667F48B2F0BE2 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				0FE0326AEB33F706EDEC87C6C5FA696C /* YLT_AuthorizationHelper.h */,
+				BAFB1469B746C619E0F42FC82BC59DD5 /* YLT_AuthorizationHelper.m */,
+				448AFF70D0D0D3EE96C394185BD86F44 /* YLT_DBHelper.h */,
+				AF36F414ACC55A8F8329D604C5FDDDFF /* YLT_DBHelper.m */,
+				0C1D3E03932D4FE3A0CCBC6306F14D58 /* YLT_DownloaderHelper.h */,
+				C367DA28A96E5B15EFBE378180FDAC1A /* YLT_DownloaderHelper.m */,
+				DBFF93C2195599117C4F45299B30E367 /* YLT_FileHelper.h */,
+				2A614CCC7F47E26B908AFDCA0281805B /* YLT_FileHelper.m */,
+				2A9AAEFBF4407BE5605AD756518B077B /* YLT_KeyChainHelper.h */,
+				0AC044A7ACD69A08F8BC3DD275AC8811 /* YLT_KeyChainHelper.m */,
+				7630B0C1D85D75CA9B35256FD8AE458B /* YLT_PhotoHelper.h */,
+				F4B75BB12E0857D73F2D8FD0C20954B3 /* YLT_PhotoHelper.m */,
+			);
+			name = Helper;
+			path = YLT_BaseLib/Classes/Helper;
 			sourceTree = "<group>";
 		};
 		61267BC62F4783D117C5CFF21852B23E /* Support Files */ = {
@@ -364,6 +388,20 @@
 			name = standard;
 			sourceTree = "<group>";
 		};
+		7B353208F1A1701F92AF6344BC258631 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				3AA90EBF12D67942C914C9FCA419D72F /* Info.plist */,
+				8D3C54B32F69E2B369980EF477870770 /* YLT_BaseLib.modulemap */,
+				F55F4381713B2AB2695F53390065F010 /* YLT_BaseLib.xcconfig */,
+				648175440E8C8CB6C34509B1B72CF9EF /* YLT_BaseLib-dummy.m */,
+				23B242BC5D4482E5A03D0BD95CDF360B /* YLT_BaseLib-prefix.pch */,
+				A53A0B6769BD3D78A0813ED770F584A1 /* YLT_BaseLib-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/YLT_BaseLib";
+			sourceTree = "<group>";
+		};
 		7BB3709B507F79F25018CEC8B89B0DE0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -371,20 +409,6 @@
 				A6BD2CA54DAFC9E37D9CEE0FC3CB0932 /* MJExtension */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		7C2C6617BF84CE923291FF7354A09606 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				81463B5E345FFE6F1006F4F2128A13C4 /* Info.plist */,
-				D8A2E3201853FB7FED0EA4D438795D29 /* YLT_BaseLib.modulemap */,
-				E4C7BB1434A2EC48C4DC7B3BC109A6B2 /* YLT_BaseLib.xcconfig */,
-				63EBE0D43FF68C8032225AD82DDB9E0B /* YLT_BaseLib-dummy.m */,
-				BB4B97C2343565A427B9C928D5CFAF65 /* YLT_BaseLib-prefix.pch */,
-				F48E43DD65B3D997E96F628B50606065 /* YLT_BaseLib-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/YLT_BaseLib";
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -397,6 +421,20 @@
 				0537D58159A4450ABB9552845AC02865 /* Products */,
 				2FC6E21C109B54AE28FEC8CA03D95B48 /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		8C41B25135BCB7E7FEA75E7306F35316 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				EAF71AB05916D629DECD3F1FDEB44CD8 /* NSObject+YLT_BaseObject.h */,
+				8C8342DC6384A28531AA224DCAF2C206 /* NSObject+YLT_BaseObject.m */,
+				DFF83796F6782454B6D25CD2DBAD3ED3 /* NSString+YLT_BaseString.h */,
+				84348F26CD85C0AEED8EC3C987E64927 /* NSString+YLT_BaseString.m */,
+				3462829338C632FB38CE4735A8E67C5A /* UIView+YLT_BaseView.h */,
+				BC7545D3B3521CC0DAD1DAC343D65447 /* UIView+YLT_BaseView.m */,
+			);
+			name = Category;
+			path = YLT_BaseLib/Classes/Category;
 			sourceTree = "<group>";
 		};
 		A21606546434146F78030E61DFC453BC /* Pods-YLT_BaseLib_Example */ = {
@@ -447,20 +485,6 @@
 			path = MJExtension;
 			sourceTree = "<group>";
 		};
-		B3C5004E5B8FCACC47060E8EA7328302 /* YLT_BaseLib */ = {
-			isa = PBXGroup;
-			children = (
-				1580001922D560CFFD0B5CE6776D42B4 /* YLT_BaseLib.h */,
-				1BEE6EB962B79FCFC19818088469C6E2 /* Base */,
-				E7E8E9F64E776F6D8A6A9FCFCFB6DFC2 /* Category */,
-				CD9C8227DFEDD94FE0DFE69CBBDE621C /* Helper */,
-				FE90E68F72802E3DEB039EDE48B60D6B /* Manager */,
-				7C2C6617BF84CE923291FF7354A09606 /* Support Files */,
-			);
-			name = YLT_BaseLib;
-			path = ../..;
-			sourceTree = "<group>";
-		};
 		C62B91DE45D1D0DDDB72ED00F9E6A4A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -469,6 +493,16 @@
 				6CAE98D7E10FB102A943127B5F2D9C55 /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C8AA90E2B102F2EA98A63FA22329253D /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				314ABB5110CF4ADA3E31F23715728BED /* YLT_ModularManager.h */,
+				E00BE00D3AEDFBED4E93471BBA76F1B1 /* YLT_ModularManager.m */,
+			);
+			name = Manager;
+			path = YLT_BaseLib/Classes/Manager;
 			sourceTree = "<group>";
 		};
 		CA72A85F2547A2E9277633A4ECC5C410 /* Pods-YLT_BaseLib_Tests */ = {
@@ -489,22 +523,18 @@
 			path = "Target Support Files/Pods-YLT_BaseLib_Tests";
 			sourceTree = "<group>";
 		};
-		CD9C8227DFEDD94FE0DFE69CBBDE621C /* Helper */ = {
+		D440FB4184D4A67138CDF22CCA801F09 /* YLT_BaseLib */ = {
 			isa = PBXGroup;
 			children = (
-				A2A71639555AF66002836219109678B6 /* YLT_AuthorizationHelper.h */,
-				C9DCBA94F7FB546DCD09FFE0B1F9D3A9 /* YLT_AuthorizationHelper.m */,
-				FFD94183C0E16380C3E2182E7369F18E /* YLT_DBHelper.h */,
-				DF1A395CC2E7256FDAEBC4B042E398D0 /* YLT_DBHelper.m */,
-				422FFA226EFC51E80F38C7EAC6025A35 /* YLT_FileHelper.h */,
-				7654B92424E5837045607BC97A6C6606 /* YLT_FileHelper.m */,
-				513AB9465BB2982D5297D23863A992A1 /* YLT_KeyChainHelper.h */,
-				6DC60D7C56F80F91C385B818A923AA05 /* YLT_KeyChainHelper.m */,
-				312C3FB5416A1C72582E4C342123654F /* YLT_PhotoHelper.h */,
-				E80F89D3573C6605F9C8AC691C0F0D03 /* YLT_PhotoHelper.m */,
+				1ECB6FB0CF03295DDFFE646A067D6276 /* YLT_BaseLib.h */,
+				2BF144C779599AE991EDD6CAA5D29253 /* Base */,
+				8C41B25135BCB7E7FEA75E7306F35316 /* Category */,
+				339F7AA81D4D34ED8DA667F48B2F0BE2 /* Helper */,
+				C8AA90E2B102F2EA98A63FA22329253D /* Manager */,
+				7B353208F1A1701F92AF6344BC258631 /* Support Files */,
 			);
-			name = Helper;
-			path = YLT_BaseLib/Classes/Helper;
+			name = YLT_BaseLib;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		E3B77AAF331DB17DBFEE457AA3053CC6 /* Support Files */ = {
@@ -519,30 +549,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/MJExtension";
-			sourceTree = "<group>";
-		};
-		E7E8E9F64E776F6D8A6A9FCFCFB6DFC2 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				90F07CE8F316B87DDA54358B3D4C4627 /* NSObject+YLT_BaseObject.h */,
-				6602FB03C1F67E3F6DD9A63ED9B1322A /* NSObject+YLT_BaseObject.m */,
-				31BAF8AA71633952D2AEE8D62F14A61A /* NSString+YLT_BaseString.h */,
-				FA17B688D9A852242FCE99CBAF640A17 /* NSString+YLT_BaseString.m */,
-				C4DF79113491D599E7C6F6EDC2B74E15 /* UIView+YLT_BaseView.h */,
-				AE6AC53BCA146FBA15BD6F170557CD7F /* UIView+YLT_BaseView.m */,
-			);
-			name = Category;
-			path = YLT_BaseLib/Classes/Category;
-			sourceTree = "<group>";
-		};
-		FE90E68F72802E3DEB039EDE48B60D6B /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				CA52D5F53B42BAB956A35BD05E610C90 /* YLT_ModularManager.h */,
-				E57D937A8926195766834BBE8C24D487 /* YLT_ModularManager.m */,
-			);
-			name = Manager;
-			path = YLT_BaseLib/Classes/Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -578,24 +584,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D4A3A03A29ADE69787C815F2489A1CCD /* Headers */ = {
+		C0C00776197D09A15ADD13DDAC38FDB6 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62C6C351F1887B24B6AF8B27F7B747E3 /* NSObject+YLT_BaseObject.h in Headers */,
-				373FAEE300D332F4F8C14DD5C01658AA /* NSString+YLT_BaseString.h in Headers */,
-				186277EF4353A84D795E8FAD2E6A3A7E /* UIView+YLT_BaseView.h in Headers */,
-				43262E72AD9903684E9DA2A8C59A323D /* YLT_AuthorizationHelper.h in Headers */,
-				EFFF1968691405BAEF1B63A5C048CEB0 /* YLT_BaseLib-umbrella.h in Headers */,
-				BFD9EF8FF993A6451CAE397532170AD9 /* YLT_BaseLib.h in Headers */,
-				1C9CA45E5903527F8DA9260AD66064B1 /* YLT_BaseMacro.h in Headers */,
-				193DFDEF21CCC507C72FA0A4B868D9F5 /* YLT_BaseModel.h in Headers */,
-				D0DD8972C978B9BB7677F94825A0B115 /* YLT_BaseModular.h in Headers */,
-				C1151CB4057968EABC44922C10A1A859 /* YLT_DBHelper.h in Headers */,
-				45AB16D42ECA9857FCFCA50F5DFBC2DA /* YLT_FileHelper.h in Headers */,
-				5C4C455891805564A84001B04CBF24CF /* YLT_KeyChainHelper.h in Headers */,
-				030E3C9DBE53A068408CACA3C4C62A86 /* YLT_ModularManager.h in Headers */,
-				F67353575F8F2AAADF5F7930C5A21162 /* YLT_PhotoHelper.h in Headers */,
+				08B287B3C921C4C91F92BFBA051B5111 /* NSObject+YLT_BaseObject.h in Headers */,
+				5CDA1B8A4E428E94B246E4FFB791A3E9 /* NSString+YLT_BaseString.h in Headers */,
+				8C7A2CF54464A4B3E0302721E07B2BDF /* UIView+YLT_BaseView.h in Headers */,
+				743BD1A55BE71A21BEA63E9246CC00D6 /* YLT_AuthorizationHelper.h in Headers */,
+				56ECE1D28928D490F50EFDA0726CEFF4 /* YLT_BaseLib-umbrella.h in Headers */,
+				0A9376FECF049D46992708E7476617B4 /* YLT_BaseLib.h in Headers */,
+				7358FE05AF13F06CD7161287911CB19B /* YLT_BaseMacro.h in Headers */,
+				ACA66A1A183BD931CF163A4612A9756E /* YLT_BaseModel.h in Headers */,
+				E26AA642EE8ACBA4AA87936A10AFC956 /* YLT_BaseModular.h in Headers */,
+				6DCC194AC75F9CE9BB3D25EE7ADE57A4 /* YLT_DBHelper.h in Headers */,
+				F2693408AB165FBDB002D38919E6B872 /* YLT_DownloaderHelper.h in Headers */,
+				87E48061A9AB7AF921E0988809215A09 /* YLT_FileHelper.h in Headers */,
+				A42826FE7218B2D1B080CA816E9B9C8F /* YLT_KeyChainHelper.h in Headers */,
+				B4AA303F732284AA9515B0CB8B68C513 /* YLT_ModularManager.h in Headers */,
+				C215BC79B06D801C3851F06E09D6EBCE /* YLT_PhotoHelper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,9 +703,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 186A61C21C0721B7B94D3ABB0BB01131 /* Build configuration list for PBXNativeTarget "YLT_BaseLib" */;
 			buildPhases = (
-				7BF18C49960E739F3AAA537538E9F4C4 /* Sources */,
+				976624E5E1648D64D90E93C782BD0062 /* Sources */,
 				92AF736CC97E0D63DB18F79984FA4037 /* Frameworks */,
-				D4A3A03A29ADE69787C815F2489A1CCD /* Headers */,
+				C0C00776197D09A15ADD13DDAC38FDB6 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -768,25 +775,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7BF18C49960E739F3AAA537538E9F4C4 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D60AC32B87A93E4BB41EB778E2211D48 /* NSObject+YLT_BaseObject.m in Sources */,
-				271443631BD1F2E27281E46D52A463AF /* NSString+YLT_BaseString.m in Sources */,
-				2BF195CA2D0DD1B7C2ED8623883222DD /* UIView+YLT_BaseView.m in Sources */,
-				FDAD3A88C0E698681302AB462A2252C5 /* YLT_AuthorizationHelper.m in Sources */,
-				59C3A7693DCCD85C7824BF243568296B /* YLT_BaseLib-dummy.m in Sources */,
-				5B6CA837FE4A00B47278CD4658704D84 /* YLT_BaseModel.m in Sources */,
-				13994CFDFEAE749A81C3F44093412C6A /* YLT_BaseModular.m in Sources */,
-				9073BE1F1D651864956009F7117E405B /* YLT_DBHelper.m in Sources */,
-				691FF60FC2902E3F61CF9CB231D900DE /* YLT_FileHelper.m in Sources */,
-				C1B9F55BDEC344C9E7EBBF4A8BB3FBA8 /* YLT_KeyChainHelper.m in Sources */,
-				34E821178F18E5EB55F71AB8D93B8956 /* YLT_ModularManager.m in Sources */,
-				5416351D53F6E56FC3FC83E11D879EA4 /* YLT_PhotoHelper.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8FE0D4B503A94502F3431DC0DCB58040 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -797,6 +785,26 @@
 				A1B5D80A8998311B8C9043E6942925E6 /* FMDatabaseQueue.m in Sources */,
 				D5991941DC41DDDDDACAE0B5D47A4639 /* FMDB-dummy.m in Sources */,
 				87ECA447DB887426665260651B7F147E /* FMResultSet.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		976624E5E1648D64D90E93C782BD0062 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63200E79BCB6D17EE06F9EB3ABE2682E /* NSObject+YLT_BaseObject.m in Sources */,
+				74392EC0B6E42FA09558AE53BB703221 /* NSString+YLT_BaseString.m in Sources */,
+				3CA593E547D218940B869079576279AA /* UIView+YLT_BaseView.m in Sources */,
+				8EBD746FB73AC08623BD453886BD56B8 /* YLT_AuthorizationHelper.m in Sources */,
+				3DF03D2CA7DF97A3CE21CA3EA360452E /* YLT_BaseLib-dummy.m in Sources */,
+				216BA074299FF1A4EDDEC6A658E1AF92 /* YLT_BaseModel.m in Sources */,
+				F7DC35C25320F982CCAC56979FEC481E /* YLT_BaseModular.m in Sources */,
+				699B2EA332C58560353BC0227AD4BABA /* YLT_DBHelper.m in Sources */,
+				92BB29795519EF2D5411097D09172BF0 /* YLT_DownloaderHelper.m in Sources */,
+				99EAD8101C0E0741927124143FF05D68 /* YLT_FileHelper.m in Sources */,
+				402D046BBF1820F4FBC90CD6C4D3BE9F /* YLT_KeyChainHelper.m in Sources */,
+				22D6F9D09B6D9436A4E99893BEAA451A /* YLT_ModularManager.m in Sources */,
+				C0125E2B62EAE765A896BBB29BC42CEB /* YLT_PhotoHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -875,7 +883,7 @@
 		};
 		1C701B47E7F839B5754C53C9386046EE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E4C7BB1434A2EC48C4DC7B3BC109A6B2 /* YLT_BaseLib.xcconfig */;
+			baseConfigurationReference = F55F4381713B2AB2695F53390065F010 /* YLT_BaseLib.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -936,7 +944,7 @@
 		};
 		209F5CC0DFEC3C1CFA06E153491ECEFC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E4C7BB1434A2EC48C4DC7B3BC109A6B2 /* YLT_BaseLib.xcconfig */;
+			baseConfigurationReference = F55F4381713B2AB2695F53390065F010 /* YLT_BaseLib.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";

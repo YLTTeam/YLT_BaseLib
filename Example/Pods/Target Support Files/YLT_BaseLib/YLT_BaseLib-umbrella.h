@@ -18,6 +18,7 @@
 #import "UIView+YLT_BaseView.h"
 #import "YLT_AuthorizationHelper.h"
 #import "YLT_DBHelper.h"
+#import "YLT_DownloaderHelper.h"
 #import "YLT_FileHelper.h"
 #import "YLT_KeyChainHelper.h"
 #import "YLT_PhotoHelper.h"
