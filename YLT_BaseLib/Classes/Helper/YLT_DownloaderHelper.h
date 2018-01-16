@@ -18,16 +18,6 @@ YLT_ShareInstanceHeader(YLT_DownloaderHelper);
 @property (nonatomic, assign) NSUInteger maxCount;
 
 /**
- 存放任务的数组
- */
-@property (nonatomic, strong) NSMutableArray *tasks;
-
-/**
- 任务标记
- */
-@property (nonatomic, strong) NSMutableArray *taskKeys;
-
-/**
  添加任务
 
  @param task 下载任务

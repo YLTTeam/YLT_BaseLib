@@ -15,6 +15,16 @@
  */
 @property (nonatomic, strong) NSTimer * timer;
 
+/**
+ 存放任务的数组
+ */
+@property (nonatomic, strong) NSMutableArray *tasks;
+
+/**
+ 任务标记
+ */
+@property (nonatomic, strong) NSMutableArray *taskKeys;
+
 @end
 
 @implementation YLT_DownloaderHelper
@@ -42,7 +52,7 @@ YLT_ShareInstance(YLT_DownloaderHelper);
 }
 
 //这里面都是C语言 -- 添加一个监听者
--(void)addRunloopObserver{
+-(void)addRunloopObserver {
     //获取当前的RunLoop
     CFRunLoopRef runloop = CFRunLoopGetCurrent();
     //定义一个centext
