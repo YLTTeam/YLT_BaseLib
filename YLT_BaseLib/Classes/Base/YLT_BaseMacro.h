@@ -14,11 +14,20 @@
 #define iPhone [NSObject YLT_DeviceIsiPhone]
 
 //屏幕信息
-#define iPhone_3_5 ([UIScreen mainScreen].bounds.size.width==320&&[UIScreen mainScreen].bounds.size.height==480)
-#define iPhone_4 ([UIScreen mainScreen].bounds.size.width==320&&[UIScreen mainScreen].bounds.size.height==568)
-#define iPhone_4_7 ([UIScreen mainScreen].bounds.size.width==375&&[UIScreen mainScreen].bounds.size.height==667)
-#define iPhone_5_5 ([UIScreen mainScreen].bounds.size.width==414&&[UIScreen mainScreen].bounds.size.height==736)
-#define iPhone_x ([UIScreen mainScreen].bounds.size.width==375&&[UIScreen mainScreen].bounds.size.height==812)
+#define iPhone4 ([UIScreen mainScreen].bounds.size.width==320&&[UIScreen mainScreen].bounds.size.height==480)
+#define iPhone5 ([UIScreen mainScreen].bounds.size.width==320&&[UIScreen mainScreen].bounds.size.height==568)
+#define iPhone6 ([UIScreen mainScreen].bounds.size.width==375&&[UIScreen mainScreen].bounds.size.height==667)
+#define iPhone6P ([UIScreen mainScreen].bounds.size.width==414&&[UIScreen mainScreen].bounds.size.height==736)
+#define iPhoneX ([UIScreen mainScreen].bounds.size.width==375&&[UIScreen mainScreen].bounds.size.height==812)
+
+// 状态栏高度
+#define STATUS_BAR_HEIGHT (iPhoneX ? 44.f : 20.f)
+// 导航栏高度
+#define NAVIGATION_BAR_HEIGHT (iPhoneX ? 88.f : 64.f)
+// tabBar高度
+#define TAB_BAR_HEIGHT (iPhoneX ? (49.f + 34.f) : 49.f)
+// home indicator hone按钮高度
+#define HOME_INDICATOR_HEIGHT (iPhoneX ? 34.f : 0.f)
 
 // iOS系统信息
 #define YLT_iOS_VERSION [[UIDevice currentDevice] systemVersion]
