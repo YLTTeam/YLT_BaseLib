@@ -15,7 +15,6 @@
 #import "YLT_BaseModular.h"
 #import "NSObject+YLT_BaseObject.h"
 #import "NSString+YLT_BaseString.h"
-#import "UIView+YLT_BaseView.h"
 #import "YLT_AuthorizationHelper.h"
 #import "YLT_DBHelper.h"
 #import "YLT_DownloaderHelper.h"
