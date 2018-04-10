@@ -27,5 +27,28 @@
  */
 - (void)ylt_swizzleSelectorInClass:(Class)theClass originalSel:(SEL)originalSel replaceSel:(SEL)replaceSel;
 
+/**
+ *  存储对象
+ *
+ *  @param key key
+ */
+- (void)ylt_storeValueWithKey:(NSString *)key;
+
+/**
+ *  获取对象
+ *
+ *  @param key key
+ *
+ *  @return 对象
+ */
++ (id)ylt_valueByKey:(NSString *)key;
+
+/**
+ *  移除对象
+ *
+ *  @param key key
+ */
+- (void)ylt_removeValueForKey:(NSString *)key;
+
 
 @end
