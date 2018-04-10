@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'YLT_BaseLib'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = 'YLT_BaseLib 基础类库.'
 
 # This description is used to generate tags and improve search results.
@@ -41,4 +41,5 @@ Pod::Spec.new do |s|
   s.dependency 'MJExtension'
   s.dependency 'FMDB'
   s.dependency 'RMUniversalAlert'
+  s.dependency 'FastCoding'
 end
