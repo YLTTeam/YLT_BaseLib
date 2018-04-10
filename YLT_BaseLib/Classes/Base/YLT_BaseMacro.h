@@ -63,6 +63,8 @@
 #define YTL_FileManager        [NSFileManager defaultManager]
 //获取图片资源
 #define YTL_GetImage(imageName) [UIImage imageNamed:[NSString stringWithFormat:@"%@",imageName]]
+// 弹出一个带title的 alert
+#define YLT_TipAlert(_S_, ...)     [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:(_S_), ##__VA_ARGS__] message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show]
 
 //获取屏幕宽高
 #define YLT_SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
@@ -122,7 +124,7 @@
 #define YLT_RGBA(r,g,b,a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
 #define YLT_RGB(r,g,b) YLT_RGBA(r,g,b,1.0f)
 #define YLT_HEXCOLOR(hex) [UIColor colorWithRed:((float)((hex & 0xFF0000) >> 16)) / 255.0 green:((float)((hex & 0xFF00) >> 8)) / 255.0 blue:((float)(hex & 0xFF)) / 255.0 alpha:1]
-#define YLT_HEXCOLORA(hex, alpha) [UIColor colorWithRed:((float)((hex & 0xFF0000) >> 16)) / 255.0 green:((float)((hex & 0xFF00) >> 8)) / 255.0 blue:((float)(hex & 0xFF)) / 255.0 alpha:alpha]
+#define YLT_HEXCOLORA(hex, _alpha) [UIColor colorWithRed:((float)((hex & 0xFF0000) >> 16)) / 255.0 green:((float)((hex & 0xFF00) >> 8)) / 255.0 blue:((float)(hex & 0xFF)) / 255.0 alpha:_alpha]
 #define YLT_StringColor(color) [color YLT_ColorFromHexString]
 #define YLT_StringValue(str) [str ylt_isValid]?str:@""
 
@@ -148,56 +150,57 @@
 //快速生成单例对象
 #define YLT_ShareInstanceHeader(cls)    + (cls *)shareInstance;
 #define YLT_ShareInstance(cls)          static cls *share_cls = nil;\
-                                        + (cls *)shareInstance {\
-                                            static dispatch_once_t onceToken;\
-                                            dispatch_once(&onceToken, ^{\
-                                            share_cls = [[cls alloc] init];\
-                                                if ([share_cls respondsToSelector:@selector(ylt_init)]) {\
-                                                    [share_cls performSelector:@selector(ylt_init) withObject:nil];\
-                                                    }\
-                                                });\
-                                                return share_cls;\
-                                            }\
-                                            + (instancetype)allocWithZone:(struct _NSZone *)zone {\
-                                                if (share_cls == nil) {\
-                                                    static dispatch_once_t onceToken;\
-                                                    dispatch_once(&onceToken, ^{\
-                                                        share_cls = [super allocWithZone:zone];\
-                                                        if ([share_cls respondsToSelector:@selector(ylt_init)]) {\
-                                                            [share_cls performSelector:@selector(ylt_init) withObject:nil];\
-                                                        }\
-                                                    });\
-                                                }\
-                                                return share_cls;\
-                                            }
++ (cls *)shareInstance {\
+static dispatch_once_t onceToken;\
+dispatch_once(&onceToken, ^{\
+share_cls = [[cls alloc] init];\
+if ([share_cls respondsToSelector:@selector(ylt_init)]) {\
+[share_cls performSelector:@selector(ylt_init) withObject:nil];\
+}\
+});\
+return share_cls;\
+}\
++ (instancetype)allocWithZone:(struct _NSZone *)zone {\
+if (share_cls == nil) {\
+static dispatch_once_t onceToken;\
+dispatch_once(&onceToken, ^{\
+share_cls = [super allocWithZone:zone];\
+if ([share_cls respondsToSelector:@selector(ylt_init)]) {\
+[share_cls performSelector:@selector(ylt_init) withObject:nil];\
+}\
+});\
+}\
+return share_cls;\
+}
 //懒加载宏定义
 
 #define YLT_Lazy(cls, sel, _sel) \
-                                    - (cls *)sel {\
-                                        if (!_sel) {\
-                                            _sel = [[cls alloc] init];\
-                                        }\
-                                        return _sel;\
-                                    }
+- (cls *)sel {\
+if (!_sel) {\
+_sel = [[cls alloc] init];\
+}\
+return _sel;\
+}
 
 #define YLT_LazyCategory(cls, fun) - (cls *)fun {\
-                                        cls *result = objc_getAssociatedObject(self, @selector(fun));\
-                                        if (result == nil) {\
-                                            result = [[cls alloc] init];\
-                                            objc_setAssociatedObject(self, @selector(fun), result, OBJC_ASSOCIATION_RETAIN_NONATOMIC);\
-                                        }\
-                                        return result;\
-                                    }
+cls *result = objc_getAssociatedObject(self, @selector(fun));\
+if (result == nil) {\
+result = [[cls alloc] init];\
+objc_setAssociatedObject(self, @selector(fun), result, OBJC_ASSOCIATION_RETAIN_NONATOMIC);\
+}\
+return result;\
+}
 
 /// main / background thead
 #define YLT_MAIN(block)  if ([NSThread isMainThread]) {\
-                            block();\
-                         } else {\
-                            dispatch_async(dispatch_get_main_queue(),block);\
-                         }
+block();\
+} else {\
+dispatch_async(dispatch_get_main_queue(),block);\
+}
 #define YLT_MAINDelay(x, block) dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(x * NSEC_PER_SEC)), dispatch_get_main_queue(), block)
 #define YLT_BACK(block)  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
 #define YLT_BACKDelay(x, block) dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(x * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
 
 
 #endif /* YLT_BaseMacro_h */
+
