@@ -1,6 +1,6 @@
 {
   "name": "YLT_BaseLib",
-  "version": "0.0.36",
+  "version": "0.1.1",
   "summary": "YLT_BaseLib 基础类库.",
   "description": "平时使用的基础方法的类库",
   "homepage": "https://github.com/YLTTeam/YLT_BaseLib",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/YLTTeam/YLT_BaseLib.git",
-    "tag": "0.0.36"
+    "tag": "0.1.1"
   },
   "platforms": {
     "ios": "8.0"
@@ -27,6 +27,9 @@
 
     ],
     "RMUniversalAlert": [
+
+    ],
+    "FastCoding": [
 
     ]
   }
