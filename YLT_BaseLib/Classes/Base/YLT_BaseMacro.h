@@ -63,7 +63,8 @@
 #define YTL_FileManager        [NSFileManager defaultManager]
 //获取图片资源
 #define YTL_GetImage(imageName) [UIImage imageNamed:[NSString stringWithFormat:@"%@",imageName]]
-
+// 弹出一个带title的 alert
+#define YLT_TipAlert(_S_, ...)     [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:(_S_), ##__VA_ARGS__] message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show]
 //获取屏幕宽高
 #define YLT_SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define YLT_SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
