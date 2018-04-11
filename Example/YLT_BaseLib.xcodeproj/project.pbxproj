@@ -547,6 +547,7 @@
 			baseConfigurationReference = 662BAB1206CAD75C4C057B74 /* Pods-YLT_BaseLib_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YLT_BaseLib/YLT_BaseLib-Prefix.pch";
 				INFOPLIST_FILE = "YLT_BaseLib/YLT_BaseLib-Info.plist";
@@ -563,6 +564,7 @@
 			baseConfigurationReference = 2490D30DB2B25AF3679B044E /* Pods-YLT_BaseLib_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YLT_BaseLib/YLT_BaseLib-Prefix.pch";
 				INFOPLIST_FILE = "YLT_BaseLib/YLT_BaseLib-Info.plist";
