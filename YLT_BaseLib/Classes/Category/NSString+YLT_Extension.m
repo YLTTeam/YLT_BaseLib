@@ -13,7 +13,7 @@
 #import "sys/utsname.h"
 
 @implementation NSString (YLT_Extension)
-@dynamic ylt_isBlank;
+
 @dynamic ylt_isValid;
 @dynamic ylt_isChinese;
 @dynamic ylt_isPureInt;
