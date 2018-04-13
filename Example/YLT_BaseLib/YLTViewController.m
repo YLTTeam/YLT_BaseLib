@@ -7,6 +7,7 @@
 //
 
 #import "YLTViewController.h"
+#import <YLT_BaseLib/YLT_BaseLib.h>
 
 @interface YLTViewController ()
 
@@ -17,7 +18,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning

@@ -11,11 +11,6 @@
 @interface NSString (YLT_Extension)
 
 /**
- 字符串是否为空
- */
-@property (nonatomic, assign) BOOL ylt_isBlank;
-
-/**
  字符串是否有效
  */
 @property (nonatomic, assign) BOOL ylt_isValid;

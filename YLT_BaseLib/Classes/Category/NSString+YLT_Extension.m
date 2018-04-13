@@ -613,14 +613,6 @@
 }
 
 #pragma mark - setter getter
-/**
- 字符串是否为空
- 
- @return YES:空 NO:非空
- */
-- (BOOL)ylt_isBlank {
-    return [NSString ylt_isBlankString:self];
-}
 
 /**
  字符串是否有效

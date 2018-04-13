@@ -8,8 +8,6 @@
 #ifndef YLT_BaseMacro_h
 #define YLT_BaseMacro_h
 
-#import "NSObject+YLT_Extension.h"
-
 /// iOS设备信息
 #define iPad ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
 #define iPhone ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
