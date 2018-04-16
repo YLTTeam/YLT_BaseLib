@@ -56,11 +56,11 @@
 #define YLT_AppDelegate        (AppDelegate *)[UIApplication sharedApplication].delegate
 #define YLT_RootViewController [UIApplication sharedApplication].delegate.window.rootViewController
 // NSString To NSURL
-#define YTL_URL(urlString)    [NSURL URLWithString:urlString]
+#define YLT_URL(urlString)    [NSURL URLWithString:urlString]
 #define YLT_NotificationCenter [NSNotificationCenter defaultCenter]
-#define YTL_FileManager        [NSFileManager defaultManager]
+#define YLT_FileManager        [NSFileManager defaultManager]
 //获取图片资源
-#define YTL_GetImage(imageName) [UIImage imageNamed:[NSString stringWithFormat:@"%@",imageName]]
+#define YLT_GetImage(imageName) [UIImage imageNamed:[NSString stringWithFormat:@"%@",imageName]]
 
 //获取屏幕宽高
 #define YLT_SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
