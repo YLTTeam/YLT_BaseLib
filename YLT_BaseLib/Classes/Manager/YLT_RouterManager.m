@@ -22,18 +22,18 @@
  @param completion 回调
  */
 + (void)ylt_routerToURL:(NSString *)routerURL arg:(id)arg completion:(void(^)(NSError *error, id response))completion {
-    NSArray *params = [self analysisURL:routerURL];
+    NSArray *componentsArray = [self analysisURL:routerURL];
     NSString *targetName;
     NSString *actionName;
     NSString *getParams;
-    if (tmpArray.count >= 3) {
-        targetName = tmpArray[2];
+    if (componentsArray.count >= 3) {
+        targetName = componentsArray[2];
     }
-    if (tmpArray.count >= 4) {
-        actionName = tmpArray[3];
+    if (componentsArray.count >= 4) {
+        actionName = componentsArray[3];
     }
-    if (tmpArray.count >= 5) {
-        getParams = tmpArray[4];
+    if (componentsArray.count >= 5) {
+        getParams = componentsArray[4];
     }
     if (!targetName) {
         NSLog(@"找不到 Target");
@@ -81,6 +81,21 @@
         }
     }
     return tmpArray;
+}
+
++ (NSDictionary *)generateParamsString:(NSString *)paramString {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSArray *components = [paramString componentsSeparatedByString:@"&"];
+    for (NSString *tmpStr in components) {
+        NSArray *tmpArray = [tmpStr componentsSeparatedByString:@"="];
+        if (tmpArray.count == 2) {
+            [params setObject:tmpArray[1] forKey:tmpArray[0]];
+        }else {
+            NSLog(@"参数不合法 : %@",tmpStr);
+        }
+    }
+    
+    return params;
 }
 
 //url 解析  解析答 target 和  action 然后动态调用 -
