@@ -31,6 +31,8 @@ function writeMacro() {
     classname=${subfixString//".h"/""}
     markString="\n\n#param mark - $classname router\n"
     echo -e $markString >> $resultFile
+    defineStr="#define YLT_ROUTER_URL_"$classname"_ylt_router "@\"ylt://$classname/ylt_router\"
+    echo $defineStr >> $resultFile
 
     while read line
     do
@@ -41,7 +43,7 @@ function writeMacro() {
                 selName=$(expr "$selSubfixString" : '\([A-Za-z0-9_]*[:|;]\)')
                 selName=${selName//":"/""}
                 selName=${selName//";"/""}
-                defineStr="#define YLT_ROUTER_URL_"$classname"_"$selName"  "@\"ylt://$classname/$selName\"
+                defineStr="#define YLT_ROUTER_URL_"$classname"_"$selName" "@\"ylt://$classname/$selName\"
                 echo $defineStr >> $resultFile
             fi
         fi
