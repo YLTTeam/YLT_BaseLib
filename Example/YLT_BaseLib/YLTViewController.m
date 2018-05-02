@@ -18,6 +18,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    NSString *routerURL = @"ylt://classname/ylt_router?username=alex&password=123456";
+//    [YLT_RouterManager ylt_routerToURL:routerURL arg:@{@"user":@"alex"} completion:^(NSError *error, id response) {
+//
+//    }];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [YLT_RouterManager ylt_routerToURL:@"ylt://RouterB/routerBData:?username=alex&password=123456" arg:@{@"key":@"value"} completion:^(NSError *error, id response) {
+        YLT_LogError(@"%@", response);
+    }];
+    
+//    [YLT_RouterManager ylt_routerToURL:@"ylt://RouterA/ylt_router:?username=alex&password=123456" arg:@{@"key":@"value"} completion:^(NSError *error, id response) {
+//        YLT_Log(@"%@", response);
+//    }];
 }
 
 - (void)didReceiveMemoryWarning

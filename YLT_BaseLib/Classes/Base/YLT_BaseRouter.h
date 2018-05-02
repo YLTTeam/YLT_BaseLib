@@ -8,6 +8,20 @@
 #import <Foundation/Foundation.h>
 #import "YLT_RouterManager.h"
 
-@interface YLT_BaseRouter : NSObject
+@protocol YLT_RouterProtocol
+
+@optional
+/**
+ 路由协议
+ */
+- (void)ylt_router:(NSDictionary *)params;
+
+@end
+
+@interface YLT_BaseRouter : NSObject<YLT_RouterProtocol>
+
+@property (nonatomic, copy) void(^completion)(NSError *error, id response);
+
+@property (nonatomic, strong) NSDictionary *ylt_router_params;
 
 @end

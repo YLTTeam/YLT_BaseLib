@@ -23,6 +23,10 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		ABDEA1C176B07490BF0EE252 /* Pods_YLT_BaseLib_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A80E85949BFFF54D6B3E9AAF /* Pods_YLT_BaseLib_Tests.framework */; };
+		C77BCF1A20995B50002EC89B /* VCA.m in Sources */ = {isa = PBXBuildFile; fileRef = C77BCF1920995B50002EC89B /* VCA.m */; };
+		C77BCF1D20995B61002EC89B /* RouterA.m in Sources */ = {isa = PBXBuildFile; fileRef = C77BCF1C20995B61002EC89B /* RouterA.m */; };
+		C77BCF2020995B6A002EC89B /* RouterB.m in Sources */ = {isa = PBXBuildFile; fileRef = C77BCF1F20995B6A002EC89B /* RouterB.m */; };
+		C77BCF2320995B76002EC89B /* VCB.m in Sources */ = {isa = PBXBuildFile; fileRef = C77BCF2220995B76002EC89B /* VCB.m */; };
 		E3244CD53183BA39ED4853D9 /* Pods_YLT_BaseLib_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F209EAB6ADDB90EB1C7FD9 /* Pods_YLT_BaseLib_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +70,14 @@
 		96110A36AC8EAD5C347AD12A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		A80E85949BFFF54D6B3E9AAF /* Pods_YLT_BaseLib_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YLT_BaseLib_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF65465C738FE87C1C3EBF15 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		C77BCF1820995B50002EC89B /* VCA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCA.h; sourceTree = "<group>"; };
+		C77BCF1920995B50002EC89B /* VCA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VCA.m; sourceTree = "<group>"; };
+		C77BCF1B20995B61002EC89B /* RouterA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RouterA.h; sourceTree = "<group>"; };
+		C77BCF1C20995B61002EC89B /* RouterA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RouterA.m; sourceTree = "<group>"; };
+		C77BCF1E20995B6A002EC89B /* RouterB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RouterB.h; sourceTree = "<group>"; };
+		C77BCF1F20995B6A002EC89B /* RouterB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RouterB.m; sourceTree = "<group>"; };
+		C77BCF2120995B76002EC89B /* VCB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCB.h; sourceTree = "<group>"; };
+		C77BCF2220995B76002EC89B /* VCB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VCB.m; sourceTree = "<group>"; };
 		EF11E25290F93179CB29D10E /* YLT_BaseLib.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = YLT_BaseLib.podspec; path = ../YLT_BaseLib.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
@@ -132,6 +144,8 @@
 		6003F593195388D20070C39A /* Example for YLT_BaseLib */ = {
 			isa = PBXGroup;
 			children = (
+				C77BCF1720995B3B002EC89B /* ModularB */,
+				C77BCF1620995B30002EC89B /* ModularA */,
 				6003F59C195388D20070C39A /* YLTAppDelegate.h */,
 				6003F59D195388D20070C39A /* YLTAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -194,6 +208,28 @@
 				6096013827266022FA7F1F5E /* Pods-YLT_BaseLib_Tests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C77BCF1620995B30002EC89B /* ModularA */ = {
+			isa = PBXGroup;
+			children = (
+				C77BCF1820995B50002EC89B /* VCA.h */,
+				C77BCF1920995B50002EC89B /* VCA.m */,
+				C77BCF1B20995B61002EC89B /* RouterA.h */,
+				C77BCF1C20995B61002EC89B /* RouterA.m */,
+			);
+			path = ModularA;
+			sourceTree = "<group>";
+		};
+		C77BCF1720995B3B002EC89B /* ModularB */ = {
+			isa = PBXGroup;
+			children = (
+				C77BCF1E20995B6A002EC89B /* RouterB.h */,
+				C77BCF1F20995B6A002EC89B /* RouterB.m */,
+				C77BCF2120995B76002EC89B /* VCB.h */,
+				C77BCF2220995B76002EC89B /* VCB.m */,
+			);
+			path = ModularB;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -417,9 +453,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C77BCF2320995B76002EC89B /* VCB.m in Sources */,
 				6003F59E195388D20070C39A /* YLTAppDelegate.m in Sources */,
+				C77BCF2020995B6A002EC89B /* RouterB.m in Sources */,
 				6003F5A7195388D20070C39A /* YLTViewController.m in Sources */,
+				C77BCF1A20995B50002EC89B /* VCA.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				C77BCF1D20995B61002EC89B /* RouterA.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
