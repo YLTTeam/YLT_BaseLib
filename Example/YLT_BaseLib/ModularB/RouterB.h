@@ -10,7 +10,7 @@
 
 @interface RouterB : YLT_BaseRouter
 
-- (void)routerBData:(NSDictionary *)params;
+- (id)routerBData:(NSDictionary *)params;
 
 
 @end

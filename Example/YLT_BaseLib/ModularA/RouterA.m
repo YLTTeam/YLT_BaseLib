@@ -11,11 +11,12 @@
 
 @implementation RouterA
 
-- (void)ylt_router:(NSDictionary *)params {
+- (id)ylt_router:(NSDictionary *)params {
     YLT_Log(@"%@", params);
     VCA *vc = [[VCA alloc] init];
     vc.view.backgroundColor = [UIColor blueColor];
     [self.ylt_currentVC presentViewController:vc animated:YES completion:nil];
+    return @"RouterA";
 }
 
 @end

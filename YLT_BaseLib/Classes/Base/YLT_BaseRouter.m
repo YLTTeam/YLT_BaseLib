@@ -18,8 +18,9 @@
 /**
  路由协议
  */
-- (void)ylt_router:(NSDictionary *)params {
+- (id)ylt_router:(NSDictionary *)params {
     YLT_LogError(@"路由类未实现路由方法");
+    return self.ylt_router_params;
 }
 
 - (void(^)(NSError *error, id response))completion {

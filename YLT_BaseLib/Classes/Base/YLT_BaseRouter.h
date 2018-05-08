@@ -14,7 +14,7 @@
 /**
  路由协议
  */
-- (void)ylt_router:(NSDictionary *)params;
+- (id)ylt_router:(NSDictionary *)params;
 
 @end
 

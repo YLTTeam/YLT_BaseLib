@@ -21,9 +21,11 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [YLT_RouterManager ylt_routerToURL:@"ylt://RouterB/ylt_router:?username=vca&password=123456" arg:@{@"key":@"value"} completion:^(NSError *error, id response) {
+    id data = [YLT_RouterManager ylt_routerToURL:@"ylt://RouterB/ylt_router:?username=vca&password=123456" arg:@{@"key":@"value"} completion:^(NSError *error, id response) {
         YLT_Log(@"%@", response);
     }];
+    
+    YLT_Log(@"%@", data);
 }
 
 - (void)didReceiveMemoryWarning {

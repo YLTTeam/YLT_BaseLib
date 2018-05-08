@@ -19,8 +19,9 @@
  @param routerURL 路由的URL 参数带到URL后面
  @param arg 参数
  @param completion 回调
+ @return 回参
  */
-+ (void)ylt_routerToURL:(NSString *)routerURL arg:(id)arg completion:(void(^)(NSError *error, id response))completion;
++ (id)ylt_routerToURL:(NSString *)routerURL arg:(id)arg completion:(void(^)(NSError *error, id response))completion;
 
 /**
  路由
@@ -29,7 +30,8 @@
  @param selname 方法名对应的字串 后面可以带参数
  @param arg 参数
  @param completion 回调
+ @return 回参
  */
-+ (void)ylt_routerToClassname:(NSString *)clsname selname:(NSString *)selname arg:(id)arg completion:(void(^)(NSError *error, id response))completion;
++ (id)ylt_routerToClassname:(NSString *)clsname selname:(NSString *)selname arg:(id)arg completion:(void(^)(NSError *error, id response))completion;
 
 @end
