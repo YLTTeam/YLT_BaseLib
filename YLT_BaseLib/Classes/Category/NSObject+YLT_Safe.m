@@ -11,6 +11,9 @@
 
 @end
 
+
+#if DEBUG
+#else
 #import <objc/runtime.h>
 
 void (^safeAssertCallback)(const char *, int, NSString *, ...);
@@ -873,3 +876,5 @@ void SFLog(const char* file, const char* func, int line, NSString* fmt, ...)
     }
 }
 @end
+
+#endif
