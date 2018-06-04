@@ -16,7 +16,7 @@
 /**
  路由
 
- @param routerURL 路由的URL 参数带到URL后面
+ @param routerURL 路由的URL 参数带到URL后面  NSString *routerURL = @"ylt://classname/selectorname?username=alex&password=123456";
  @param arg 参数
  @param completion 回调
  @return 回参
