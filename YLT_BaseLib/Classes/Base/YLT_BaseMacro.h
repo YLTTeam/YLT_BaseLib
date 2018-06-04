@@ -200,10 +200,6 @@
 #define YLT_BACK(block)  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
 #define YLT_BACKDelay(x, block) dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(x * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
 
-#define YLT_WARNING_SELECTOR #pragma clang diagnostic push\
-                                    #pragma clang diagnostic ignored "-Wundeclared-selector"
-#define YLT_WARNING_END #pragma clang diagnostic pop
-
 /// 警告消除宏
 #define YLT_ArgumentToString(macro) #macro
 #define YLT_ClangWarningConcat(warning_name) YLT_ArgumentToString(clang diagnostic ignored warning_name)
