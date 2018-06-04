@@ -200,5 +200,27 @@
 #define YLT_BACK(block)  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
 #define YLT_BACKDelay(x, block) dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(x * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
 
+#define YLT_WARNING_SELECTOR #pragma clang diagnostic push\
+                                    #pragma clang diagnostic ignored "-Wundeclared-selector"
+#define YLT_WARNING_END #pragma clang diagnostic pop
+
+/// 警告消除宏
+#define YLT_ArgumentToString(macro) #macro
+#define YLT_ClangWarningConcat(warning_name) YLT_ArgumentToString(clang diagnostic ignored warning_name)
+// 参数可直接传入 clang 的 warning 名，warning 列表参考：http://fuckingclangwarnings.com/
+#define YLT_BeginIgnoreClangWarning(warningName) _Pragma("clang diagnostic push") _Pragma(YLT_ClangWarningConcat(#warningName))
+#define YLT_EndIgnoreClangWarning _Pragma("clang diagnostic pop")
+
+#define YLT_BeginIgnorePerformSelectorLeaksWarning YLT_BeginIgnoreClangWarning(-Warc-performSelector-leaks)
+#define YLT_EndIgnorePerformSelectorLeaksWarning YLT_EndIgnoreClangWarning
+
+#define YLT_BeginIgnoreAvailabilityWarning YLT_BeginIgnoreClangWarning(-Wpartial-availability)
+#define YLT_EndIgnoreAvailabilityWarning YLT_EndIgnoreClangWarning
+
+#define YLT_BeginIgnoreDeprecatedWarning YLT_BeginIgnoreClangWarning(-Wdeprecated-declarations)
+#define YLT_EndIgnoreDeprecatedWarning YLT_EndIgnoreClangWarning
+
+#define YLT_BeginIgnoreUndeclaredSelecror YLT_BeginIgnoreClangWarning(-Wundeclared-selector)
+#define YLT_EndIgnoreUndeclaredSelecror YLT_EndIgnoreClangWarning
 
 #endif /* YLT_BaseMacro_h */
