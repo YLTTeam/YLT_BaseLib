@@ -55,7 +55,7 @@
 /// 获取系统对象
 #define YLT_Application        [UIApplication sharedApplication]
 #define YLT_AppWindow          [UIApplication sharedApplication].keyWindow
-#define YLT_AppDelegate        (AppDelegate *)[UIApplication sharedApplication].delegate
+#define YLT_AppDelegate        [UIApplication sharedApplication].delegate
 #define YLT_RootViewController [UIApplication sharedApplication].delegate.window.rootViewController
 // NSString To NSURL
 #define YLT_URL(urlString)    [NSURL URLWithString:urlString]
