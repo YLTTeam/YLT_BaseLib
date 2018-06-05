@@ -24,7 +24,7 @@
 //    [YLT_RouterManager ylt_routerToURL:@"ylt://RouterA/ylt_router:?username=vcb&password=123456" arg:@{@"key":@"value"} completion:^(NSError *error, id response) {
 //        YLT_Log(@"%@", response);
 //    }];
-    id data = [YLT_RouterManager ylt_routerToClassname:@"RouterA" selname:@"ylt_router:?username=vcb&password" arg:@{@"key":@"value"} completion:^(NSError *error, id response) {
+    id data = [YLT_RouterManager ylt_routerToClassname:@"RouterA" selname:@"shareInstance.ylt_router:?username=vcb&password" isClassMethod:NO arg:@{@"key":@"value"} completion:^(NSError *error, id response) {
         YLT_Log(@"%@", response);
     }];
     YLT_Log(@"%@", data);

@@ -31,7 +31,7 @@
 //        YLT_LogError(@"%@", response);
 //    }];
     
-    id data = [YLT_RouterManager ylt_routerToURL:@"ylt://RouterA/ylt_router:?username=alex&password=123456" arg:@{@"key":@"value"} completion:^(NSError *error, id response) {
+    id data = [YLT_RouterManager ylt_routerToURL:@"ylt://RouterA/shareInstance.ylt_router:?username=alex&password=123456" isClassMethod:YES arg:@{@"key":@"value"} completion:^(NSError *error, id response) {
         YLT_Log(@"%@", response);
     }];
     YLT_Log(@"%@", data);

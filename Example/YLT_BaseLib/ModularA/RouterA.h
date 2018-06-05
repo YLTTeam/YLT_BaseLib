@@ -9,5 +9,5 @@
 #import <YLT_BaseLib/YLT_BaseLib.h>
 
 @interface RouterA : YLT_BaseRouter
-
+YLT_ShareInstanceHeader(RouterA);
 @end

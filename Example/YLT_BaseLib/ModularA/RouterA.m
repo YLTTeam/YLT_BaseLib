@@ -11,6 +11,8 @@
 
 @implementation RouterA
 
+YLT_ShareInstance(RouterA);
+
 - (id)ylt_router:(NSDictionary *)params {
     YLT_Log(@"%@", params);
     VCA *vc = [[VCA alloc] init];
