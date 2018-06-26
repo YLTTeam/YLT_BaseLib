@@ -156,7 +156,7 @@
 
 /**
  url runtime解析
-
+ 
  @param action 方法名
  @param target 类名
  @param params 参数
@@ -174,7 +174,7 @@
     if (count >= 3) {
         [invocation setArgument:&params atIndex:2];
     }else {
-        YLT_LogError(@"Action：%@ 参数过多:%@",NSStringFromSelector(action),params);
+        YLT_LogInfo(@"Action：%@ 没有参数:%@",NSStringFromSelector(action),params);
     }
     [invocation setSelector:action];
     [invocation setTarget:target];
