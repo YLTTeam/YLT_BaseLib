@@ -90,6 +90,7 @@
 #define YLT_LogWarn(format,...)
 #define YLT_LogError(format,...)
 #define YLT_Log(format,...)
+#define NSLog(format,...)
 #endif
 
 //当前语言
