@@ -169,7 +169,7 @@
     if (sender.length != 11) {
         return NO;
     }
-    NSString *MOBILE = @"^1([345789])\\d{9}$";
+    NSString *MOBILE = @"^1([3456789])\\d{9}$";
     NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
     if (([regextestmobile evaluateWithObject:sender] == YES)) {
         return YES;
