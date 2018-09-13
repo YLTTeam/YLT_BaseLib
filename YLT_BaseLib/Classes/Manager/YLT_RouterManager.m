@@ -102,6 +102,7 @@
 + (id)ylt_routerToClassname:(NSString *)clsname selname:(NSString *)selname isClassMethod:(BOOL)isClassMethod param:(NSDictionary *)param arg:(id)arg completion:(void(^)(NSError *error, id response))completion {
     //路由的对象类
     Class cls = NSClassFromString(clsname);
+    NSAssert(cls!=NULL, @"路由的类异常");
     if (!clsname.ylt_isValid || (cls == NULL)) {
         YLT_LogError(@"路由的类异常");
         return nil;
@@ -132,18 +133,14 @@
         if (sel.ylt_isValid) {
             YLT_BeginIgnoreUndeclaredSelecror
             YLT_BeginIgnorePerformSelectorLeaksWarning
-            if ([instance respondsToSelector:NSSelectorFromString(sel)]) {
-                instance = [instance performSelector:NSSelectorFromString(sel)];
-            }
+            NSAssert([instance respondsToSelector:NSSelectorFromString(sel)], @"路由的方法异常");
+            instance = [instance performSelector:NSSelectorFromString(sel)];
             YLT_EndIgnoreUndeclaredSelecror
             YLT_EndIgnorePerformSelectorLeaksWarning
         }
     }
     selname = sels.lastObject;
-    if (![instance respondsToSelector:NSSelectorFromString(selname)]) {
-        YLT_LogError(@"路由的方法异常");
-        return nil;
-    }
+    NSAssert([instance respondsToSelector:NSSelectorFromString(selname)], @"路由的方法异常");
     
     YLT_BeginIgnoreUndeclaredSelecror
     if ([instance respondsToSelector:@selector(setYlt_router_params:)]) {
@@ -175,12 +172,11 @@
     }
     const char* retType = [methodSig methodReturnType];
     NSUInteger count =  [methodSig numberOfArguments];
-    YLT_LogInfo(@"方法的 参数个数 - %zd",count);
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSig];
     if (count >= 3) {
         [invocation setArgument:&params atIndex:2];
-    }else {
-        YLT_LogInfo(@"Action：%@ 没有参数:%@",NSStringFromSelector(action),params);
+    } else {
+//        YLT_LogInfo(@"Action：%@ 没有参数:%@",NSStringFromSelector(action),params);
     }
     [invocation setSelector:action];
     [invocation setTarget:target];
@@ -228,7 +224,7 @@
 
 + (NSDictionary *)analysisURL:(NSString *)routerURL {
     NSMutableDictionary *result = [NSMutableDictionary new];
-    NSString *regex = @"ylt://([a-zA-Z0-9_]{1,})/([a-zA-Z0-9_.:]{1,})[?]{0,1}([a-zA-Z0-9_=&]{0,})";
+    NSString *regex = @"([a-zA-Z0-9_]{1,})[/]{0,1}([a-zA-Z0-9_.:]{0,})[?]{0,1}([a-zA-Z0-9_=&]{0,})";
     NSError *error;
     NSRegularExpression *expression = [NSRegularExpression regularExpressionWithPattern:regex options:NSRegularExpressionCaseInsensitive error:&error];
     NSArray *matches = [expression matchesInString:routerURL options:NSMatchingReportProgress range:NSMakeRange(0, routerURL.length)];
@@ -260,6 +256,9 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     NSArray *components = [paramString componentsSeparatedByString:@"&"];
     for (NSString *tmpStr in components) {
+        if (!tmpStr.ylt_isValid) {
+            continue;
+        }
         NSArray *tmpArray = [tmpStr componentsSeparatedByString:@"="];
         if (tmpArray.count == 2) {
             [params setObject:tmpArray[1] forKey:tmpArray[0]];
@@ -267,7 +266,6 @@
             YLT_LogError(@"参数不合法 : %@",tmpStr);
         }
     }
-    
     return params;
 }
 
