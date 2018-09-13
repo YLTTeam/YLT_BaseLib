@@ -69,6 +69,6 @@
  @param routerURL 路由地址
  @return 数据
  */
-+ (NSDictionary *)analysisURL:(NSString *)routerURL:
++ (NSDictionary *)analysisURL:(NSString *)routerURL;
 
 @end
