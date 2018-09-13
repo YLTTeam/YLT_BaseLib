@@ -18,11 +18,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UITabBarController *controller = [[UITabBarController alloc] init];
+    [UIApplication sharedApplication]
+    NSLog(@"%f   %f", controller.tabBar.frame.size.height, [UIScreen mainScreen].bounds.size.height);
 //    NSString *routerURL = @"ylt://classname/ylt_router?username=alex&password=123456";
 //    [YLT_RouterManager ylt_routerToURL:routerURL arg:@{@"user":@"alex"} completion:^(NSError *error, id response) {
 //
 //    }];
-    [[LGAlertView alertViewWithTitle:@"sdfsdf" message:nil style:LGAlertViewStyleAlert buttonTitles:nil cancelButtonTitle:@"确定" destructiveButtonTitle:nil actionHandler:nil cancelHandler:nil destructiveHandler:^(LGAlertView * _Nonnull alertView) {}] show];
+//    [[LGAlertView alertViewWithTitle:@"sdfsdf" message:nil style:LGAlertViewStyleAlert buttonTitles:nil cancelButtonTitle:@"确定" destructiveButtonTitle:nil actionHandler:nil cancelHandler:nil destructiveHandler:^(LGAlertView * _Nonnull alertView) {}] show];
 //    YLT_TipAlert(@"hahaha");
 }
 
@@ -31,10 +34,10 @@
 //        YLT_LogError(@"%@", response);
 //    }];
     
-    id data = [YLT_RouterManager ylt_routerToURL:@"ylt://RouterA/shareInstance.ylt_router:?username=alex&password=123456" isClassMethod:YES arg:@{@"key":@"value"} completion:^(NSError *error, id response) {
-        YLT_Log(@"%@", response);
-    }];
-    YLT_Log(@"%@", data);
+//    id data = [YLT_RouterManager ylt_routerToURL:@"ylt://RouterA/shareInstance.ylt_router:?username=alex&password=123456" isClassMethod:YES arg:@{@"key":@"value"} completion:^(NSError *error, id response) {
+//        YLT_Log(@"%@", response);
+//    }];
+//    YLT_Log(@"%@", data);
 }
 
 - (void)didReceiveMemoryWarning
