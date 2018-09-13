@@ -149,6 +149,12 @@
     if ([instance respondsToSelector:@selector(setYlt_router_params:)]) {
         [instance performSelector:@selector(setYlt_router_params:) withObject:params];
     }
+    if ([instance respondsToSelector:@selector(setYlt_params:)]) {
+        [instance performSelector:@selector(setYlt_params:) withObject:params];
+    }
+    if (completion && [instance respondsToSelector:@selector(setYlt_completion:)]) {
+        [instance performSelector:@selector(setYlt_completion:) withObject:completion];
+    }
     return [self safePerformAction:NSSelectorFromString(selname) target:instance params:params];
     YLT_EndIgnoreUndeclaredSelecror
 }
