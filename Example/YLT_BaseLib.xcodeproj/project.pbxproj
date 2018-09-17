@@ -244,7 +244,6 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				D2EABA86B8FEE57C00D41272 /* [CP] Embed Pods Frameworks */,
-				55F5D2C1E4FC95EE7D3897D1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -263,8 +262,6 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				7FC1A159B61E8F729DF8F533 /* [CP] Embed Pods Frameworks */,
-				8ECAB830E7D806D11456FD1D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -286,6 +283,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "xphaijj0305@126.com";
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = UZGK9HUE57;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -333,51 +333,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		55F5D2C1E4FC95EE7D3897D1 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YLT_BaseLib_Example/Pods-YLT_BaseLib_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7FC1A159B61E8F729DF8F533 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YLT_BaseLib_Tests/Pods-YLT_BaseLib_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8ECAB830E7D806D11456FD1D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YLT_BaseLib_Tests/Pods-YLT_BaseLib_Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		C486527D6153EE2046526F00 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -581,6 +536,7 @@
 			baseConfigurationReference = 662BAB1206CAD75C4C057B74 /* Pods-YLT_BaseLib_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = UZGK9HUE57;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YLT_BaseLib/YLT_BaseLib-Prefix.pch";
 				INFOPLIST_FILE = "YLT_BaseLib/YLT_BaseLib-Info.plist";
@@ -597,6 +553,7 @@
 			baseConfigurationReference = 2490D30DB2B25AF3679B044E /* Pods-YLT_BaseLib_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = UZGK9HUE57;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YLT_BaseLib/YLT_BaseLib-Prefix.pch";
 				INFOPLIST_FILE = "YLT_BaseLib/YLT_BaseLib-Info.plist";

@@ -10,14 +10,15 @@
 #import <YLT_BaseLib/YLT_BaseLib.h>
 
 @interface VCB ()
-
+@property (nonatomic, assign) CGFloat time;
 @end
 
 @implementation VCB
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.view.backgroundColor = UIColor.redColor;
+    self.time = [[NSDate date] timeIntervalSince1970];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

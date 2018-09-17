@@ -29,9 +29,9 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-//    [YLT_RouterManager ylt_routerToURL:@"ylt://RouterB/routerBData:?username=alex&password=123456" arg:@{@"key":@"value"} completion:^(NSError *error, id response) {
-//        YLT_LogError(@"%@", response);
-//    }];
+    [YLT_RouterManager ylt_routerToURL:@"ylt://RouterB/ylt_router:?username=alex&password=123456" arg:@{@"key":@"value"} completion:^(NSError *error, id response) {
+        YLT_LogError(@"%@", response);
+    }];
     
 //    id data = [YLT_RouterManager ylt_routerToURL:@"ylt://RouterA/shareInstance.ylt_router:?username=alex&password=123456" isClassMethod:YES arg:@{@"key":@"value"} completion:^(NSError *error, id response) {
 //        YLT_Log(@"%@", response);
