@@ -159,12 +159,9 @@
 #define YLT_ShareInstanceHeader(cls)    + (cls *)shareInstance;
 #define YLT_ShareInstance(cls)          static cls *share_cls = nil;\
                                         + (cls *)shareInstance {\
-                                            static dispatch_once_t onceToken;\
-                                            dispatch_once(&onceToken, ^{\
-                                            share_cls = [[cls alloc] init];\
-                                                if ([share_cls respondsToSelector:@selector(ylt_init)]) {\
-                                                    [share_cls performSelector:@selector(ylt_init) withObject:nil];\
-                                                    }\
+                                                static dispatch_once_t onceToken;\
+                                                dispatch_once(&onceToken, ^{\
+                                                    share_cls = [[cls alloc] init];\
                                                 });\
                                                 return share_cls;\
                                             }\
