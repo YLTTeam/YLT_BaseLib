@@ -162,6 +162,9 @@
                                                 static dispatch_once_t onceToken;\
                                                 dispatch_once(&onceToken, ^{\
                                                     share_cls = [[cls alloc] init];\
+                                                    if ([share_cls respondsToSelector:@selector(ylt_init)]) {\
+                                                        [share_cls performSelector:@selector(ylt_init) withObject:nil];\
+                                                    }\
                                                 });\
                                                 return share_cls;\
                                             }\
@@ -170,9 +173,6 @@
                                                     static dispatch_once_t onceToken;\
                                                     dispatch_once(&onceToken, ^{\
                                                         share_cls = [super allocWithZone:zone];\
-                                                        if ([share_cls respondsToSelector:@selector(ylt_init)]) {\
-                                                            [share_cls performSelector:@selector(ylt_init) withObject:nil];\
-                                                        }\
                                                     });\
                                                 }\
                                                 return share_cls;\
