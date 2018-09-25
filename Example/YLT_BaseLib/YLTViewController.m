@@ -29,7 +29,8 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [YLT_RouterManager ylt_routerToURL:@"ylt://RouterB/ylt_router:?username=alex&password=123456" arg:@{@"key":@"value"} completion:^(NSError *error, id response) {
+    //ylt://HKAuthResultController/selname?status=认证失败&backTitle=返回修改&message=请核实您的姓名与身份证号是否匹配&success=true
+    [YLT_RouterManager ylt_routerToURL:@"ylt://HKAuthResultController/selname?status=状态&success=true" arg:@{@"key":@"value"} completion:^(NSError *error, id response) {
         YLT_LogError(@"%@", response);
     }];
     

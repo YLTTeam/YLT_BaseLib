@@ -98,7 +98,8 @@
 + (id)ylt_routerToClassname:(NSString *)clsname selname:(NSString *)selname isClassMethod:(BOOL)isClassMethod param:(NSDictionary *)param arg:(id)arg completion:(void(^)(NSError *error, id response))completion {
     //路由的对象类
     Class cls = NSClassFromString(clsname);
-    NSAssert(cls!=NULL, @"路由的类异常");
+    NSString *clsReason = [NSString stringWithFormat:@"路由的类异常 %@", clsname];
+    NSAssert(cls!=NULL, clsReason);
     if (!clsname.ylt_isValid || (cls == NULL)) {
         YLT_LogError(@"路由的类异常");
         return nil;
@@ -129,14 +130,16 @@
         if (sel.ylt_isValid) {
             YLT_BeginIgnoreUndeclaredSelecror
             YLT_BeginIgnorePerformSelectorLeaksWarning
-            NSAssert([instance respondsToSelector:NSSelectorFromString(sel)], @"路由的方法异常");
+            NSString *reason = [NSString stringWithFormat:@"路由的方法异常 %@ %@", clsname, sel];
+            NSAssert([instance respondsToSelector:NSSelectorFromString(sel)], reason);
             instance = [instance performSelector:NSSelectorFromString(sel)];
             YLT_EndIgnoreUndeclaredSelecror
             YLT_EndIgnorePerformSelectorLeaksWarning
         }
     }
     selname = sels.lastObject;
-    NSAssert([instance respondsToSelector:NSSelectorFromString(selname)], @"路由的方法异常");
+    NSString *reason = [NSString stringWithFormat:@"路由的方法异常 %@ %@", clsname, selname];
+    NSAssert([instance respondsToSelector:NSSelectorFromString(selname)], reason);
     
     YLT_BeginIgnoreUndeclaredSelecror
     if ([instance respondsToSelector:@selector(setYlt_router_params:)]) {
