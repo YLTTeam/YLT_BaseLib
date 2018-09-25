@@ -139,6 +139,11 @@
     }
     selname = sels.lastObject;
     NSString *reason = [NSString stringWithFormat:@"路由的方法异常 %@ %@", clsname, selname];
+    if (!isClassMethod && ![instance respondsToSelector:NSSelectorFromString(selname)] && [cls respondsToSelector:NSSelectorFromString(selname)]) {
+        /* 当用户传的是实例方法的时候，发现实例不响应的时候，去检查一下类是否响应此方法 */
+        YLT_LogWarn(@"当前调用的是实例方法，但是实例方法不响应，类方法响应 直接改为类方法调用 %@ %@", clsname, selname);
+        instance = cls;
+    }
     NSAssert([instance respondsToSelector:NSSelectorFromString(selname)], reason);
     
     YLT_BeginIgnoreUndeclaredSelecror
@@ -221,30 +226,78 @@
 
 #pragma mark - Tool
 
+/**
+ 解析URL
+ 
+ @param routerURL ylt://class[/sel][/...多余的被忽略...][?参数]
+ */
 + (NSDictionary *)analysisURL:(NSString *)routerURL {
-    NSMutableDictionary *result = [NSMutableDictionary new];
-    NSString *regex = @"([a-zA-Z0-9_]{1,})[/]{0,1}([a-zA-Z0-9_.:]{0,})[?]{0,1}([a-zA-Z0-9_=&]{0,})";
-    NSError *error;
-    NSRegularExpression *expression = [NSRegularExpression regularExpressionWithPattern:regex options:NSRegularExpressionCaseInsensitive error:&error];
-    NSArray *matches = [expression matchesInString:routerURL options:NSMatchingReportProgress range:NSMakeRange(0, routerURL.length)];
-    for (NSTextCheckingResult *match in matches) {
-        NSInteger numbers = [match numberOfRanges];
-        for (NSInteger i = 0; i < numbers; i ++) {
-            NSString *tmpName = [routerURL substringWithRange:[match rangeAtIndex:i]];
-            switch (i) {
-                case 1: {
-                    [result setObject:tmpName forKey:YLT_ROUTER_CLS_NAME];
-                }
-                    break;
-                case 2: {
-                    [result setObject:tmpName forKey:YLT_ROUTER_SEL_NAME];
-                }
-                    break;
-                case 3: {
-                    [result setObject:[self generateParamsString:tmpName] forKey:YLT_ROUTER_ARG_DATA];
-                }
-                    break;
+    //显示错误
+    void(^showError)(void) = ^{
+        YLT_LogError(@"URL不合法 : %@", routerURL);
+    };
+    
+    //验证字符串
+    BOOL(^validateString)(NSString *) = ^(NSString *string) {
+        if (![string ylt_isValid]) {
+            showError();
+            return NO;
+        }
+        return YES;
+    };
+    
+    NSMutableDictionary *result = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                                  YLT_ROUTER_CLS_NAME:@"",
+                                                                                  YLT_ROUTER_SEL_NAME:@"",
+                                                                                  YLT_ROUTER_ARG_DATA:@{}
+                                                                                  }];
+    
+    //不以“ylt://”未前缀，或者字符串就是“ylt://”，则不合法
+    if (![routerURL ylt_isValid] || ![routerURL hasPrefix:YLT_ROUTER_PREFIX] || [routerURL isEqualToString:YLT_ROUTER_PREFIX]) {
+        showError();
+        return result;
+    }
+    
+    NSString *tempString = nil;
+    NSScanner *scanner = [NSScanner scannerWithString:routerURL];
+    [scanner setScanLocation:YLT_ROUTER_PREFIX.length]; //设置从ylt://后面开始扫描
+    //解析路径部分
+    {
+        //扫描出path部分(ylt://.....?)
+        [scanner scanUpToString:@"?" intoString:&tempString];
+        NSArray *comps = [tempString componentsSeparatedByString:@"/"];
+        
+        //YLT_ROUTER_CLS_NAME
+        if (comps.count > 0) {
+            NSString *cls = comps[0];
+            if (!validateString(cls)) {//验证cls是否合法
+                return result;
             }
+            [result setObject:cls forKey:YLT_ROUTER_CLS_NAME];
+        }
+        
+        //YLT_ROUTER_SEL_NAME
+        if (comps.count > 1) {
+            NSString *sel = comps[1];
+            if (!validateString(sel)) {
+                return result;
+            } //验证sel是否合法
+            [result setObject:sel forKey:YLT_ROUTER_SEL_NAME];
+        }
+    }
+    
+    //解析参数部分
+    {
+        //扫描出参数部分(这里填'??',因为参数部分不可能有‘??’,所以会将剩余部分全部放入tempString)
+        //这里就是两个问号，不是手误
+        tempString = nil;
+        [scanner scanUpToString:@"??" intoString:&tempString];
+        if ([tempString ylt_isValid]) {
+            //如果开头是？，则删除?
+            if ([tempString hasPrefix:@"?"]) {
+                tempString = [tempString substringFromIndex:1];
+            }
+            [result setObject:[self generateParamsString:tempString] forKey:YLT_ROUTER_ARG_DATA];
         }
     }
     
