@@ -18,8 +18,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UITabBarController *controller = [[UITabBarController alloc] init];
-    NSLog(@"%f   %f", controller.tabBar.frame.size.height, [UIScreen mainScreen].bounds.size.height);
+    self.view.backgroundColor = [UIColor redColor];
+    NSLog(@"%zd", @"中12文".ylt_isAllChinese);
 //    NSString *routerURL = @"ylt://classname/ylt_router?username=alex&password=123456";
 //    [YLT_RouterManager ylt_routerToURL:routerURL arg:@{@"user":@"alex"} completion:^(NSError *error, id response) {
 //
