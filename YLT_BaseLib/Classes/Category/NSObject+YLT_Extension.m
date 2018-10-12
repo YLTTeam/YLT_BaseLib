@@ -25,7 +25,9 @@
 - (void)ylt_dealloc {
     if ([self isKindOfClass:UIView.class] ||
         [self isKindOfClass:UIViewController.class]) {
-        YLT_LogInfo(@"%@ dealloc is safe", NSStringFromClass(self.class));
+        if ([self isKindOfClass:UIViewController.class]) {
+            YLT_LogInfo(@"%@ dealloc is safe", NSStringFromClass(self.class));
+        }
         YLT_RemoveNotificationObserver();
     }
     
