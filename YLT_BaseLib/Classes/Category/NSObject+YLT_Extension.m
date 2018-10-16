@@ -18,7 +18,8 @@
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [NSObject ylt_swizzleInstanceMethod:NSSelectorFromString(@"dealloc") withMethod:@selector(ylt_dealloc)];
+        [UIView ylt_swizzleInstanceMethod:NSSelectorFromString(@"dealloc") withMethod:@selector(ylt_dealloc)];
+        [UIViewController ylt_swizzleInstanceMethod:NSSelectorFromString(@"dealloc") withMethod:@selector(ylt_dealloc)];
     });
 }
 
