@@ -167,7 +167,7 @@
 + (id)ylt_valueByKey:(NSString *)key {
     NSParameterAssert(key);
     if (![[[NSUserDefaults standardUserDefaults] dictionaryRepresentation].allKeys containsObject:key]) {
-        return ;
+        return nil;
     }
     NSData *data = [[NSUserDefaults standardUserDefaults] valueForKey:key];
     return [FastCoder objectWithData:data];
