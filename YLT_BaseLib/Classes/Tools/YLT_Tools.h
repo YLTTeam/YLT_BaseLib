@@ -49,4 +49,13 @@
  */
 + (NSString *)ylt_makeCodeIsNumber:(BOOL)isNumber length:(NSInteger)length;
 
+/**
+ 从framework中加载类别
+
+ @param frameworkPath framework的地址
+ @param classname 类名
+ @return 类
+ */
++ (Class)ylt_loadClassFromFrameworkPath:(NSString *)frameworkPath classname:(NSString *)classname;
+
 @end

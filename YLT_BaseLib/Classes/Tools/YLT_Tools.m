@@ -89,4 +89,24 @@
     return @"";
 }
 
+/**
+ 从framework中加载类别
+ 
+ @param frameworkPath framework的地址
+ @param classname 类名
+ @return 类
+ */
++ (Class)ylt_loadClassFromFrameworkPath:(NSString *)frameworkPath classname:(NSString *)classname {
+    NSFileManager *manager = [NSFileManager defaultManager];
+    Class cls = NULL;
+    NSAssert([manager fileExistsAtPath:frameworkPath], @"找不到framework");
+    NSError *error;
+    NSBundle *frameworkBundle = [NSBundle bundleWithPath:frameworkPath];
+    NSAssert(frameworkBundle && [frameworkBundle loadAndReturnError:&error], [error description]);
+    // Load class
+    cls = NSClassFromString(classname);
+    NSAssert(cls != NULL, @"framework中找不到对应的类");
+    return cls;
+}
+
 @end
