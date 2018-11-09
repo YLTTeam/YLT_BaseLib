@@ -198,13 +198,13 @@
 
 /// main / background thead
 #define YLT_MAIN(block)  (if ([NSThread isMainThread]) {\
-                            (block());\
+                            block();\
                          } else {\
-                            dispatch_async(dispatch_get_main_queue(), (block));\
+                            dispatch_async(dispatch_get_main_queue(),block);\
                          })
-#define YLT_MAINDelay(x, block) (dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(x * NSEC_PER_SEC)), dispatch_get_main_queue(), (block)))
-#define YLT_BACK(block)  (dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), (block)))
-#define YLT_BACKDelay(x, block) (dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(x * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), (block)))
+#define YLT_MAINDelay(x, block) (dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(x * NSEC_PER_SEC)), dispatch_get_main_queue(), block))
+#define YLT_BACK(block)  (dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block))
+#define YLT_BACKDelay(x, block) (dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(x * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block))
 
 /// 警告消除宏
 #define YLT_ArgumentToString(macro) #macro
