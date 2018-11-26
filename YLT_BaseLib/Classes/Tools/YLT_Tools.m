@@ -8,7 +8,6 @@
 
 #import "YLT_Tools.h"
 #import <MJExtension/MJExtension.h>
-#import <LGAlertView/LGAlertView.h>
 #import "NSString+YLT_Extension.h"
 
 @implementation YLT_Tools
@@ -44,19 +43,6 @@
     }
     return dic;
 }
-
-/**
- 显示跳转设置提示
- 
- @param title 标题
- */
-+ (void)ylt_showSettingTitle:(NSString *)title {
-    [[LGAlertView alertViewWithTitle:@"提示" message:title style:LGAlertViewStyleAlert buttonTitles:(floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1)?@[@"设置"]:nil cancelButtonTitle:@"好的" destructiveButtonTitle:nil actionHandler:^(LGAlertView * _Nonnull alertView, NSUInteger index, NSString * _Nullable title) {
-        UIApplication *app = [UIApplication sharedApplication];
-        [app openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-    } cancelHandler:nil destructiveHandler:^(LGAlertView * _Nonnull alertView) {}] show];
-}
-
 
 /**
  生成6位随机码 （数字和英文）

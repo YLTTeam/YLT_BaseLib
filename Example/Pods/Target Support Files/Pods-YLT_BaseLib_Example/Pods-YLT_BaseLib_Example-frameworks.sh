@@ -145,14 +145,12 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FastCoding/FastCoding.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/LGAlertView/LGAlertView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YLT_BaseLib/YLT_BaseLib.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FastCoding/FastCoding.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/LGAlertView/LGAlertView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YLT_BaseLib/YLT_BaseLib.framework"
 fi

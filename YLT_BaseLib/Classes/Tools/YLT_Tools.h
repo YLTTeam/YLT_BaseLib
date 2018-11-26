@@ -27,13 +27,6 @@
 + (NSDictionary *)ylt_dictionaryFromString:(NSString *)jsonString;
 
 /**
- 显示跳转设置提示
-
- @param title 标题
- */
-+ (void)ylt_showSettingTitle:(NSString *)title;
-
-/**
  生成6位随机码 （数字和英文）
  
  @return 随机码

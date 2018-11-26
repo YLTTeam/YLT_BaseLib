@@ -8,8 +8,6 @@
 #ifndef YLT_BaseMacro_h
 #define YLT_BaseMacro_h
 
-#import <LGAlertView/LGAlertView.h>
-
 /// iOS设备信息
 #define iPad ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
 #define iPhone ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
@@ -83,7 +81,7 @@
 #define YLT_DOCUMENT_PATH [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
 #define YLT_CACHE_PATH [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0]
 
-#define YLT_TipAlert(_S_, ...) [[LGAlertView alertViewWithTitle:[NSString stringWithFormat:(_S_), ##__VA_ARGS__] message:nil style:LGAlertViewStyleAlert buttonTitles:nil cancelButtonTitle:@"确定" destructiveButtonTitle:nil actionHandler:nil cancelHandler:nil destructiveHandler:^(LGAlertView * _Nonnull alertView) {}] show];
+#define YLT_TipAlert(_S_, ...) [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:(_S_), ##__VA_ARGS__] message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
 
 #if DEBUG
 //输出日志信息
