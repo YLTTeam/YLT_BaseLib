@@ -154,27 +154,26 @@
 ([[NSNotificationCenter defaultCenter] postNotificationName:_name object:_obj userInfo:_infos])
 
 //快速生成单例对象
-#define YLT_ShareInstanceHeader(cls)    + (cls *)shareInstance;
+#define YLT_ShareInstanceHeader(cls)    + (cls *)shareInstance;\
+                                        + (void)resetInstance;
 #define YLT_ShareInstance(cls)          static cls *share_cls = nil;\
                                         static dispatch_once_t share_onceToken;\
                                         + (cls *)shareInstance {\
-                                                dispatch_once(&share_onceToken, ^{\
-                                                    share_cls = [[cls alloc] init];\
-                                                    if ([share_cls respondsToSelector:@selector(ylt_init)]) {\
-                                                        [share_cls performSelector:@selector(ylt_init) withObject:nil];\
-                                                    }\
-                                                });\
+                                                share_cls = [[cls alloc] init];\
                                                 return share_cls;\
                                             }\
                                             + (instancetype)allocWithZone:(struct _NSZone *)zone {\
                                                 if (share_cls == nil) {\
                                                     dispatch_once(&share_onceToken, ^{\
                                                         share_cls = [super allocWithZone:zone];\
+                                                        if ([share_cls respondsToSelector:@selector(ylt_init)]) {\
+                                                            [share_cls performSelector:@selector(ylt_init) withObject:nil];\
+                                                        }\
                                                     });\
                                                 }\
                                                 return share_cls;\
                                             }\
-                                            - (void)resetInstance {\
+                                            + (void)resetInstance {\
                                                 share_onceToken = 0;\
                                                 share_cls = nil;\
                                             }
