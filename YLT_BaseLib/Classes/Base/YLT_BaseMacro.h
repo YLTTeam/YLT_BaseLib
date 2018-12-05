@@ -158,23 +158,27 @@
                                         + (void)resetInstance;
 #define YLT_ShareInstance(cls)          static cls *share_cls = nil;\
                                         static dispatch_once_t share_onceToken;\
+                                        static dispatch_once_t ylt_init_onceToken;\
                                         + (cls *)shareInstance {\
                                                 share_cls = [[cls alloc] init];\
+                                                dispatch_once(&ylt_init_onceToken, ^{\
+                                                    if ([share_cls respondsToSelector:@selector(ylt_init)]) {\
+                                                        [share_cls performSelector:@selector(ylt_init) withObject:nil];\
+                                                    }\
+                                                });\
                                                 return share_cls;\
                                             }\
                                             + (instancetype)allocWithZone:(struct _NSZone *)zone {\
                                                 if (share_cls == nil) {\
                                                     dispatch_once(&share_onceToken, ^{\
                                                         share_cls = [super allocWithZone:zone];\
-                                                        if ([share_cls respondsToSelector:@selector(ylt_init)]) {\
-                                                            [share_cls performSelector:@selector(ylt_init) withObject:nil];\
-                                                        }\
                                                     });\
                                                 }\
                                                 return share_cls;\
                                             }\
                                             + (void)resetInstance {\
                                                 share_onceToken = 0;\
+                                                ylt_init_onceToken = 0;\
                                                 share_cls = nil;\
                                             }
 //懒加载宏定义
