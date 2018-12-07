@@ -15,6 +15,16 @@
 
 @implementation YLT_RouterManager
 
+static NSString *webClassname = nil;
+/**
+ 注册web路由的类名
+ 
+ @param classname web
+ */
++ (void)registerWebClassname:(NSString *)classname {
+    webClassname = classname;
+}
+
 /**
  路由
  
@@ -44,7 +54,26 @@
         NSDictionary *params = ([urlParams.allKeys containsObject:YLT_ROUTER_ARG_DATA])?urlParams[YLT_ROUTER_ARG_DATA]:nil;
         return [self ylt_routerToClassname:clsname selname:selname isClassMethod:isClassMethod param:params arg:arg completion:completion];
     } else if ([routerURL hasPrefix:@"http://"] || [routerURL hasPrefix:@"https://"]) {
-        YLT_LogWarn(@"webview 待开发");
+        Class cls = NSClassFromString(@"YLT_BaseWebVC");
+        if (webClassname.ylt_isValid) {
+            Class class = NSClassFromString(webClassname);
+            if (class != NULL) {
+                cls = class;
+            }
+        }
+        id instance = nil;
+        YLT_BeginIgnoreUndeclaredSelecror
+        if ([cls respondsToSelector:@selector(ylt_webVCFromURLString:)]) {
+            instance = [cls performSelector:@selector(ylt_webVCFromURLString:) withObject:routerURL];
+        } else {
+            instance = [[cls alloc] init];
+        }
+        NSAssert(instance!=NULL, @"web 类异常");
+        if (!instance) {
+            instance = [[UIViewController alloc] init];
+        }
+        YLT_EndIgnoreUndeclaredSelecror
+        return instance;
     } else {
         YLT_LogError(@"路由错误");
     }
