@@ -19,11 +19,11 @@
 @interface YLT_RouterManager : NSObject
 
 /**
- 注册web路由的类名
+ 注册web路由
 
- @param classname web
+ @param webRouter webRouter
  */
-+ (void)registerWebClassname:(NSString *)classname;
++ (void)registerWebRouter:(NSString *)webRouter;
 
 /**
  路由  默认路由实例方法
