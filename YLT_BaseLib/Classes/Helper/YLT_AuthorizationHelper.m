@@ -496,7 +496,8 @@ YLT_ShareInstance(YLT_AuthorizationHelper);
 #pragma mark - notification
 - (void)ylt_notificationSuccess:(void(^)(void))success
                          failed:(void(^)(void))failed {
-    if ([[UIApplication sharedApplication] isRegisteredForRemoteNotifications]) {
+    UIUserNotificationSettings *setting = [[UIApplication sharedApplication] currentUserNotificationSettings];
+    if (setting.types != UIUserNotificationTypeNone) {
         success();
     } else {
         failed();
