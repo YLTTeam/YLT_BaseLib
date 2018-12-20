@@ -698,6 +698,9 @@
     NSString *resultString = self;
     //删除字符串中的空格
     resultString = [[self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
+    if ([resultString rangeOfString:@"clear"].location != NSNotFound) {
+        return UIColor.clearColor;
+    }
     if ([resultString hasPrefix:@"0X"]) {
         resultString = [resultString substringFromIndex:2];
     }
