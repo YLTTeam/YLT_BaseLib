@@ -83,7 +83,7 @@
         return NO;
     }
     
-    NSDictionary *data = self.mj_keyValues;
+    NSDictionary *data = [self.mj_JSONString stringByReplacingOccurrencesOfString:@"<null>" withString:@""].mj_keyValues;
     [[NSUserDefaults standardUserDefaults] setObject:data forKey:key];
     return [[NSUserDefaults standardUserDefaults] synchronize];
 }
