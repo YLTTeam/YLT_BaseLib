@@ -109,8 +109,11 @@
         if ([[[NSUserDefaults standardUserDefaults] dictionaryRepresentation].allKeys containsObject:key]) {
             data = [[NSUserDefaults standardUserDefaults] objectForKey:key];
         }
-        if (![[self class] respondsToSelector:@selector(mj_objectWithKeyValues:)] || ![data isKindOfClass:[NSDictionary class]]) {
-            YLT_LogWarn(@"对象异常");
+        if ([[self class] respondsToSelector:@selector(mj_keyValues)] && [data isKindOfClass:[NSString class]]) {
+            data = data.mj_keyValues;
+        } else if ([[self class] respondsToSelector:@selector(mj_objectWithKeyValues:)] && [data isKindOfClass:[NSDictionary class]]) {
+        } else {
+            YLT_LogError(@"对象异常");
             return nil;
         }
         id result = nil;
