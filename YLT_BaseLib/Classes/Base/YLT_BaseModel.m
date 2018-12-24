@@ -10,6 +10,7 @@
 #import "YLT_BaseMacro.h"
 #import <objc/message.h>
 #import "NSString+YLT_Extension.h"
+#import "NSObject+YLT_Extension.h"
 
 #define OBJECT_MEMORY_KEY [NSString stringWithFormat:@"YLT_OBJECT_SYSTEM_%@_%@", YLT_BundleIdentifier, NSStringFromClass([self class])]
 #define GROUP_MEMORY_KEY [NSString stringWithFormat:@"YLT_GROUP_SYSTEM_%@_%@", YLT_BundleIdentifier, NSStringFromClass([self class])]
@@ -21,16 +22,26 @@
     return [[self class] mj_objectWithKeyValues:self.mj_keyValues];
 }
 
++ (void)load {
+    [YLT_BaseModel ylt_swizzleClassMethod:@selector(mj_objectWithKeyValues:context:) withMethod:@selector(ylt_objectWithKeyValues:context:)];
+    [YLT_BaseModel ylt_swizzleClassMethod:@selector(mj_objectArrayWithKeyValuesArray:context:) withMethod:@selector(ylt_objectArrayWithKeyValuesArray:context:)];
+}
+
 /**
  字典转模型
  
  @param data 字典
  @return 模型
  */
-+ (instancetype)ylt_objectWithKeyValues:(id)data {
-    YLT_BaseModel *res = [self mj_objectWithKeyValues:data];
-    res.ylt_sourceData = data;
++ (instancetype)ylt_objectWithKeyValues:(id)keyValues context:(NSManagedObjectContext *)context {
+    YLT_BaseModel *res = [self ylt_objectWithKeyValues:keyValues context:context];
+    res.ylt_sourceData = keyValues;
     return res;
+}
+
++ (NSMutableArray *)ylt_objectArrayWithKeyValuesArray:(id)keyValuesArray context:(NSManagedObjectContext *)context {
+    NSMutableArray *result = [self ylt_objectArrayWithKeyValuesArray:keyValuesArray context:context];
+    return result;
 }
 
 #pragma mark - ORM

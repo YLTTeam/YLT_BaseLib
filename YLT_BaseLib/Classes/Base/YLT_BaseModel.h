@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MJExtension/MJExtension.h>
 
 @interface YLT_BaseModel : NSObject<NSCopying>
 
