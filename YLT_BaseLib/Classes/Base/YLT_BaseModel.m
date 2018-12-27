@@ -120,24 +120,24 @@
         if ([[[NSUserDefaults standardUserDefaults] dictionaryRepresentation].allKeys containsObject:key]) {
             data = [[NSUserDefaults standardUserDefaults] objectForKey:key];
         }
-        if ([[self class] respondsToSelector:@selector(mj_keyValues)] && [data isKindOfClass:[NSString class]]) {
+        if ( [data isKindOfClass:[NSString class] && [data respondsToSelector:@selector(mj_keyValues)]]) {
             data = data.mj_keyValues;
         } else if ([[self class] respondsToSelector:@selector(mj_objectWithKeyValues:)] && [data isKindOfClass:[NSDictionary class]]) {
+            id result = nil;
+            if (data) {
+                @try {
+                    result = [[self class] mj_objectWithKeyValues:data];
+                } @catch (NSException *exception) {
+                    YLT_LogError(@"%@", exception);
+                } @finally {
+                    return result;
+                }
+            }
+            return result;
         } else {
             YLT_LogError(@"对象异常");
             return nil;
         }
-        id result = nil;
-        if (data) {
-            @try {
-                result = [[self class] mj_objectWithKeyValues:data];
-            } @catch (NSException *exception) {
-                YLT_LogError(@"%@", exception);
-            } @finally {
-                return result;
-            }
-        }
-        return result;
     }
     return nil;
 }
