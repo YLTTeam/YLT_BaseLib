@@ -164,6 +164,9 @@
             data = [[NSUserDefaults standardUserDefaults] objectForKey:key];
         }
         if (data) {
+            if ([data isKindOfClass:[NSString class]] && [data respondsToSelector:@selector(mj_keyValues)]) {
+                data = data.mj_keyValues;
+            }
             if (![self respondsToSelector:@selector(mj_setKeyValues:)] || ![data isKindOfClass:[NSDictionary class]]) {
                 YLT_LogWarn(@"对象异常");
                 return NO;
