@@ -120,7 +120,7 @@
         if ([[[NSUserDefaults standardUserDefaults] dictionaryRepresentation].allKeys containsObject:key]) {
             data = [[NSUserDefaults standardUserDefaults] objectForKey:key];
         }
-        if ( [data isKindOfClass:[NSString class] && [data respondsToSelector:@selector(mj_keyValues)]]) {
+        if ([data isKindOfClass:[NSString class]] && [data respondsToSelector:@selector(mj_keyValues)]) {
             data = data.mj_keyValues;
         } else if ([[self class] respondsToSelector:@selector(mj_objectWithKeyValues:)] && [data isKindOfClass:[NSDictionary class]]) {
             id result = nil;
