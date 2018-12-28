@@ -122,7 +122,8 @@
         }
         if ([data isKindOfClass:[NSString class]] && [data respondsToSelector:@selector(mj_keyValues)]) {
             data = data.mj_keyValues;
-        } else if ([[self class] respondsToSelector:@selector(mj_objectWithKeyValues:)] && [data isKindOfClass:[NSDictionary class]]) {
+        }
+        if ([[self class] respondsToSelector:@selector(mj_objectWithKeyValues:)] && [data isKindOfClass:[NSDictionary class]]) {
             id result = nil;
             if (data) {
                 @try {
