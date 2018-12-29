@@ -7,6 +7,7 @@
 
 #import "YLT_BaseRouter.h"
 #import "YLT_BaseMacro.h"
+#import "NSObject+YLT_Router.h"
 
 @interface YLT_BaseRouter () {
 }
