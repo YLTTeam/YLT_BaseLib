@@ -119,14 +119,27 @@ static NSString *webRouterURL = nil;
  @return 回参
  */
 - (id)ylt_routerToClassname:(NSString *)clsname selname:(NSString *)selname isClassMethod:(BOOL)isClassMethod param:(NSDictionary *)param arg:(id)arg completion:(void(^)(NSError *error, id response))completion {
-    //路由的对象类
-    Class cls = NSClassFromString(clsname);
-    NSString *clsReason = [NSString stringWithFormat:@"路由的类异常 %@", clsname];
-    NSAssert(cls!=NULL, clsReason);
-    if (!clsname.ylt_isValid || (cls == NULL)) {
-        YLT_LogError(@"路由的类异常");
-        return nil;
+    id instance = nil;
+    Class cls = NULL;
+    if ([clsname isEqualToString:@"self"]) {
+        instance = self;
+        cls = self.class;
+    } else {
+        //路由的对象类
+        Class cls = NSClassFromString(clsname);
+        NSString *clsReason = [NSString stringWithFormat:@"路由的类异常 %@", clsname];
+        NSAssert(cls!=NULL, clsReason);
+        if (!clsname.ylt_isValid || (cls == NULL)) {
+            YLT_LogError(@"路由的类异常");
+            return nil;
+        }
+        if (isClassMethod) {//类方法
+            instance = cls;
+        } else {
+            instance = [[cls alloc] init];
+        }
     }
+    
     selname = (selname.ylt_isValid?selname:@"ylt_router:");
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     if (param) {
@@ -141,12 +154,6 @@ static NSString *webRouterURL = nil;
         [params setObject:completion forKey:YLT_ROUTER_COMPLETION];
     }
     
-    id instance = nil;
-    if (isClassMethod) {//类方法
-        instance = cls;
-    } else {
-        instance = [[cls alloc] init];
-    }
     NSArray *sels = [selname componentsSeparatedByString:@"."];
     for (NSInteger i = 0; i < sels.count-1; i++) {
         NSString *sel = sels[i];
@@ -169,18 +176,21 @@ static NSString *webRouterURL = nil;
     }
     NSAssert([instance respondsToSelector:NSSelectorFromString(selname)], reason);
     
-    YLT_BeginIgnoreUndeclaredSelecror
-    if ([instance respondsToSelector:@selector(setYlt_router_params:)]) {
-        [instance performSelector:@selector(setYlt_router_params:) withObject:params];
-    }
-    if ([instance respondsToSelector:@selector(setYlt_params:)]) {
-        [instance performSelector:@selector(setYlt_params:) withObject:params];
-    }
-    if (completion && [instance respondsToSelector:@selector(setYlt_completion:)]) {
-        [instance performSelector:@selector(setYlt_completion:) withObject:completion];
+    if ([clsname isEqualToString:@"self"]) {
+    } else {
+        YLT_BeginIgnoreUndeclaredSelecror
+        if ([instance respondsToSelector:@selector(setYlt_router_params:)]) {
+            [instance performSelector:@selector(setYlt_router_params:) withObject:params];
+        }
+        if ([instance respondsToSelector:@selector(setYlt_params:)]) {
+            [instance performSelector:@selector(setYlt_params:) withObject:params];
+        }
+        if (completion && [instance respondsToSelector:@selector(setYlt_completion:)]) {
+            [instance performSelector:@selector(setYlt_completion:) withObject:completion];
+        }
+        YLT_EndIgnoreUndeclaredSelecror
     }
     return [self safePerformAction:NSSelectorFromString(selname) target:instance params:params];
-    YLT_EndIgnoreUndeclaredSelecror
 }
 
 
