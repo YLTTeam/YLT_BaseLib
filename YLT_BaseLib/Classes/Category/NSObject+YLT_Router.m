@@ -126,7 +126,7 @@ static NSString *webRouterURL = nil;
         cls = self.class;
     } else {
         //路由的对象类
-        Class cls = NSClassFromString(clsname);
+        cls = NSClassFromString(clsname);
         NSString *clsReason = [NSString stringWithFormat:@"路由的类异常 %@", clsname];
         NSAssert(cls!=NULL, clsReason);
         if (!clsname.ylt_isValid || (cls == NULL)) {
