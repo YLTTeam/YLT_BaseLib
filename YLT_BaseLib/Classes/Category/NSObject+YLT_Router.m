@@ -8,6 +8,7 @@
 #import "NSObject+YLT_Router.h"
 #import "YLT_BaseMacro.h"
 #import "NSString+YLT_Extension.h"
+#import "NSObject+YLT_Extension.h"
 
 @implementation NSObject (YLT_Router)
 
@@ -64,7 +65,13 @@ static NSString *webRouterURL = nil;
                 instance = [[UIViewController alloc] init];
             }
             YLT_EndIgnoreUndeclaredSelecror
-            
+            if (self.ylt_currentVC) {
+                if (self.ylt_currentVC.navigationController) {
+                    [self.ylt_currentVC.navigationController pushViewController:instance animated:YES];
+                } else {
+                    [self.ylt_currentVC presentViewController:instance animated:YES completion:nil];
+                }
+            }
             return instance;
         }
         return nil;
