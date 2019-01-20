@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'YLT_BaseLib'
-  s.version          = '0.3.24'
+  s.version          = '0.3.25'
   s.summary          = 'YLT_BaseLib 基础类库.'
 
 # This description is used to generate tags and improve search results.

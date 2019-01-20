@@ -24,7 +24,9 @@
 
 + (instancetype)mj_objectWithKeyValues:(id)keyValues context:(NSManagedObjectContext *)context{
     YLT_BaseModel *res = [super mj_objectWithKeyValues:keyValues context:context];
-    res.ylt_sourceData = keyValues;
+    if ([res respondsToSelector:@selector(setYlt_sourceData:)]) {
+        res.ylt_sourceData = keyValues;
+    }
     return res;
 }
 
