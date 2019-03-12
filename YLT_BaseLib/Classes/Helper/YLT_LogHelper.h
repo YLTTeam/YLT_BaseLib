@@ -20,7 +20,7 @@
 /** 耗时 单位毫秒 */
 @property (readwrite, nonatomic, assign) NSInteger time;
 /** 记录时间 */
-@property (readwrite, nonatomic, assign) NSInteger dateTime;
+@property (readwrite, nonatomic, strong) NSString *dateTime;
 
 - (NSInteger)saveDB:(FMDatabase *)db;
 - (BOOL)delDB:(FMDatabase *)db;
@@ -48,7 +48,7 @@
 /** 耗时 单位毫秒 */
 @property (readwrite, nonatomic, assign) NSInteger time;
 /** 记录时间 */
-@property (readwrite, nonatomic, assign) NSInteger dateTime;
+@property (readwrite, nonatomic, strong) NSString *dateTime;
 
 - (NSInteger)saveDB:(FMDatabase *)db;
 - (BOOL)delDB:(FMDatabase *)db;
