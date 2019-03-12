@@ -7,7 +7,6 @@
 
 #import "YLT_LogHelper.h"
 
-
 @implementation YLT_LogModel
 
 - (id)init {
@@ -15,7 +14,9 @@
     if (self) {
         self.logId = 0;
         self.log = @"";
+        self.mark = @"";
         self.time = 0;
+        self.dateTime = 0;
     }
     return self;
 }
@@ -45,8 +46,8 @@
         return 0;
     }
     NSInteger result = 0;
-    [db executeUpdate:@"CREATE TABLE IF NOT EXISTS DB_YLT_LogModel(logId INTEGER PRIMARY KEY AUTOINCREMENT, log TEXT, time INTEGER)"];
-    result = [db executeUpdate:@"INSERT INTO DB_YLT_LogModel(log,time) VALUES (?,?)", self.log, [NSNumber numberWithInteger:self.time]];
+    [db executeUpdate:@"CREATE TABLE IF NOT EXISTS DB_YLT_LogModel(logId INTEGER PRIMARY KEY AUTOINCREMENT, log TEXT, mark TEXT, time INTEGER, dateTime INTEGER)"];
+    result = [db executeUpdate:@"INSERT INTO DB_YLT_LogModel(log,mark,time,dateTime) VALUES (?,?,?,?)", self.log, self.mark, [NSNumber numberWithInteger:self.time], [NSNumber numberWithInteger:self.dateTime]];
     result = [db lastInsertRowId];
     if (sync) {
         [db close];
@@ -101,7 +102,7 @@
         return 0;
     }
     BOOL result = NO;
-    result = [db executeUpdate:@"UPDATE DB_YLT_LogModel SET  log = ?, time = ? WHERE logId = ?", self.log, [NSNumber numberWithInteger:self.time], [NSNumber numberWithInteger:self.logId]];
+    result = [db executeUpdate:@"UPDATE DB_YLT_LogModel SET  log = ?, mark = ?, time = ?, dateTime = ? WHERE logId = ?", self.log, self.mark, [NSNumber numberWithInteger:self.time], [NSNumber numberWithInteger:self.dateTime], [NSNumber numberWithInteger:self.logId]];
     if (sync) {
         [db close];
     }
@@ -148,7 +149,9 @@
         YLT_LogModel *item = [[YLT_LogModel alloc] init];
         item.logId = [set intForColumn:@"logId"];
         item.log = [set stringForColumn:@"log"];
+        item.mark = [set stringForColumn:@"mark"];
         item.time = [set intForColumn:@"time"];
+        item.dateTime = [set intForColumn:@"dateTime"];
         [result addObject:item];
     }
     if (sync) {
@@ -180,6 +183,7 @@
 
 @end
 
+
 @implementation YLT_APILogModel
 
 - (id)init {
@@ -191,6 +195,7 @@
         self.result = @"";
         self.mark = @"";
         self.time = 0;
+        self.dateTime = 0;
     }
     return self;
 }
@@ -220,8 +225,8 @@
         return 0;
     }
     NSInteger result = 0;
-    [db executeUpdate:@"CREATE TABLE IF NOT EXISTS DB_YLT_APILogModel(logId INTEGER PRIMARY KEY AUTOINCREMENT, url TEXT, parameters TEXT, result TEXT, mark TEXT, time INTEGER)"];
-    result = [db executeUpdate:@"INSERT INTO DB_YLT_APILogModel(url,parameters,result,mark,time) VALUES (?,?,?,?,?)", self.url, self.parameters, self.result, self.mark, [NSNumber numberWithInteger:self.time]];
+    [db executeUpdate:@"CREATE TABLE IF NOT EXISTS DB_YLT_APILogModel(logId INTEGER PRIMARY KEY AUTOINCREMENT, url TEXT, parameters TEXT, result TEXT, mark TEXT, time INTEGER, dateTime INTEGER)"];
+    result = [db executeUpdate:@"INSERT INTO DB_YLT_APILogModel(url,parameters,result,mark,time,dateTime) VALUES (?,?,?,?,?,?)", self.url, self.parameters, self.result, self.mark, [NSNumber numberWithInteger:self.time], [NSNumber numberWithInteger:self.dateTime]];
     result = [db lastInsertRowId];
     if (sync) {
         [db close];
@@ -276,7 +281,7 @@
         return 0;
     }
     BOOL result = NO;
-    result = [db executeUpdate:@"UPDATE DB_YLT_APILogModel SET  url = ?, parameters = ?, result = ?, mark = ?, time = ? WHERE logId = ?", self.url, self.parameters, self.result, self.mark, [NSNumber numberWithInteger:self.time], [NSNumber numberWithInteger:self.logId]];
+    result = [db executeUpdate:@"UPDATE DB_YLT_APILogModel SET  url = ?, parameters = ?, result = ?, mark = ?, time = ?, dateTime = ? WHERE logId = ?", self.url, self.parameters, self.result, self.mark, [NSNumber numberWithInteger:self.time], [NSNumber numberWithInteger:self.dateTime], [NSNumber numberWithInteger:self.logId]];
     if (sync) {
         [db close];
     }
@@ -327,6 +332,7 @@
         item.result = [set stringForColumn:@"result"];
         item.mark = [set stringForColumn:@"mark"];
         item.time = [set intForColumn:@"time"];
+        item.dateTime = [set intForColumn:@"dateTime"];
         [result addObject:item];
     }
     if (sync) {
@@ -359,5 +365,22 @@
 @end
 
 @implementation YLT_LogHelper
+
+/**
+ 清空日志
+ */
++ (void)clearLogDB:(FMDatabase *)db {
+    BOOL sync = NO;
+    if (db == nil) {
+        sync = YES;
+        db = [FMDatabase databaseWithPath:[YLT_DBHelper shareInstance].ylt_dbPath];
+    }
+    if (![db open]) {
+        YLT_LogWarn(@"数据库错误");
+    }
+    [db executeUpdate:@"DROP TABLE IF NOT EXISTS DB_YLT_APILogModel"];
+    [db executeUpdate:@"DROP TABLE IF NOT EXISTS DB_YLT_LogModel"];
+    [db close];
+}
 
 @end

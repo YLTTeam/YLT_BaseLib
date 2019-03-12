@@ -13,10 +13,14 @@
 }
 /** 日志ID */
 @property (readwrite, nonatomic, assign) NSInteger logId;
-/** 日志 */
+/** 日志内容 */
 @property (readwrite, nonatomic, strong) NSString *log;
-/** 时间 yyyy-MM-dd HH:mm:ss */
+/** 备注 */
+@property (readwrite, nonatomic, strong) NSString *mark;
+/** 耗时 单位毫秒 */
 @property (readwrite, nonatomic, assign) NSInteger time;
+/** 记录时间 */
+@property (readwrite, nonatomic, assign) NSInteger dateTime;
 
 - (NSInteger)saveDB:(FMDatabase *)db;
 - (BOOL)delDB:(FMDatabase *)db;
@@ -33,7 +37,7 @@
 }
 /** 日志ID */
 @property (readwrite, nonatomic, assign) NSInteger logId;
-/** 请求URL */
+/** 网络请求路径 */
 @property (readwrite, nonatomic, strong) NSString *url;
 /** 请求参数 */
 @property (readwrite, nonatomic, strong) NSString *parameters;
@@ -41,8 +45,10 @@
 @property (readwrite, nonatomic, strong) NSString *result;
 /** 备注 */
 @property (readwrite, nonatomic, strong) NSString *mark;
-/** 时间 yyyy-MM-dd HH:mm:ss */
+/** 耗时 单位毫秒 */
 @property (readwrite, nonatomic, assign) NSInteger time;
+/** 记录时间 */
+@property (readwrite, nonatomic, assign) NSInteger dateTime;
 
 - (NSInteger)saveDB:(FMDatabase *)db;
 - (BOOL)delDB:(FMDatabase *)db;
@@ -55,5 +61,10 @@
 @end
 
 @interface YLT_LogHelper : NSObject
+
+/**
+ 清空日志
+ */
++ (void)clearLogDB:(FMDatabase *)db;
 
 @end
