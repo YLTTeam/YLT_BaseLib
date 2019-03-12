@@ -26,6 +26,7 @@
 #import "YLT_DownloaderHelper.h"
 #import "YLT_FileHelper.h"
 #import "YLT_KeyChainHelper.h"
+#import "YLT_LogHelper.h"
 #import "YLT_PhotoHelper.h"
 #import "YLT_ModularManager.h"
 #import "YLT_RouterManager.h"
