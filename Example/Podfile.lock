@@ -4,7 +4,7 @@ PODS:
     - FMDB/standard (= 2.7.2)
   - FMDB/standard (2.7.2)
   - MJExtension (3.0.13)
-  - YLT_BaseLib (0.3.20):
+  - YLT_BaseLib (0.3.25):
     - FastCoding
     - FMDB
     - MJExtension
@@ -26,7 +26,7 @@ SPEC CHECKSUMS:
   FastCoding: 3b590f7143a229780fa744b35084d85d9461587e
   FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
-  YLT_BaseLib: 0fca716793f4faa0521ebc0dab6f437e525f373c
+  YLT_BaseLib: 407c22e910d06d128a895f84d0cdebb48d00a1f9
 
 PODFILE CHECKSUM: 0ff3dcb0ae9200b7c00f320bef560099f6e54756
 
