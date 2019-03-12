@@ -224,9 +224,27 @@ void addCenterForObserver(NSNotificationCenter *center ,id obs) {
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
-    YLT_LogError(@"设置的值VALUE:%@ 没有对应的KEY:%@", value, key);
+    YLT_LogWarn(@"设置的值VALUE:%@ 没有对应的KEY:%@", value, key);
 }
 
 #pragma mark -
+
+- (dispatch_semaphore_t)ylt_semaphore {
+    dispatch_semaphore_t result = objc_getAssociatedObject(self, @selector(ylt_semaphore));
+    if (!result) {
+        result = dispatch_semaphore_create(1);
+        objc_setAssociatedObject(self, @selector(ylt_semaphore), result, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return result;
+}
+
+- (dispatch_semaphore_t)ylt_semaphoreBlock {
+    dispatch_semaphore_t result = objc_getAssociatedObject(self, @selector(ylt_semaphoreBlock));
+    if (!result) {
+        result = dispatch_semaphore_create(0);
+        objc_setAssociatedObject(self, @selector(ylt_semaphoreBlock), result, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return result;
+}
 
 @end
