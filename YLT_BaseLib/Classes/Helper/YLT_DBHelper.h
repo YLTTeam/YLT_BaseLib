@@ -25,7 +25,7 @@ YLT_ShareInstanceHeader(YLT_DBHelper);
 @property (nonatomic, strong) FMDatabaseQueue *ylt_databaseQueue;
 
 /**
- 用户相关路径:可用cardNum/userId等
+ 用户相关路径:可用 cardNum/userId 等
  */
 @property (nonatomic, copy) NSString *ylt_userPath;
 
