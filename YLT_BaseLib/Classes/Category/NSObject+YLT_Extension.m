@@ -55,7 +55,46 @@ void addCenterForObserver(NSNotificationCenter *center ,id obs) {
         }
         [remover addCenter:center];
     }
-    
+}
+
+void ylt_swizzleClassMethod(Class cls, SEL originSelector, SEL newSelector) {
+    Method originalMethod = class_getClassMethod(cls, originSelector);
+    Method swizzledMethod = class_getClassMethod(cls, newSelector);
+    Class metacls = objc_getMetaClass(NSStringFromClass(cls).UTF8String);
+    if (class_addMethod(metacls,
+                        origSelector,
+                        method_getImplementation(swizzledMethod),
+                        method_getTypeEncoding(swizzledMethod)) ) {
+        class_replaceMethod(metacls,
+                            newSelector,
+                            method_getImplementation(originalMethod),
+                            method_getTypeEncoding(originalMethod));
+    } else {
+        method_exchangeImplementations(originalMethod, swizzledMethod);
+    }
+}
+
+void ylt_swizzleInstanceMethod(Class cls, SEL originSelector, SEL newSelector) {
+    Method originalMethod = class_getInstanceMethod(cls, originSelector);
+    Method swizzledMethod = class_getInstanceMethod(cls, newSelector);
+    if (class_addMethod(cls,
+                        origSelector,
+                        method_getImplementation(swizzledMethod),
+                        method_getTypeEncoding(swizzledMethod)) ) {
+        class_replaceMethod(cls,
+                            newSelector,
+                            method_getImplementation(originalMethod),
+                            method_getTypeEncoding(originalMethod));
+        
+    } else {
+        class_replaceMethod(cls,
+                            newSelector,
+                            class_replaceMethod(cls,
+                                                origSelector,
+                                                method_getImplementation(swizzledMethod),
+                                                method_getTypeEncoding(swizzledMethod)),
+                            method_getTypeEncoding(originalMethod));
+    }
 }
 
 @implementation NSObject (YLT_Extension)
@@ -133,21 +172,7 @@ void addCenterForObserver(NSNotificationCenter *center ,id obs) {
  @param newSelector 替换的方法
  */
 + (void)ylt_swizzleClassMethod:(SEL)origSelector withMethod:(SEL)newSelector {
-    Class cls = [self class];
-    Method originalMethod = class_getClassMethod(cls, origSelector);
-    Method swizzledMethod = class_getClassMethod(cls, newSelector);
-    Class metacls = objc_getMetaClass(NSStringFromClass(cls).UTF8String);
-    if (class_addMethod(metacls,
-                        origSelector,
-                        method_getImplementation(swizzledMethod),
-                        method_getTypeEncoding(swizzledMethod)) ) {
-        class_replaceMethod(metacls,
-                            newSelector,
-                            method_getImplementation(originalMethod),
-                            method_getTypeEncoding(originalMethod));
-    } else {
-        method_exchangeImplementations(originalMethod, swizzledMethod);
-    }
+    ylt_swizzleClassMethod([self class], origSelector, newSelector);
 }
 
 /**
@@ -157,27 +182,7 @@ void addCenterForObserver(NSNotificationCenter *center ,id obs) {
  @param newSelector 替换的方法
  */
 + (void)ylt_swizzleInstanceMethod:(SEL)origSelector withMethod:(SEL)newSelector {
-    Class cls = self;
-    Method originalMethod = class_getInstanceMethod(cls, origSelector);
-    Method swizzledMethod = class_getInstanceMethod(cls, newSelector);
-    if (class_addMethod(cls,
-                        origSelector,
-                        method_getImplementation(swizzledMethod),
-                        method_getTypeEncoding(swizzledMethod)) ) {
-        class_replaceMethod(cls,
-                            newSelector,
-                            method_getImplementation(originalMethod),
-                            method_getTypeEncoding(originalMethod));
-        
-    } else {
-        class_replaceMethod(cls,
-                            newSelector,
-                            class_replaceMethod(cls,
-                                                origSelector,
-                                                method_getImplementation(swizzledMethod),
-                                                method_getTypeEncoding(swizzledMethod)),
-                            method_getTypeEncoding(originalMethod));
-    }
+    ylt_swizzleInstanceMethod(self, origSelector, newSelector);
 }
 
 /**

@@ -14,6 +14,9 @@
 #define YLT_Lock() dispatch_semaphore_wait(self.ylt_semaphore, DISPATCH_TIME_FOREVER);
 #define YLT_Unlock() dispatch_semaphore_signal(self.ylt_semaphore);
 
+void ylt_swizzleClassMethod(Class cls, SEL originSelector, SEL newSelector);
+void ylt_swizzleInstanceMethod(Class cls, SEL originSelector, SEL newSelector);
+
 @interface NSObject (YLT_Extension)
 
 /**
