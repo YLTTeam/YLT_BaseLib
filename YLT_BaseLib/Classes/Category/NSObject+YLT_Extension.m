@@ -99,6 +99,9 @@ void ylt_swizzleInstanceMethod(Class cls, SEL originSelector, SEL newSelector) {
 
 @implementation NSObject (YLT_Extension)
 
+@dynamic ylt_semaphore;
+@dynamic ylt_semaphoreBlock;
+
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
