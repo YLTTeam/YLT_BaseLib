@@ -143,7 +143,6 @@ void ylt_swizzleInstanceMethod(Class cls, SEL originSelector, SEL newSelector) {
             return [NSObject ylt_topViewController:((UIViewController *) responder)];
         }
     }
-    
     return window.rootViewController;
 }
 
