@@ -62,7 +62,7 @@ void ylt_swizzleClassMethod(Class cls, SEL originSelector, SEL newSelector) {
     Method swizzledMethod = class_getClassMethod(cls, newSelector);
     Class metacls = objc_getMetaClass(NSStringFromClass(cls).UTF8String);
     if (class_addMethod(metacls,
-                        origSelector,
+                        originSelector,
                         method_getImplementation(swizzledMethod),
                         method_getTypeEncoding(swizzledMethod)) ) {
         class_replaceMethod(metacls,
@@ -78,7 +78,7 @@ void ylt_swizzleInstanceMethod(Class cls, SEL originSelector, SEL newSelector) {
     Method originalMethod = class_getInstanceMethod(cls, originSelector);
     Method swizzledMethod = class_getInstanceMethod(cls, newSelector);
     if (class_addMethod(cls,
-                        origSelector,
+                        originSelector,
                         method_getImplementation(swizzledMethod),
                         method_getTypeEncoding(swizzledMethod)) ) {
         class_replaceMethod(cls,
@@ -90,7 +90,7 @@ void ylt_swizzleInstanceMethod(Class cls, SEL originSelector, SEL newSelector) {
         class_replaceMethod(cls,
                             newSelector,
                             class_replaceMethod(cls,
-                                                origSelector,
+                                                originSelector,
                                                 method_getImplementation(swizzledMethod),
                                                 method_getTypeEncoding(swizzledMethod)),
                             method_getTypeEncoding(originalMethod));
