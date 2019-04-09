@@ -18,6 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)ylt_isMainQueue;
 
++ (void *)ylt_mainQueueKey;
+
++ (void *)ylt_mainQueueContext;
+
 @end
 
 NS_ASSUME_NONNULL_END
