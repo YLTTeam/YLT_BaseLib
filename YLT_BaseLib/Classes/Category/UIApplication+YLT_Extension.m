@@ -17,8 +17,8 @@ static void *mainQueueContext = &mainQueueContext;
  @return 注意区分主队列与主线程
  */
 + (BOOL)ylt_isMainQueue {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    static dispatch_once_t ylt_isMainQueueOnceToken;
+    dispatch_once(&ylt_isMainQueueOnceToken, ^{
         dispatch_queue_set_specific(dispatch_get_main_queue(),
                                     mainQueueKey, mainQueueContext, NULL);
     });
