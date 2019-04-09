@@ -22,6 +22,7 @@
 #import "NSObject+YLT_Router.h"
 #import "NSString+YLT_Extension.h"
 #import "NSTimer+YLT_Extension.h"
+#import "UIApplication+YLT_Extension.h"
 #import "UIDevice+YLT_Extension.h"
 #import "YLT_AuthorizationHelper.h"
 #import "YLT_DBHelper.h"
