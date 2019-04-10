@@ -273,11 +273,4 @@
 
 #pragma mark - setter getter
 
-//- (id)ylt_sourceData {
-//    if (!_ylt_sourceData) {
-//        _ylt_sourceData = self.mj_keyValues;
-//    }
-//    return _ylt_sourceData;
-//}
-
 @end

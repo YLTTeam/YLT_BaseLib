@@ -20,6 +20,7 @@
 #import "NSFileManager+YLT_Extension.h"
 #import "NSObject+YLT_Extension.h"
 #import "NSObject+YLT_Router.h"
+#import "NSObject+YLT_ThreadSafe.h"
 #import "NSString+YLT_Extension.h"
 #import "NSTimer+YLT_Extension.h"
 #import "UIApplication+YLT_Extension.h"
