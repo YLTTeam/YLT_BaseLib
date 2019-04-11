@@ -9,65 +9,62 @@
 #import "YLTViewController.h"
 #import <YLT_BaseLib/YLT_BaseLib.h>
 
+@interface TestObject : YLT_BaseModel<NSCopying>
+
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, assign) Boolean age;
+@property (nonatomic, assign) float age1;
+@property (nonatomic, assign) double age2;
+@property (nonatomic, assign) int age3;
+@property (nonatomic, strong) NSMutableData *data;
+
+@end
+
+@implementation TestObject
+
+YLT_THREAD_SAFE
+
+@end
+
 @interface YLTViewController ()
+
+@property (nonatomic, strong) TestObject *obj;
 
 @end
 
 @implementation YLTViewController
 
+YLT_THREAD_SAFE
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor redColor];
+    self.obj = [[TestObject alloc] init];//[TestObject mj_objectWithKeyValues:@{@"name":@"alex"}];
+    [self.obj setValue:@"alex" forKey:@"name"];
+    NSLog(@"%@ %@", [NSThread currentThread], self.obj.name);
+    self.obj.age1 = 12.0;
+    [self.obj setValue:@12 forKey:@"age2"];
+    NSLog(@"%@ %@  %f", [NSThread currentThread], self.obj.name, self.obj.age2);
+}
+
+- (void)test:(NSObject *)obj {
+    NSLog(@"%@", obj);
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    NSLog(@"1111");
-    for (int i = 0; i < 10; i++) {
-        
+    for (NSInteger i = 0; i < 10000; i++) {
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            NSLog(@"%d", i);
-            YLT_UnlockBlock()
+            self.obj = [TestObject mj_objectWithKeyValues:@{@"name":@"alex", @"age":@12}];
+//            self.obj.data = [[NSMutableData alloc] init];
+//            self.obj.name = [NSString stringWithFormat:@"alex %zd", i];
         });
-        
-        YLT_LockBlock()
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2. * NSEC_PER_SEC)), dispatch_get_global_queue(0, 0), ^{
-//            NSLog(@"111222 %d", i);
-//            YLT_UnlockBlock();
-//        });
-//
-//        YLT_LockBlock()
-        
     }
-     NSLog(@"33333");
-    
-    
-    
-    //ylt://HKAuthResultController/selname?status=认证失败&backTitle=返回修改&message=请核实您的姓名与身份证号是否匹配&success=true
-//    [YLT_RouterManager ylt_routerToURL:@"ylt://HKAuthResultController/selname?status=状态&success=true" arg:@{@"key":@"value"} completion:^(NSError *error, id response) {
-//        YLT_LogError(@"%@", response);
-//    }];
-    
-//    id data = [YLT_RouterManager ylt_routerToURL:@"ylt://RouterA/shareInstance.ylt_router:?username=alex&password=123456" isClassMethod:YES arg:@{@"key":@"value"} completion:^(NSError *error, id response) {
-//        YLT_Log(@"%@", response);
-//    }];
-//    YLT_Log(@"%@", data);
-
-    id data = [self ylt_routerToURL:@"ylt://self/test:?username=alex&password=123456" isClassMethod:YES arg:@{@"key":@"value"} completion:^(NSError *error, id response) {
-        YLT_Log(@"%@", response);
-    }];
-    YLT_Log(@"%@  %@", self, data);
-}
-
-- (NSString *)test:(NSDictionary *)data {
-    YLT_Log(@"%@  %@", self, data);
-    return @"result";
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    for (NSInteger i = 0; i < 10000; i++) {
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            NSLog(@"%@ %@", [NSThread currentThread], self.obj.name);
+        });
+    }
 }
 
 @end

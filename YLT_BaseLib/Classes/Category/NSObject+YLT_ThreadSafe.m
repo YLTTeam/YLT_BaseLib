@@ -10,7 +10,8 @@
 #import "NSObject+YLT_Extension.h"
 #import "UIApplication+YLT_Extension.h"
 
-#define YLT_SAFE_HOOK_PRE @"ylt_propertyThreadSafeHook_"
+#define YLT_SAFE_HOOK_SET_PRE @"ylt_propertySetThreadSafeHook_"
+#define YLT_SAFE_HOOK_GET_PRE @"ylt_propertyGetThreadSafeHook_"
 
 @implementation NSObject (YLT_ThreadSafe)
 
@@ -18,24 +19,25 @@ static dispatch_queue_t initQueue;
 static void* initQueueKey;
 static void* initQueueContext;
 
-+ (void)ylt_addToSafeThread {
-    static dispatch_once_t ylt_onceToken;
-    dispatch_once(&ylt_onceToken, ^{
-        //交换方法，确保hook的方法可以直接拦截到
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         ylt_swizzleClassMethod(self, @selector(resolveInstanceMethod:), @selector(ylt_resolveInstanceMethod:));
-        
-        if ([UIApplication ylt_isMainQueue]) {
-            initQueue = dispatch_get_main_queue();
-            initQueueKey = [UIApplication ylt_mainQueueKey];
-            initQueueContext = [UIApplication ylt_mainQueueContext];
-        } else {
-            const char *label = [[NSString stringWithFormat:@"%@_%@", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] UTF8String];
-            initQueueKey = &initQueueKey;
-            initQueueContext = &initQueueContext;
-            initQueue = dispatch_queue_create(label, nil);
-            dispatch_queue_set_specific(initQueue, initQueueKey, initQueueContext, nil);
-        }
     });
+}
+
++ (void)ylt_addToSafeThread {
+    if ([UIApplication ylt_isMainQueue]) {
+        initQueue = dispatch_get_main_queue();
+        initQueueKey = [UIApplication ylt_mainQueueKey];
+        initQueueContext = [UIApplication ylt_mainQueueContext];
+    } else {
+        const char *label = [[NSString stringWithFormat:@"%@_%@", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] UTF8String];
+        initQueueKey = &initQueueKey;
+        initQueueContext = &initQueueContext;
+        initQueue = dispatch_queue_create(label, nil);
+        dispatch_queue_set_specific(initQueue, initQueueKey, initQueueContext, nil);
+    }
     [self hookAllPropertiesSetter];
 }
 
@@ -74,30 +76,93 @@ static void* initQueueContext;
     free(properties);
     
     for (NSString *propertyName in readWriteProperties) {
+        //HOOK SETTER
         NSString *setterName = [NSString stringWithFormat:@"set%@%@:", [propertyName substringToIndex:1].uppercaseString, [propertyName substringFromIndex:1]];
-        // !!!!!!!!!!!!!!!!!!特别注意!!!!!!!!!!!!!!!!!!
-        NSString *hookSetterName = [NSString stringWithFormat:@"%@%@:", YLT_SAFE_HOOK_PRE, setterName];
-        
+        NSString *hookSetterName = [NSString stringWithFormat:@"%@%@", YLT_SAFE_HOOK_SET_PRE, setterName];
         SEL originSetter = NSSelectorFromString(setterName);
         SEL newSetter = NSSelectorFromString(hookSetterName);
-        
         ylt_swizzleInstanceMethod(self, originSetter, newSetter);
+        
+        //HOOK GETTER
+        NSString *getterName = [NSString stringWithFormat:@"%@", propertyName];
+        NSString *hookGetterName = [NSString stringWithFormat:@"%@%@", YLT_SAFE_HOOK_GET_PRE, getterName];
+        SEL originGetter = NSSelectorFromString(getterName);
+        SEL newGetter = NSSelectorFromString(hookGetterName);
+        ylt_swizzleInstanceMethod(self, originGetter, newGetter);
     }
 }
 
 + (BOOL)ylt_resolveInstanceMethod:(SEL)sel {
     NSString *selName = NSStringFromSelector(sel);
-    if ([selName hasPrefix:YLT_SAFE_HOOK_PRE]) {
-        Method proxyMethod = class_getClassMethod(self, @selector(hook_proxy:));
+    if ([selName hasPrefix:YLT_SAFE_HOOK_SET_PRE]) {
+        SEL originSel = NSSelectorFromString([selName substringFromIndex:YLT_SAFE_HOOK_SET_PRE.length]);
+        Method originMethod = class_getInstanceMethod(self, originSel);
+        /// 对数据类型做判断处理
+        // 获取方法里的输入参数
+        unsigned int argCount = method_getNumberOfArguments(originMethod);
+        if (argCount == 3) {
+            char argName[512] = {};
+            method_getArgumentType(originMethod, 2, argName, 512);
+            Method proxyMethod;
+            BOOL isObj = YES;
+            if (strcmp(argName, @encode(NSInteger)) == 0) {
+                isObj = NO;
+                proxyMethod = class_getClassMethod(self, @selector(hook_setter_proxy_NSInteger:));
+            }
+            if (strcmp(argName, @encode(BOOL)) == 0) {
+                isObj = NO;
+                proxyMethod = class_getClassMethod(self, @selector(hook_setter_proxy_BOOL:));
+            }
+            
+            if (strcmp(argName, @encode(CGFloat)) == 0) {
+                isObj = NO;
+                proxyMethod = class_getClassMethod(self, @selector(hook_setter_proxy_CGFloat:));
+            }
+            
+            if (strcmp(argName, @encode(NSUInteger)) == 0) {
+                isObj = NO;
+                proxyMethod = class_getClassMethod(self, @selector(hook_setter_proxy_NSUInteger:));
+            }
+            
+            if (strcmp(argName, @encode(char)) == 0) {
+                isObj = NO;
+                proxyMethod = class_getClassMethod(self, @selector(hook_setter_proxy_char:));
+            }
+            
+            if (strcmp(argName, @encode(int)) == 0) {
+                isObj = NO;
+                proxyMethod = class_getClassMethod(self, @selector(hook_setter_proxy_int:));
+            }
+            if (strcmp(argName, @encode(float)) == 0) {
+                isObj = NO;
+                proxyMethod = class_getClassMethod(self, @selector(hook_setter_proxy_float:));
+            }
+            if (strcmp(argName, @encode(double)) == 0) {
+                isObj = NO;
+                proxyMethod = class_getClassMethod(self, @selector(hook_setter_proxy_double:));
+            }
+            if (strcmp(argName, @encode(Boolean)) == 0) {
+                isObj = NO;
+                proxyMethod = class_getClassMethod(self, @selector(hook_setter_proxy_Boolean:));
+            }
+            
+            memset(argName, '\0', strlen(argName));
+            if (isObj) {
+                proxyMethod = class_getClassMethod(self, @selector(hook_setter_proxy:));
+            }
+            class_addMethod(self, sel, method_getImplementation(proxyMethod), method_getTypeEncoding(proxyMethod));
+            return YES;
+        }
+    }
+    if ([selName hasPrefix:YLT_SAFE_HOOK_GET_PRE]) {
+        Method proxyMethod = class_getClassMethod(self, @selector(hook_getter_proxy));
         class_addMethod(self, sel, method_getImplementation(proxyMethod), method_getTypeEncoding(proxyMethod));
         return YES;
     }
     return [self ylt_resolveInstanceMethod:sel];
 }
 
-- (void)hook_proxy:(NSObject *)proxyObject {
-    // 只是实现被换了，但是selector还是没变
-    NSString *originSelector = NSStringFromSelector(_cmd);
+- (void)hook_setter_proxyObject:(NSObject *)proxyObject originSelector:(NSString *)originSelector {
     NSString *propertyName = [[originSelector stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@":"]] stringByReplacingOccurrencesOfString:@"set" withString:@""];
     if (propertyName.length <= 0) return;
     
@@ -109,6 +174,65 @@ static void* initQueueContext;
             [self setValue:proxyObject forKey:ivarName];
         });
     }
+}
+
+- (id)hook_getter_proxy {
+    // 只是实现被换了，但是selector还是没变
+    NSString *originSelector = NSStringFromSelector(_cmd);
+    NSString *ivarName = [NSString stringWithFormat:@"_%@", originSelector];
+    return [self valueForKey:ivarName];
+}
+
+#pragma mark - 不同参数的HOOK
+- (void)hook_setter_proxy_int:(int)proxyObject {
+    NSString *originSelector = NSStringFromSelector(_cmd);
+    [self hook_setter_proxyObject:@(proxyObject) originSelector:originSelector];
+}
+
+- (void)hook_setter_proxy_NSUInteger:(NSUInteger)proxyObject {
+    NSString *originSelector = NSStringFromSelector(_cmd);
+    [self hook_setter_proxyObject:@(proxyObject) originSelector:originSelector];
+}
+
+- (void)hook_setter_proxy_NSInteger:(NSInteger)proxyObject {
+    NSString *originSelector = NSStringFromSelector(_cmd);
+    [self hook_setter_proxyObject:@(proxyObject) originSelector:originSelector];
+}
+
+- (void)hook_setter_proxy_CGFloat:(CGFloat)proxyObject {
+    NSString *originSelector = NSStringFromSelector(_cmd);
+    [self hook_setter_proxyObject:@(proxyObject) originSelector:originSelector];
+}
+
+- (void)hook_setter_proxy_float:(float)proxyObject {
+    NSString *originSelector = NSStringFromSelector(_cmd);
+    [self hook_setter_proxyObject:@(proxyObject) originSelector:originSelector];
+}
+
+- (void)hook_setter_proxy_double:(double)proxyObject {
+    NSString *originSelector = NSStringFromSelector(_cmd);
+    [self hook_setter_proxyObject:@(proxyObject) originSelector:originSelector];
+}
+
+- (void)hook_setter_proxy_BOOL:(BOOL)proxyObject {
+    NSString *originSelector = NSStringFromSelector(_cmd);
+    [self hook_setter_proxyObject:@(proxyObject) originSelector:originSelector];
+}
+
+- (void)hook_setter_proxy_Boolean:(Boolean)proxyObject {
+    NSString *originSelector = NSStringFromSelector(_cmd);
+    [self hook_setter_proxyObject:@(proxyObject) originSelector:originSelector];
+}
+
+- (void)hook_setter_proxy_char:(char)proxyObject {
+    NSString *originSelector = NSStringFromSelector(_cmd);
+    [self hook_setter_proxyObject:@(proxyObject) originSelector:originSelector];
+}
+
+- (void)hook_setter_proxy:(NSObject *)proxyObject {
+    // 只是实现被换了，但是selector还是没变
+    NSString *originSelector = NSStringFromSelector(_cmd);
+    [self hook_setter_proxyObject:proxyObject originSelector:originSelector];
 }
 
 @end
