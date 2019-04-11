@@ -15,10 +15,6 @@
 
 @implementation NSObject (YLT_ThreadSafe)
 
-static dispatch_queue_t initQueue;
-static void* initQueueKey;
-static void* initQueueContext;
-
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -26,28 +22,25 @@ static void* initQueueContext;
     });
 }
 
+static dispatch_queue_t initQueue;
 + (void)ylt_addToSafeThread {
-    if ([UIApplication ylt_isMainQueue]) {
-        initQueue = dispatch_get_main_queue();
-        initQueueKey = [UIApplication ylt_mainQueueKey];
-        initQueueContext = [UIApplication ylt_mainQueueContext];
-    } else {
-        const char *label = [[NSString stringWithFormat:@"%@_%@", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] UTF8String];
-        initQueueKey = &initQueueKey;
-        initQueueContext = &initQueueContext;
-        initQueue = dispatch_queue_create(label, nil);
-        dispatch_queue_set_specific(initQueue, initQueueKey, initQueueContext, nil);
-    }
+    const char *label = [[NSString stringWithFormat:@"%@_%@", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] UTF8String];
+    initQueue = dispatch_queue_create(label, nil);
     [self hookAllPropertiesSetter];
 }
 
+/**
+ hook类的所有属性的setter、getter 注意只读属性的处理
+ */
 + (void)hookAllPropertiesSetter {
+    //TODO:需要忽略的属性，即不做线程安全处理的属性
     NSDictionary *ignorePropertys;
     if ([self conformsToProtocol:@protocol(YLT_ThreadSafeProtocol)]) {
         if ([self respondsToSelector:@selector(ylt_ignorePropertys)]) {
             ignorePropertys = [self performSelector:@selector(ylt_ignorePropertys)];
         }
     }
+    //TODO:需要忽略的属性，即不做线程安全处理的属性
     
     unsigned int outCount;
     objc_property_t *properties = class_copyPropertyList(self, &outCount);
@@ -59,7 +52,7 @@ static void* initQueueContext;
         
         unsigned int attrCount;
         objc_property_attribute_t *attrs = property_copyAttributeList(property, &attrCount);
-        // !!!!!!!!!!!!!!!!!!特别注意!!!!!!!!!!!!!!!!!!
+        // 抽离只读属性
         BOOL isReadOnlyProperty = NO;
         for (unsigned int j = 0; j < attrCount; j++) {
             if (attrs[j].name[0] == 'R') {
@@ -97,13 +90,12 @@ static void* initQueueContext;
     if ([selName hasPrefix:YLT_SAFE_HOOK_SET_PRE]) {
         SEL originSel = NSSelectorFromString([selName substringFromIndex:YLT_SAFE_HOOK_SET_PRE.length]);
         Method originMethod = class_getInstanceMethod(self, originSel);
-        /// 对数据类型做判断处理
-        // 获取方法里的输入参数
+        // 通过setter方法读取属性类型
         unsigned int argCount = method_getNumberOfArguments(originMethod);
-        if (argCount == 3) {
+        if (argCount == 3) {// setter方法参数必定为3个 @:@  参阅：TypeEncoding
             char argName[512] = {};
             method_getArgumentType(originMethod, 2, argName, 512);
-            Method proxyMethod;
+            Method proxyMethod = NULL;
             BOOL isObj = YES;
             if (strcmp(argName, @encode(NSInteger)) == 0) {
                 isObj = NO;
@@ -113,22 +105,18 @@ static void* initQueueContext;
                 isObj = NO;
                 proxyMethod = class_getClassMethod(self, @selector(hook_setter_proxy_BOOL:));
             }
-            
             if (strcmp(argName, @encode(CGFloat)) == 0) {
                 isObj = NO;
                 proxyMethod = class_getClassMethod(self, @selector(hook_setter_proxy_CGFloat:));
             }
-            
             if (strcmp(argName, @encode(NSUInteger)) == 0) {
                 isObj = NO;
                 proxyMethod = class_getClassMethod(self, @selector(hook_setter_proxy_NSUInteger:));
             }
-            
             if (strcmp(argName, @encode(char)) == 0) {
                 isObj = NO;
                 proxyMethod = class_getClassMethod(self, @selector(hook_setter_proxy_char:));
             }
-            
             if (strcmp(argName, @encode(int)) == 0) {
                 isObj = NO;
                 proxyMethod = class_getClassMethod(self, @selector(hook_setter_proxy_int:));
@@ -162,77 +150,73 @@ static void* initQueueContext;
     return [self ylt_resolveInstanceMethod:sel];
 }
 
+/**
+ HOOK到所有的setter通过栅栏函数保证安全性
+ */
 - (void)hook_setter_proxyObject:(NSObject *)proxyObject originSelector:(NSString *)originSelector {
     NSString *propertyName = [[originSelector stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@":"]] stringByReplacingOccurrencesOfString:@"set" withString:@""];
     if (propertyName.length <= 0) return;
     
     NSString *ivarName = [NSString stringWithFormat:@"_%@%@", [propertyName substringToIndex:1].lowercaseString, [propertyName substringFromIndex:1]];
-    if (dispatch_get_specific(initQueueKey) == initQueueContext) {
+    dispatch_barrier_async(initQueue, ^{
         [self setValue:proxyObject forKey:ivarName];
-    } else {
-        dispatch_sync(initQueue, ^{
-            [self setValue:proxyObject forKey:ivarName];
-        });
-    }
+    });
 }
 
+/**
+ HOOK到所有的 getter 同步返回
+ */
 - (id)hook_getter_proxy {
     // 只是实现被换了，但是selector还是没变
-    NSString *originSelector = NSStringFromSelector(_cmd);
-    NSString *ivarName = [NSString stringWithFormat:@"_%@", originSelector];
-    return [self valueForKey:ivarName];
+    __block id result = nil;
+    dispatch_sync(initQueue, ^{
+        NSString *originSelector = NSStringFromSelector(_cmd);
+        NSString *ivarName = [NSString stringWithFormat:@"_%@", originSelector];
+        result = [self valueForKey:ivarName];
+    });
+    
+    return result;
 }
 
-#pragma mark - 不同参数的HOOK
+#pragma mark - 不同参数类型的HOOK
 - (void)hook_setter_proxy_int:(int)proxyObject {
-    NSString *originSelector = NSStringFromSelector(_cmd);
-    [self hook_setter_proxyObject:@(proxyObject) originSelector:originSelector];
+    [self hook_setter_proxyObject:@(proxyObject) originSelector:NSStringFromSelector(_cmd)];
 }
 
 - (void)hook_setter_proxy_NSUInteger:(NSUInteger)proxyObject {
-    NSString *originSelector = NSStringFromSelector(_cmd);
-    [self hook_setter_proxyObject:@(proxyObject) originSelector:originSelector];
+    [self hook_setter_proxyObject:@(proxyObject) originSelector:NSStringFromSelector(_cmd)];
 }
 
 - (void)hook_setter_proxy_NSInteger:(NSInteger)proxyObject {
-    NSString *originSelector = NSStringFromSelector(_cmd);
-    [self hook_setter_proxyObject:@(proxyObject) originSelector:originSelector];
+    [self hook_setter_proxyObject:@(proxyObject) originSelector:NSStringFromSelector(_cmd)];
 }
 
 - (void)hook_setter_proxy_CGFloat:(CGFloat)proxyObject {
-    NSString *originSelector = NSStringFromSelector(_cmd);
-    [self hook_setter_proxyObject:@(proxyObject) originSelector:originSelector];
+    [self hook_setter_proxyObject:@(proxyObject) originSelector:NSStringFromSelector(_cmd)];
 }
 
 - (void)hook_setter_proxy_float:(float)proxyObject {
-    NSString *originSelector = NSStringFromSelector(_cmd);
-    [self hook_setter_proxyObject:@(proxyObject) originSelector:originSelector];
+    [self hook_setter_proxyObject:@(proxyObject) originSelector:NSStringFromSelector(_cmd)];
 }
 
 - (void)hook_setter_proxy_double:(double)proxyObject {
-    NSString *originSelector = NSStringFromSelector(_cmd);
-    [self hook_setter_proxyObject:@(proxyObject) originSelector:originSelector];
+    [self hook_setter_proxyObject:@(proxyObject) originSelector:NSStringFromSelector(_cmd)];
 }
 
 - (void)hook_setter_proxy_BOOL:(BOOL)proxyObject {
-    NSString *originSelector = NSStringFromSelector(_cmd);
-    [self hook_setter_proxyObject:@(proxyObject) originSelector:originSelector];
+    [self hook_setter_proxyObject:@(proxyObject) originSelector:NSStringFromSelector(_cmd)];
 }
 
 - (void)hook_setter_proxy_Boolean:(Boolean)proxyObject {
-    NSString *originSelector = NSStringFromSelector(_cmd);
-    [self hook_setter_proxyObject:@(proxyObject) originSelector:originSelector];
+    [self hook_setter_proxyObject:@(proxyObject) originSelector:NSStringFromSelector(_cmd)];
 }
 
 - (void)hook_setter_proxy_char:(char)proxyObject {
-    NSString *originSelector = NSStringFromSelector(_cmd);
-    [self hook_setter_proxyObject:@(proxyObject) originSelector:originSelector];
+    [self hook_setter_proxyObject:@(proxyObject) originSelector:NSStringFromSelector(_cmd)];
 }
 
 - (void)hook_setter_proxy:(NSObject *)proxyObject {
-    // 只是实现被换了，但是selector还是没变
-    NSString *originSelector = NSStringFromSelector(_cmd);
-    [self hook_setter_proxyObject:proxyObject originSelector:originSelector];
+    [self hook_setter_proxyObject:proxyObject originSelector:NSStringFromSelector(_cmd)];
 }
 
 @end
