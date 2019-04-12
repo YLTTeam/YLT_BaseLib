@@ -13,6 +13,12 @@
 #define YLT_SAFE_HOOK_SET_PRE @"ylt_propertySetThreadSafeHook_"
 #define YLT_SAFE_HOOK_GET_PRE @"ylt_propertyGetThreadSafeHook_"
 
+@interface NSObject (YLT_ThreadSafeData)
+
+@property (nonatomic, strong, readonly) dispatch_queue_t ylt_safeQueue;
+
+@end
+
 @implementation NSObject (YLT_ThreadSafe)
 
 + (void)load {
@@ -22,17 +28,14 @@
     });
 }
 
-static dispatch_queue_t initQueue;
 + (void)ylt_addToSafeThread {
-    const char *label = [[NSString stringWithFormat:@"%@_%@", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] UTF8String];
-    initQueue = dispatch_queue_create(label, nil);
-    [self hookAllPropertiesSetter];
+    [self ylt_safeQueue];
 }
 
 /**
  hook类的所有属性的setter、getter 注意只读属性的处理
  */
-+ (void)hookAllPropertiesSetter {
+- (void)hookAllPropertiesSetter {
     //TODO:需要忽略的属性，即不做线程安全处理的属性
     NSDictionary *ignorePropertys;
     if ([self conformsToProtocol:@protocol(YLT_ThreadSafeProtocol)]) {
@@ -43,7 +46,7 @@ static dispatch_queue_t initQueue;
     //TODO:需要忽略的属性，即不做线程安全处理的属性
     
     unsigned int outCount;
-    objc_property_t *properties = class_copyPropertyList(self, &outCount);
+    objc_property_t *properties = class_copyPropertyList(self.class, &outCount);
     
     NSMutableArray *readWriteProperties = [[NSMutableArray alloc] initWithCapacity:outCount];
     for (unsigned int i = 0; i < outCount; i++) {
@@ -74,14 +77,14 @@ static dispatch_queue_t initQueue;
         NSString *hookSetterName = [NSString stringWithFormat:@"%@%@", YLT_SAFE_HOOK_SET_PRE, setterName];
         SEL originSetter = NSSelectorFromString(setterName);
         SEL newSetter = NSSelectorFromString(hookSetterName);
-        ylt_swizzleInstanceMethod(self, originSetter, newSetter);
+        ylt_swizzleInstanceMethod(self.class, originSetter, newSetter);
         
         //HOOK GETTER
         NSString *getterName = [NSString stringWithFormat:@"%@", propertyName];
         NSString *hookGetterName = [NSString stringWithFormat:@"%@%@", YLT_SAFE_HOOK_GET_PRE, getterName];
         SEL originGetter = NSSelectorFromString(getterName);
         SEL newGetter = NSSelectorFromString(hookGetterName);
-        ylt_swizzleInstanceMethod(self, originGetter, newGetter);
+        ylt_swizzleInstanceMethod(self.class, originGetter, newGetter);
     }
 }
 
@@ -158,7 +161,7 @@ static dispatch_queue_t initQueue;
     if (propertyName.length <= 0) return;
     
     NSString *ivarName = [NSString stringWithFormat:@"_%@%@", [propertyName substringToIndex:1].lowercaseString, [propertyName substringFromIndex:1]];
-    dispatch_barrier_async(initQueue, ^{
+    dispatch_barrier_async(self.ylt_safeQueue, ^{
         [self setValue:proxyObject forKey:ivarName];
     });
 }
@@ -169,7 +172,7 @@ static dispatch_queue_t initQueue;
 - (id)hook_getter_proxy {
     // 只是实现被换了，但是selector还是没变
     __block id result = nil;
-    dispatch_sync(initQueue, ^{
+    dispatch_sync(self.ylt_safeQueue, ^{
         NSString *originSelector = NSStringFromSelector(_cmd);
         NSString *ivarName = [NSString stringWithFormat:@"_%@", originSelector];
         result = [self valueForKey:ivarName];
@@ -179,6 +182,7 @@ static dispatch_queue_t initQueue;
 }
 
 #pragma mark - 不同参数类型的HOOK
+
 - (void)hook_setter_proxy_int:(int)proxyObject {
     [self hook_setter_proxyObject:@(proxyObject) originSelector:NSStringFromSelector(_cmd)];
 }
@@ -217,6 +221,23 @@ static dispatch_queue_t initQueue;
 
 - (void)hook_setter_proxy:(NSObject *)proxyObject {
     [self hook_setter_proxyObject:proxyObject originSelector:NSStringFromSelector(_cmd)];
+}
+
+#pragma mark - setter getter
+
+- (dispatch_queue_t)ylt_safeQueue {
+    dispatch_queue_t result = objc_getAssociatedObject(self, @selector(ylt_safeQueue));
+    if (result) {
+        result = dispatch_queue_create([NSString stringWithFormat:@"%@_thread_safe", NSStringFromClass(self.class)].UTF8String, nil);
+        objc_setAssociatedObject(self, @selector(ylt_safeQueue), result, OBJC_ASSOCIATION_COPY_NONATOMIC);
+        dispatch_sync(result, ^{
+            static dispatch_once_t onceToken;
+            dispatch_once(&onceToken, ^{
+                [self hookAllPropertiesSetter];
+            });
+        });
+    }
+    return result;
 }
 
 @end

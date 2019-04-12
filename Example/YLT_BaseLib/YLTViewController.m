@@ -28,7 +28,6 @@
 @end
 
 
-
 @interface TestObject : TestSuperObject<NSCopying>
 
 @property (nonatomic, copy) NSString *name;
@@ -65,48 +64,36 @@
 
 YLT_THREAD_SAFE
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
+    self.obj = [TestObject new];
     self.view.backgroundColor = [UIColor redColor];
-//    self.obj = [[TestObject alloc] init];//[TestObject mj_objectWithKeyValues:@{@"name":@"alex"}];
-//    [self.obj setValue:@"alex" forKey:@"name"];
-//    NSLog(@"%@ %@", [NSThread currentThread], self.obj.name);
-//    self.obj.age1 = 12.0;
-//    self.obj.data = [[NSMutableData alloc] init];
-//    [self.obj setValue:@12 forKey:@"age2"];
-//    NSLog(@"%@ %@  %f", [NSThread currentThread], self.obj.name, self.obj.age2);
-    
-//    self.objSuper = [TestSuperObject mj_objectWithKeyValues:@{@"nameSuper":@"aaaa"}];
-//    self.objSuper.dataSuper = [[NSMutableData alloc] init];
     self.list = [[NSMutableArray alloc] init];
+//    [self test];
 }
 
-- (void)test:(NSObject *)obj {
-    NSLog(@"%@", obj);
+- (void)test {
+    for (NSInteger i = 0; i < 100; i++) {
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            self.obj = [TestObject mj_objectWithKeyValues:@{@"name":@"alex", @"age":@12}];
+            self.obj.data = [[NSMutableData alloc] init];
+            self.obj.name = [NSString stringWithFormat:@"alex %zd", i];
+            self.obj.nameSuper = self.obj.name;
+            self.obj.dataSuper = [[NSMutableData alloc] init];
+            
+            self.objSuper = [TestSuperObject mj_objectWithKeyValues:@{@"nameSuper":@"aaaa"}];
+            self.objSuper.dataSuper = [[NSMutableData alloc] init];
+        });
+    }
+    for (NSInteger i = 0; i < 10000; i++) {
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            NSLog(@"%@ %@  %@", [NSThread currentThread], self.obj.name, self.objSuper.nameSuper);
+        });
+    }
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    for (int i = 0; i < 10000; i++) {
-        [self.list addObject:dispatch_queue_create([NSString stringWithFormat:@"queue_%d", i].UTF8String, nil)];
-    }
-//    for (NSInteger i = 0; i < 100; i++) {
-//        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//            self.obj = [TestObject mj_objectWithKeyValues:@{@"name":@"alex", @"age":@12}];
-//            self.obj.data = [[NSMutableData alloc] init];
-//            self.obj.name = [NSString stringWithFormat:@"alex %zd", i];
-//            self.obj.nameSuper = self.obj.name;
-//            self.obj.dataSuper = [[NSMutableData alloc] init];
-//
-////            self.objSuper = [TestSuperObject mj_objectWithKeyValues:@{@"nameSuper":@"aaaa"}];
-////            self.objSuper.dataSuper = [[NSMutableData alloc] init];
-//        });
-//    }
-//    for (NSInteger i = 0; i < 10000; i++) {
-//        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//            NSLog(@"%@ %@  %@", [NSThread currentThread], self.obj.name, self.objSuper.nameSuper);
-//        });
-//    }
+    [self test];
 }
 
 @end
