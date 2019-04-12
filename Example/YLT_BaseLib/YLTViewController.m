@@ -18,12 +18,12 @@
 
 @implementation TestSuperObject
 
-+ (void)initialize {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [self ylt_addToSafeThread];
-    });
-}
+//+ (void)initialize {
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        [self ylt_addToSafeThread];
+//    });
+//}
 
 @end
 
@@ -34,20 +34,33 @@
 @property (nonatomic, assign) Boolean age;
 @property (nonatomic, assign) float age1;
 @property (nonatomic, assign) double age2;
-@property (nonatomic, assign) int age3;
+@property (nonatomic, assign, readonly) int age3;
 @property (nonatomic, strong) NSMutableData *data;
 
 @end
 
 @implementation TestObject
 
-+ (void)initialize {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [self ylt_addToSafeThread];
-    });
+- (int)age3 {
+    return 134;
 }
 
+@end
+
+@interface ShareData : NSObject
+YLT_ShareInstanceHeader(ShareData);
+@property (nonatomic, strong) TestObject *obj;
+@end
+
+@implementation ShareData
+YLT_ShareInstance(ShareData);
+
+- (TestObject *)obj {
+    if (!_obj) {
+        _obj = [[TestObject alloc] init];
+    }
+    return _obj;
+}
 @end
 
 @interface YLTViewController ()
@@ -67,29 +80,30 @@ YLT_THREAD_SAFE
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.obj = [TestObject new];
+    NSLog(@"%d", [ShareData shareInstance].obj.age3);
     self.view.backgroundColor = [UIColor redColor];
     self.list = [[NSMutableArray alloc] init];
 //    [self test];
 }
 
 - (void)test {
-    for (NSInteger i = 0; i < 100; i++) {
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            self.obj = [TestObject mj_objectWithKeyValues:@{@"name":@"alex", @"age":@12}];
-            self.obj.data = [[NSMutableData alloc] init];
-            self.obj.name = [NSString stringWithFormat:@"alex %zd", i];
-            self.obj.nameSuper = self.obj.name;
-            self.obj.dataSuper = [[NSMutableData alloc] init];
-            
-            self.objSuper = [TestSuperObject mj_objectWithKeyValues:@{@"nameSuper":@"aaaa"}];
-            self.objSuper.dataSuper = [[NSMutableData alloc] init];
-        });
-    }
-    for (NSInteger i = 0; i < 10000; i++) {
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            NSLog(@"%@ %@  %@", [NSThread currentThread], self.obj.name, self.objSuper.nameSuper);
-        });
-    }
+//    for (NSInteger i = 0; i < 100; i++) {
+//        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//            self.obj = [TestObject mj_objectWithKeyValues:@{@"name":@"alex", @"age":@12}];
+//            self.obj.data = [[NSMutableData alloc] init];
+//            self.obj.name = [NSString stringWithFormat:@"alex %zd", i];
+//            self.obj.nameSuper = self.obj.name;
+//            self.obj.dataSuper = [[NSMutableData alloc] init];
+//
+//            self.objSuper = [TestSuperObject mj_objectWithKeyValues:@{@"nameSuper":@"aaaa"}];
+//            self.objSuper.dataSuper = [[NSMutableData alloc] init];
+//        });
+//    }
+//    for (NSInteger i = 0; i < 10000; i++) {
+//        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//            NSLog(@"%@ %@  %@", [NSThread currentThread], self.obj.name, self.objSuper.nameSuper);
+//        });
+//    }
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

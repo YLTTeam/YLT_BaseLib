@@ -29,7 +29,7 @@
 }
 
 + (void)ylt_addToSafeThread {
-    [self ylt_safeQueue];
+//    [self ylt_safeQueue];
 }
 
 /**
