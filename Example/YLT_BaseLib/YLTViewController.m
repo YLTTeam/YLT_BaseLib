@@ -47,22 +47,6 @@
 
 @end
 
-@interface ShareData : NSObject
-YLT_ShareInstanceHeader(ShareData);
-@property (nonatomic, strong) TestObject *obj;
-@end
-
-@implementation ShareData
-YLT_ShareInstance(ShareData);
-
-- (TestObject *)obj {
-    if (!_obj) {
-        _obj = [[TestObject alloc] init];
-    }
-    return _obj;
-}
-@end
-
 @interface YLTViewController ()
 
 @property (nonatomic, strong) TestObject *obj;
@@ -80,7 +64,6 @@ YLT_THREAD_SAFE
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.obj = [TestObject new];
-    NSLog(@"%d", [ShareData shareInstance].obj.age3);
     self.view.backgroundColor = [UIColor redColor];
     self.list = [[NSMutableArray alloc] init];
 //    [self test];
