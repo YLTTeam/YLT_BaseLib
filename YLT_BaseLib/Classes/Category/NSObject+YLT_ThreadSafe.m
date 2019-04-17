@@ -161,7 +161,6 @@
     NSLog(@"%@", originSelector);
     NSString *propertyName = [[originSelector stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@":"]] stringByReplacingOccurrencesOfString:@"set" withString:@""];
     if (propertyName.length <= 0) return;
-    
 //    NSString *ivarName = [NSString stringWithFormat:@"_%@%@", [propertyName substringToIndex:1].lowercaseString, [propertyName substringFromIndex:1]];
     dispatch_barrier_async(self.ylt_safeQueue, ^{
         YLT_BeginIgnorePerformSelectorLeaksWarning
@@ -185,7 +184,6 @@
         }
         YLT_EndIgnorePerformSelectorLeaksWarning
     });
-    
     return result;
 }
 
