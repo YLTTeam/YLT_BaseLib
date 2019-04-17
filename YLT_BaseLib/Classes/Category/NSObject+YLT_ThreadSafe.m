@@ -7,6 +7,7 @@
 
 #import "NSObject+YLT_ThreadSafe.h"
 #import <objc/message.h>
+#import "YLT_BaseMacro.h"
 #import "NSObject+YLT_Extension.h"
 #import "UIApplication+YLT_Extension.h"
 
@@ -29,7 +30,7 @@
 }
 
 + (void)ylt_addToSafeThread {
-//    [self ylt_safeQueue];
+    [self ylt_safeQueue];
 }
 
 /**
@@ -160,9 +161,13 @@
     NSString *propertyName = [[originSelector stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@":"]] stringByReplacingOccurrencesOfString:@"set" withString:@""];
     if (propertyName.length <= 0) return;
     
-    NSString *ivarName = [NSString stringWithFormat:@"_%@%@", [propertyName substringToIndex:1].lowercaseString, [propertyName substringFromIndex:1]];
+//    NSString *ivarName = [NSString stringWithFormat:@"_%@%@", [propertyName substringToIndex:1].lowercaseString, [propertyName substringFromIndex:1]];
     dispatch_barrier_async(self.ylt_safeQueue, ^{
-        [self setValue:proxyObject forKey:ivarName];
+        YLT_BeginIgnorePerformSelectorLeaksWarning
+        if ([self respondsToSelector:_cmd]) {
+            [self performSelector:_cmd withObject:proxyObject];
+        }
+        YLT_EndIgnorePerformSelectorLeaksWarning
     });
 }
 
@@ -173,9 +178,11 @@
     // 只是实现被换了，但是selector还是没变
     __block id result = nil;
     dispatch_sync(self.ylt_safeQueue, ^{
-        NSString *originSelector = NSStringFromSelector(_cmd);
-        NSString *ivarName = [NSString stringWithFormat:@"_%@", originSelector];
-        result = [self valueForKey:ivarName];
+        YLT_BeginIgnorePerformSelectorLeaksWarning
+        if ([self respondsToSelector:_cmd]) {
+            result = [self performSelector:_cmd];
+        }
+        YLT_EndIgnorePerformSelectorLeaksWarning
     });
     
     return result;
@@ -227,15 +234,10 @@
 
 - (dispatch_queue_t)ylt_safeQueue {
     dispatch_queue_t result = objc_getAssociatedObject(self, @selector(ylt_safeQueue));
-    if (result) {
+    if (result == nil) {
         result = dispatch_queue_create([NSString stringWithFormat:@"%@_thread_safe", NSStringFromClass(self.class)].UTF8String, nil);
-        objc_setAssociatedObject(self, @selector(ylt_safeQueue), result, OBJC_ASSOCIATION_COPY_NONATOMIC);
-        dispatch_sync(result, ^{
-            static dispatch_once_t onceToken;
-            dispatch_once(&onceToken, ^{
-                [self hookAllPropertiesSetter];
-            });
-        });
+        objc_setAssociatedObject(self, @selector(ylt_safeQueue), result, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        [self hookAllPropertiesSetter];
     }
     return result;
 }

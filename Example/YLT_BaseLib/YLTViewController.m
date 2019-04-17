@@ -30,7 +30,7 @@
 
 @interface TestObject : TestSuperObject<NSCopying>
 
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, assign) Boolean age;
 @property (nonatomic, assign) float age1;
 @property (nonatomic, assign) double age2;
@@ -43,6 +43,10 @@
 
 - (int)age3 {
     return 134;
+}
+
+- (NSString *)name {
+    return @"test object";
 }
 
 @end
@@ -63,7 +67,8 @@ YLT_THREAD_SAFE
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.obj = [TestObject new];
+//    self.obj = [TestObject new];
+    NSLog(@"%d  %@", self.obj.age3, self.obj.name);
     self.view.backgroundColor = [UIColor redColor];
     self.list = [[NSMutableArray alloc] init];
 //    [self test];
@@ -91,6 +96,13 @@ YLT_THREAD_SAFE
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self test];
+}
+
+- (TestObject *)obj {
+    if (!_obj) {
+        _obj = [TestObject new];
+    }
+    return _obj;
 }
 
 @end
