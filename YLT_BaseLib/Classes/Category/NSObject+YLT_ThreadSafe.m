@@ -158,6 +158,7 @@
  HOOK到所有的setter通过栅栏函数保证安全性
  */
 - (void)hook_setter_proxyObject:(NSObject *)proxyObject originSelector:(NSString *)originSelector {
+    NSLog(@"%@", originSelector);
     NSString *propertyName = [[originSelector stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@":"]] stringByReplacingOccurrencesOfString:@"set" withString:@""];
     if (propertyName.length <= 0) return;
     

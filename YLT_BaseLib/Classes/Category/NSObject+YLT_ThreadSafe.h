@@ -9,12 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#define YLT_THREAD_SAFE + (void)load {\
-                            static dispatch_once_t onceToken;\
-                            dispatch_once(&onceToken, ^{\
-                                [self ylt_addToSafeThread];\
-                            });\
-                        }
+#define YLT_THREAD_SAFE - (void)ylt_thread_safe {}
 
 @protocol YLT_ThreadSafeProtocol <NSObject>
 
