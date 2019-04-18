@@ -30,7 +30,10 @@
 }
 
 + (void)ylt_addToSafeThread {
-    [self ylt_safeQueue];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self hookAllPropertiesSetter];
+    });
 }
 
 /**
@@ -158,10 +161,12 @@
  HOOK到所有的setter通过栅栏函数保证安全性
  */
 - (void)hook_setter_proxyObject:(NSObject *)proxyObject originSelector:(NSString *)originSelector {
-    NSLog(@"%@", originSelector);
+    if (![originSelector isKindOfClass:[NSString class]] || ![originSelector hasPrefix:@"set"] || [originSelector rangeOfString:@":"].location == NSNotFound) {
+        return;
+    }
     NSString *propertyName = [[originSelector stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@":"]] stringByReplacingOccurrencesOfString:@"set" withString:@""];
     if (propertyName.length <= 0) return;
-//    NSString *ivarName = [NSString stringWithFormat:@"_%@%@", [propertyName substringToIndex:1].lowercaseString, [propertyName substringFromIndex:1]];
+
     dispatch_barrier_async(self.ylt_safeQueue, ^{
         YLT_BeginIgnorePerformSelectorLeaksWarning
         if ([self respondsToSelector:_cmd]) {
@@ -236,7 +241,6 @@
     if (result == nil) {
         result = dispatch_queue_create([NSString stringWithFormat:@"%@_thread_safe", NSStringFromClass(self.class)].UTF8String, nil);
         objc_setAssociatedObject(self, @selector(ylt_safeQueue), result, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        [self hookAllPropertiesSetter];
     }
     return result;
 }
