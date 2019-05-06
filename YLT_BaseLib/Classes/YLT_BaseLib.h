@@ -16,6 +16,7 @@
 #import "NSDate+YLT_Extension.h"
 #import "NSDictionary+YLT_Log.h"
 #import "NSFileManager+YLT_Extension.h"
+#import "NSNotificationCenter+YLT_Extension.h"
 #import "NSObject+YLT_Extension.h"
 #import "NSObject+YLT_Router.h"
 #import "NSObject+YLT_ThreadSafe.h"
