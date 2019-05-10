@@ -232,4 +232,7 @@
 #define YLT_BeginIgnoreUndeclaredSelecror YLT_BeginIgnoreClangWarning(-Wundeclared-selector)
 #define YLT_EndIgnoreUndeclaredSelecror YLT_EndIgnoreClangWarning
 
+#define YLT_BeginIgnoreUnusedVariable YLT_BeginIgnoreClangWarning(-Wunused-variable)
+#define YLT_EndIgnoreUnusedVariable YLT_EndIgnoreClangWarning
+
 #endif /* YLT_BaseMacro_h */
