@@ -101,6 +101,7 @@ YLT_THREAD_SAFE
     [self test];
 }
 
+
 - (TestObject *)obj {
     if (!_obj) {
         _obj = [TestObject new];
