@@ -11,6 +11,7 @@
 #import <arpa/inet.h>
 #import <net/if.h>
 #import "sys/utsname.h"
+#import "NSObject+YLT_Extension.h"
 
 @implementation NSString (YLT_Extension)
 
@@ -26,6 +27,22 @@
 @dynamic ylt_isURL;
 @dynamic ylt_isLocalPath;
 @dynamic ylt_isAllChinese;
+
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [NSClassFromString(@"NSPlaceholderString") ylt_swizzleInstanceMethod:@selector(initWithData:encoding:) withMethod:@selector(initWithYLT_Data:encoding:)];
+        [NSClassFromString(@"NSTaggedPointerString") ylt_swizzleInstanceMethod:@selector(initWithData:encoding:) withMethod:@selector(initWithYLT_Data:encoding:)];
+        [NSClassFromString(@"__NSCFString") ylt_swizzleInstanceMethod:@selector(initWithData:encoding:) withMethod:@selector(initWithYLT_Data:encoding:)];
+    });
+}
+
+- (instancetype)initWithYLT_Data:(NSData *)data encoding:(NSStringEncoding)encoding {
+    if (data == nil || [data isKindOfClass:[NSNull class]]) {
+        return @"";
+    }
+    return [self initWithYLT_Data:data encoding:encoding];
+}
 
 #pragma mark - Public method 类方法
 /**

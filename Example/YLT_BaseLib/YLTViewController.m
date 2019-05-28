@@ -70,11 +70,11 @@ YLT_THREAD_SAFE
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.obj = [TestObject new];
-    self.queue = dispatch_queue_create("queue", DISPATCH_QUEUE_SERIAL);
-    NSLog(@"%d  %@  %@", self.obj.age3, self.obj.name, self.queue);
-    self.view.backgroundColor = [UIColor redColor];
-    self.list = [[NSMutableArray alloc] init];
-    [self test];
+//    self.queue = dispatch_queue_create("queue", DISPATCH_QUEUE_SERIAL);
+//    NSLog(@"%d  %@  %@", self.obj.age3, self.obj.name, self.queue);
+//    self.view.backgroundColor = [UIColor redColor];
+//    self.list = [[NSMutableArray alloc] init];
+//    [self test];
 }
 
 - (void)test {
