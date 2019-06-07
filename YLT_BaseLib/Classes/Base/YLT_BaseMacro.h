@@ -58,7 +58,12 @@
 #define iOS12  ([[UIDevice currentDevice] systemVersion].floatValue >= 12.0 && [[UIDevice currentDevice] systemVersion].floatValue <= 13.0)
 #define iOS12Later  ([[UIDevice currentDevice] systemVersion].floatValue >= 12.0)
 
-#define iOSNew ([[UIDevice currentDevice] systemVersion].floatValue >= 13.0)
+#define iOS13  ([[UIDevice currentDevice] systemVersion].floatValue >= 13.0 && [[UIDevice currentDevice] systemVersion].floatValue <= 14.0)
+#define iOS13Later  ([[UIDevice currentDevice] systemVersion].floatValue >= 13.0)
+
+#define iOSNew ([[UIDevice currentDevice] systemVersion].floatValue >= 14.0)
+
+#define YLT_IsDark (iOS12Later ? (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) : NO)
 
 /// 获取系统对象
 #define YLT_Application        [UIApplication sharedApplication]
