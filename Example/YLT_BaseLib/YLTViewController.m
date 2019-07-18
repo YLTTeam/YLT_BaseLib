@@ -69,6 +69,11 @@ YLT_THREAD_SAFE
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[YLT_AuthorizationHelper shareInstance] ylt_authorizationType:YLT_Notification success:^{
+        
+    } failed:^{
+        
+    }];
 //    self.obj = [TestObject new];
 //    self.queue = dispatch_queue_create("queue", DISPATCH_QUEUE_SERIAL);
 //    NSLog(@"%d  %@  %@", self.obj.age3, self.obj.name, self.queue);
