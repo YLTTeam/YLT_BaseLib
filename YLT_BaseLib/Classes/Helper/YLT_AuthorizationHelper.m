@@ -498,9 +498,9 @@ YLT_ShareInstance(YLT_AuthorizationHelper);
         }];
     } else {
         if ([[UIApplication sharedApplication] currentUserNotificationSettings].types != UIUserNotificationTypeNone) {
-            success();
+            success ? success() : nil;
         } else {
-            failed();
+            failed ? failed() : nil;
         }
     }
 }
