@@ -83,4 +83,11 @@
  */
 + (double)ylt_availableDiskSpace;
 
+/**
+ 清除指定目录的缓存数据
+
+ @param path 文件路径或文件夹路径
+ */
++ (BOOL)ylt_cleanCachesPath:(NSString *)path;
+
 @end

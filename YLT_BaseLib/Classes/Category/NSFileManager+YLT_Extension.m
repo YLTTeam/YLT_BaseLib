@@ -106,4 +106,32 @@
     return [attributes[NSFileSystemFreeSize] unsignedLongLongValue] / (double)0x100000;
 }
 
+/**
+ 清除指定目录的缓存数据
+ 
+ @param path 文件路径或文件夹路径
+ */
++ (BOOL)ylt_cleanCachesPath:(NSString *)path {
+    BOOL isDir = NO;
+    BOOL isExist = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir];
+    if (!isExist) {
+        return YES;
+    }
+    if (!isDir) {
+        return [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+    }
+    
+    NSArray *files = [[NSFileManager defaultManager] subpathsOfDirectoryAtPath:path error:nil];
+    //遍历数组
+    BOOL flag = NO;
+    for (NSString *fileName in files) {
+        NSString *filePath = [path stringByAppendingPathComponent:fileName];
+        flag = [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+        if (!flag)
+            break;
+    }
+    
+    return flag;
+}
+
 @end
