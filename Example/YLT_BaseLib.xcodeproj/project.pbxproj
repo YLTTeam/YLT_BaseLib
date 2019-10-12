@@ -284,7 +284,7 @@
 				ORGANIZATIONNAME = "xphaijj0305@126.com";
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = UZGK9HUE57;
+						DevelopmentTeam = 34SBFPYG2R;
 					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
@@ -563,7 +563,7 @@
 			baseConfigurationReference = 662BAB1206CAD75C4C057B74 /* Pods-YLT_BaseLib_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = UZGK9HUE57;
+				DEVELOPMENT_TEAM = 34SBFPYG2R;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YLT_BaseLib/YLT_BaseLib-Prefix.pch";
 				INFOPLIST_FILE = "YLT_BaseLib/YLT_BaseLib-Info.plist";
@@ -580,7 +580,7 @@
 			baseConfigurationReference = 2490D30DB2B25AF3679B044E /* Pods-YLT_BaseLib_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = UZGK9HUE57;
+				DEVELOPMENT_TEAM = 34SBFPYG2R;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YLT_BaseLib/YLT_BaseLib-Prefix.pch";
 				INFOPLIST_FILE = "YLT_BaseLib/YLT_BaseLib-Info.plist";

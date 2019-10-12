@@ -6,7 +6,7 @@
 //  Copyright (c) 2017 xphaijj0305@126.com. All rights reserved.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 @interface YLTViewController : UIViewController
 
