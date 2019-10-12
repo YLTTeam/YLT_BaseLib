@@ -69,7 +69,10 @@ YLT_ShareInstance(YLT_DBHelper);
 #define YLT_DB_VERSION @"YLT_DB_VERSION"
 
 - (NSInteger)ylt_dbVersion {
-    return [[[NSUserDefaults standardUserDefaults] objectForKey:YLT_DB_VERSION] integerValue];
+    if (_ylt_dbVersion == 0) {
+        _ylt_dbVersion = [[[NSUserDefaults standardUserDefaults] objectForKey:YLT_DB_VERSION] integerValue];
+    }
+    return _ylt_dbVersion;
 }
 
 - (void)setYlt_dbVersion:(NSInteger)ylt_dbVersion {
