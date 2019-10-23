@@ -6,7 +6,8 @@
 //  Copyright © 2018年 xphaijj0305@126.com. All rights reserved.
 //
 
-#import <YLT_BaseLib/YLT_BaseLib.h>
+
+#import "YLT_BaseLib.h"
 
 @interface RouterA : YLT_BaseRouter
 YLT_ShareInstanceHeader(RouterA);

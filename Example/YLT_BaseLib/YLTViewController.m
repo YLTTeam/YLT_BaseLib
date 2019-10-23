@@ -8,7 +8,6 @@
 
 #import "YLTViewController.h"
 #import "YLT_BaseLib.h"
-#import <YLT_BaseLib/YLT_BaseLib.h>
 
 //@interface TestSuperObject : YLT_BaseModel<NSCopying>
 //

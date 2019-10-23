@@ -7,7 +7,8 @@
 //
 
 #import "VCB.h"
-#import <YLT_BaseLib/YLT_BaseLib.h>
+
+#import "YLT_BaseLib.h"
 
 @interface VCB ()
 @property (nonatomic, assign) CGFloat time;
