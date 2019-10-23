@@ -322,8 +322,8 @@
     if (![db open]) {
         YLT_LogWarn(@"数据库错误");
     }
-    [db executeUpdate:@"DROP TABLE IF NOT EXISTS DB_YLT_APILogModel"];
-    [db executeUpdate:@"DROP TABLE IF NOT EXISTS DB_YLT_LogModel"];
+    [db executeUpdate:@"DROP TABLE IF EXISTS DB_YLT_APILogModel"];
+    [db executeUpdate:@"DROP TABLE IF EXISTS DB_YLT_LogModel"];
     [db close];
 }
 
