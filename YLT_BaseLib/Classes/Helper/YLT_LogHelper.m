@@ -43,7 +43,7 @@
         if (!db.isOpen) {
             YLT_LogWarn(@"数据库错误");
         } else {
-            [db executeUpdate:@"CREATE TABLE IF NOT EXISTS DB_YLT_LogModel(logId INTEGER PRIMARY KEY, title TEXT, log TEXT, mark TEXT, time INTEGER, dateTime TEXT)"];
+            [db executeUpdate:@"CREATE TABLE IF NOT EXISTS DB_YLT_LogModel(logId INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, log TEXT, mark TEXT, time INTEGER, dateTime TEXT)"];
             if ([db executeUpdate:@"INSERT INTO DB_YLT_LogModel(logId,title,log,mark,time,dateTime) VALUES (?,?,?,?,?,?)", [NSNumber numberWithInteger:self.logId], self.title, self.log, self.mark, [NSNumber numberWithInteger:self.time], self.dateTime]) {
                 result = YES;
             }
@@ -193,7 +193,7 @@
         if (!db.isOpen) {
             YLT_LogWarn(@"数据库错误");
         } else {
-            [db executeUpdate:@"CREATE TABLE IF NOT EXISTS DB_YLT_APILogModel(logId INTEGER PRIMARY KEY, title TEXT, url TEXT, parameters TEXT, result TEXT, mark TEXT, time INTEGER, dateTime TEXT)"];
+            [db executeUpdate:@"CREATE TABLE IF NOT EXISTS DB_YLT_APILogModel(logId INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, url TEXT, parameters TEXT, result TEXT, mark TEXT, time INTEGER, dateTime TEXT)"];
             if ([db executeUpdate:@"INSERT INTO DB_YLT_APILogModel(logId,title,url,parameters,result,mark,time,dateTime) VALUES (?,?,?,?,?,?,?,?)", [NSNumber numberWithInteger:self.logId], self.title, self.url, self.parameters, self.result, self.mark, [NSNumber numberWithInteger:self.time], self.dateTime]) {
                 result = YES;
             }
