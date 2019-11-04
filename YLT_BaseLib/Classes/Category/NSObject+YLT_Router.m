@@ -70,6 +70,7 @@ static NSString *webRouterURL = nil;
             YLT_EndIgnoreUndeclaredSelecror
             if (self.ylt_currentVC) {
                 if (self.ylt_currentVC.navigationController) {
+                    ((UIViewController *) instance).hidesBottomBarWhenPushed = YES;
                     [self.ylt_currentVC.navigationController pushViewController:instance animated:YES];
                 } else {
                     [self.ylt_currentVC presentViewController:instance animated:YES completion:nil];
