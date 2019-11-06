@@ -283,7 +283,7 @@ static NSString *webRouterURL = nil;
     
     //验证字符串
     BOOL(^validateString)(NSString *) = ^(NSString *string) {
-        if (![string ylt_isValid]) {
+        if (![string ylt_isValid] && (NSClassFromString(string) != NULL)) {
             showError();
             return NO;
         }
@@ -318,6 +318,9 @@ static NSString *webRouterURL = nil;
                 return result;
             }
             [result setObject:cls forKey:YLT_ROUTER_CLS_NAME];
+            if ([NSClassFromString(cls) respondsToSelector:@selector(ylt_create)]) {
+                [result setObject:@"ylt_create" forKey:YLT_ROUTER_SEL_NAME];
+            }
         }
         
         //YLT_ROUTER_SEL_NAME
