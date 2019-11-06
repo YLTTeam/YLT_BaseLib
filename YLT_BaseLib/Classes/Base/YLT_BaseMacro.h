@@ -82,7 +82,7 @@
 #define YLT_SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 #define YLT_SCREEN_BOUNDS [UIScreen mainScreen].bounds
 //宽度比例
-#define YLT_Scale_Width(width) (width) * YLT_SCREEN_WIDTH / 375.0
+#define YLT_Scale_Width(width) (((CGFloat)width)*YLT_SCREEN_WIDTH/375.0)
 
 // iOS沙盒目录
 #define YLT_DOCUMENT_PATH [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
