@@ -133,7 +133,7 @@ static NSString *webRouterURL = nil;
     id instance = nil;
     Class cls = NULL;
     if ([clsname isEqualToString:@"self"]) {
-        instance = self;
+        instance = self.ylt_currentVC;
         cls = self.class;
     } else {
         //路由的对象类
@@ -187,9 +187,13 @@ static NSString *webRouterURL = nil;
     }
     NSAssert([instance respondsToSelector:NSSelectorFromString(selname)], reason);
     
+    YLT_BeginIgnoreUndeclaredSelecror
+    YLT_BeginIgnorePerformSelectorLeaksWarning
     if ([clsname isEqualToString:@"self"]) {
+        if ([instance respondsToSelector:NSSelectorFromString(selname)]) {
+            [instance performSelector:NSSelectorFromString(selname) withObject:params];
+        }
     } else {
-        YLT_BeginIgnoreUndeclaredSelecror
         if ([instance respondsToSelector:@selector(setYlt_router_params:)]) {
             [instance performSelector:@selector(setYlt_router_params:) withObject:params];
         }
@@ -199,8 +203,9 @@ static NSString *webRouterURL = nil;
         if (completion && [instance respondsToSelector:@selector(setYlt_completion:)]) {
             [instance performSelector:@selector(setYlt_completion:) withObject:completion];
         }
-        YLT_EndIgnoreUndeclaredSelecror
     }
+    YLT_EndIgnorePerformSelectorLeaksWarning
+    YLT_EndIgnoreUndeclaredSelecror
     return [self safePerformAction:NSSelectorFromString(selname) target:instance params:params];
 }
 
