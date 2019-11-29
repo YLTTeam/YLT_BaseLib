@@ -90,4 +90,12 @@
  */
 + (BOOL)ylt_cleanCachesPath:(NSString *)path;
 
+/// 缓存大小
++ (CGFloat)ylt_cacheSize;
+
+/// 缓存显示大小 K M G
++ (NSString *)ylt_cacheSizeString;
+
++ (BOOL)ylt_cleanAllCache;
+
 @end
