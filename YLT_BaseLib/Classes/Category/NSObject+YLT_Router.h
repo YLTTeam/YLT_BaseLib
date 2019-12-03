@@ -78,4 +78,10 @@
  */
 - (NSDictionary *)analysisURL:(NSString *)routerURL;
 
+/// 快速路由记录
+/// @param selname 方法名
+/// @param params 参数
+/// @param completion 回调
+- (id)ylt_routerHandler:(NSString *)selname params:(id)params completion:(void(^)(NSError *error, id response))completion;
+
 @end

@@ -185,6 +185,9 @@ static NSString *webRouterURL = nil;
         YLT_LogWarn(@"当前调用的是实例方法，但是实例方法不响应，类方法响应 直接改为类方法调用 %@ %@", clsname, selname);
         instance = cls;
     }
+    if (![instance respondsToSelector:NSSelectorFromString(selname)] && [instance respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"%@:", selname])]) {
+        selname = [NSString stringWithFormat:@"%@:", selname];
+    }
     NSAssert([instance respondsToSelector:NSSelectorFromString(selname)], reason);
     
     YLT_BeginIgnoreUndeclaredSelecror
@@ -372,5 +375,48 @@ static NSString *webRouterURL = nil;
     }
     return params;
 }
+
+YLT_BeginIgnorePerformSelectorLeaksWarning
+YLT_BeginIgnoreUndeclaredSelecror
+- (id)ylt_routerHandler:(NSString *)selname params:(id)params completion:(void(^)(NSError *error, id response))completion {
+    __block id returnData = nil;
+    if (selname.ylt_isValid) {
+        NSMutableArray<NSString *> *sels = [[NSMutableArray alloc] init];
+        [sels addObject:selname];
+        if (![selname hasSuffix:@":"]) {
+            [sels addObject:[NSString stringWithFormat:@"%@:", selname]];
+        }
+        [sels enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([selname hasPrefix:@"ylt://"] || [selname hasPrefix:@"http"]) {
+                returnData = [YLT_RouterManager ylt_routerToURL:selname arg:params completion:completion];
+                *stop = YES;
+            } else if ([self respondsToSelector:NSSelectorFromString(selname)]) {
+                if ([selname hasSuffix:@":"]) {
+                    returnData = [self performSelector:NSSelectorFromString(selname) withObject:params];
+                } else {
+                    returnData = [self performSelector:NSSelectorFromString(selname)];
+                }
+                *stop = YES;
+            } else if ([self.ylt_currentVC respondsToSelector:NSSelectorFromString(selname)]) {
+                if ([selname hasSuffix:@":"]) {
+                    returnData = [self.ylt_currentVC performSelector:NSSelectorFromString(selname) withObject:params];
+                } else {
+                    returnData = [self.ylt_currentVC performSelector:NSSelectorFromString(selname)];
+                }
+                *stop = YES;
+            } else {
+                YLT_LogError(@"事件未适配");
+            }
+        }];
+    } else {
+        YLT_LogError(@"跳转事件为空");
+    }
+    if (returnData && [returnData respondsToSelector:@selector(setYlt_completion:)]) {
+        [returnData performSelector:@selector(setYlt_completion:) withObject:completion];
+    }
+    return returnData;
+}
+YLT_EndIgnoreUndeclaredSelecror
+YLT_EndIgnorePerformSelectorLeaksWarning
 
 @end
