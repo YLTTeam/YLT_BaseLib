@@ -984,24 +984,20 @@
 }
 
 /// 路由事件
-- (NSString *(^)(id params))ylt_router {
+- (id(^)(id params))ylt_router {
     @weakify(self);
-    return ^NSString *(id params) {
+    return ^id(id params) {
         @strongify(self);
-        YLT_Router(self.ylt_currentVC, self, params, nil);
-        
-        return self;
+        return YLT_Router(self.ylt_currentVC, self, params, nil);
     };
 }
 
 /// 路由事件
-- (NSString *(^)(id params, void(^completion)(NSError *error, id response)))ylt_routerCallback {
+- (id(^)(id params, void(^completion)(NSError *error, id response)))ylt_routerCallback {
     @weakify(self);
-    return ^NSString *(id params, void(^completion)(NSError *error, id response)) {
+    return ^id(id params, void(^completion)(NSError *error, id response)) {
         @strongify(self);
-        YLT_Router(self.ylt_currentVC, self, params, completion);
-        
-        return self;
+        return YLT_Router(self.ylt_currentVC, self, params, completion);
     };
 }
 
