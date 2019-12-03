@@ -144,7 +144,7 @@
 // 路由
 #define YLT_Router(target, routerStr, attributeData, callback) [target ylt_routerHandler:routerStr params:attributeData completion:callback]
 // 快速路由
-#define YLT_RouterQuick(routerStr, attributeData) Router(self, routerStr, attributeData, nil)
+#define YLT_RouterQuick(routerStr, attributeData) YLT_Router(self, routerStr, attributeData, nil)
 
 ///  通知处理
 // 增加一个通知监听
