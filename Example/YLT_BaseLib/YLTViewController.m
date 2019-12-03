@@ -111,7 +111,11 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self test];
+//    [self test];
+    id data = [YLT_RouterManager ylt_routerToClassname:@"RouterA" selname:@"shareInstance.ylt_router?username=vcb&password=123456" isClassMethod:NO arg:@{@"key":@"value"} completion:^(NSError *error, id response) {
+           YLT_Log(@"%@", response);
+       }];
+
 }
 
 //- (TestObject *)obj {

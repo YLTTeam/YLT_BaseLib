@@ -9,6 +9,7 @@
 #import "YLT_BaseMacro.h"
 #import "NSString+YLT_Extension.h"
 #import "NSObject+YLT_Extension.h"
+#import <objc/message.h>
 
 @implementation NSObject (YLT_Router)
 
@@ -130,7 +131,7 @@ static NSString *webRouterURL = nil;
  @return 回参
  */
 - (id)ylt_routerToClassname:(NSString *)clsname selname:(NSString *)selname isClassMethod:(BOOL)isClassMethod param:(NSDictionary *)param arg:(id)arg completion:(void(^)(NSError *error, id response))completion {
-    id instance = nil;
+    __block id instance = nil;
     Class cls = NULL;
     if ([clsname isEqualToString:@"self"]) {
         instance = self.ylt_currentVC;
@@ -138,20 +139,13 @@ static NSString *webRouterURL = nil;
     } else {
         //路由的对象类
         cls = NSClassFromString(clsname);
-        NSString *clsReason = [NSString stringWithFormat:@"路由的类异常 %@", clsname];
-        NSAssert(cls!=NULL, clsReason);
-        if (!clsname.ylt_isValid || (cls == NULL)) {
-            YLT_LogError(@"路由的类异常");
-            return nil;
-        }
-        if (isClassMethod) {//类方法
-            instance = cls;
-        } else {
-            instance = [[cls alloc] init];
-        }
+        instance = cls;
     }
+    NSString *clsReason = [NSString stringWithFormat:@"路由的类异常 %@", clsname];
+    NSAssert(cls != NULL, clsReason);
     
     selname = (selname.ylt_isValid?selname:@"ylt_router:");
+    // 拼接路由参数
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     if (param) {
         [params addEntriesFromDictionary:param];
@@ -164,31 +158,31 @@ static NSString *webRouterURL = nil;
     if (completion) {
         [params setObject:completion forKey:YLT_ROUTER_COMPLETION];
     }
+    // 拼接路由参数
     
-    NSArray *sels = [selname componentsSeparatedByString:@"."];
-    for (NSInteger i = 0; i < sels.count-1; i++) {
-        NSString *sel = sels[i];
-        if (sel.ylt_isValid) {
-            YLT_BeginIgnoreUndeclaredSelecror
-            YLT_BeginIgnorePerformSelectorLeaksWarning
-            NSString *reason = [NSString stringWithFormat:@"路由的方法异常 %@ %@", clsname, sel];
-            NSAssert([instance respondsToSelector:NSSelectorFromString(sel)], reason);
-            instance = [instance performSelector:NSSelectorFromString(sel)];
-            YLT_EndIgnoreUndeclaredSelecror
-            YLT_EndIgnorePerformSelectorLeaksWarning
+    // 路由转发
+    NSArray<NSString *> *sels = [selname componentsSeparatedByString:@"."];
+    // 规定仅有第一个参数可能为类方法
+    [sels enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([instance respondsToSelector:NSSelectorFromString(obj)]) {
+            instance = [self safePerformAction:NSSelectorFromString(obj) target:instance params:params];
+        } else if ([instance respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"%@:", obj])]) {
+            instance = [self safePerformAction:NSSelectorFromString([NSString stringWithFormat:@"%@:", obj]) target:instance params:params];
+        } else {
+            //判断类是否可以相应方法
+            if (class_respondsToSelector(instance, NSSelectorFromString(obj))) {
+                instance = [[instance alloc] init];
+                instance = [self safePerformAction:NSSelectorFromString(obj) target:instance params:params];
+            } else if (class_respondsToSelector(instance, NSSelectorFromString([NSString stringWithFormat:@"%@:", obj]))) {
+                instance = [[instance alloc] init];
+                instance = [self safePerformAction:NSSelectorFromString([NSString stringWithFormat:@"%@:", obj]) target:instance params:params];
+            } else {
+                instance = nil;
+            }
         }
-    }
-    selname = sels.lastObject;
-    NSString *reason = [NSString stringWithFormat:@"路由的方法异常 %@ %@", clsname, selname];
-    if (!isClassMethod && ![instance respondsToSelector:NSSelectorFromString(selname)] && [cls respondsToSelector:NSSelectorFromString(selname)]) {
-        /* 当用户传的是实例方法的时候，发现实例不响应的时候，去检查一下类是否响应此方法 */
-        YLT_LogWarn(@"当前调用的是实例方法，但是实例方法不响应，类方法响应 直接改为类方法调用 %@ %@", clsname, selname);
-        instance = cls;
-    }
-    if (![instance respondsToSelector:NSSelectorFromString(selname)] && [instance respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"%@:", selname])]) {
-        selname = [NSString stringWithFormat:@"%@:", selname];
-    }
-    NSAssert([instance respondsToSelector:NSSelectorFromString(selname)], reason);
+        NSString *reason = [NSString stringWithFormat:@"路由方法异常 %@  %@", clsname, obj];
+        NSAssert(instance != nil, reason);
+    }];
     
     YLT_BeginIgnoreUndeclaredSelecror
     YLT_BeginIgnorePerformSelectorLeaksWarning
@@ -209,9 +203,8 @@ static NSString *webRouterURL = nil;
     }
     YLT_EndIgnorePerformSelectorLeaksWarning
     YLT_EndIgnoreUndeclaredSelecror
-    return [self safePerformAction:NSSelectorFromString(selname) target:instance params:params];
+    return instance;
 }
-
 
 /**
  url runtime解析
