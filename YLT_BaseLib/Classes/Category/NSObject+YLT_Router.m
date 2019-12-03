@@ -388,7 +388,7 @@ YLT_BeginIgnoreUndeclaredSelecror
         }
         [sels enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([selname hasPrefix:@"ylt://"] || [selname hasPrefix:@"http"]) {
-                returnData = [YLT_RouterManager ylt_routerToURL:selname arg:params completion:completion];
+                returnData = [self ylt_routerToURL:selname arg:params completion:completion];
                 *stop = YES;
             } else if ([self respondsToSelector:NSSelectorFromString(selname)]) {
                 if ([selname hasSuffix:@":"]) {
