@@ -381,4 +381,10 @@
  */
 + (NSArray *)ylt_rangesOfString:(NSString *)searchString inString:(NSString *)str;
 
+/// 路由事件
+- (NSString *(^)(id params))ylt_router;
+
+/// 路由事件
+- (NSString *(^)(id params, void(^completion)(NSError *error, id response)))ylt_routerCallback;
+
 @end

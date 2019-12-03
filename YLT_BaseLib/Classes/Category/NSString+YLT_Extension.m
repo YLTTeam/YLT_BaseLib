@@ -11,7 +11,10 @@
 #import <arpa/inet.h>
 #import <net/if.h>
 #import "sys/utsname.h"
+#import "YLT_BaseMacro.h"
 #import "NSObject+YLT_Extension.h"
+#import <ReactiveObjC/ReactiveObjC.h>
+#import "NSObject+YLT_Router.h"
 
 @implementation NSString (YLT_Extension)
 
@@ -978,6 +981,28 @@
         searchRange = NSMakeRange(NSMaxRange(range), [str length] - NSMaxRange(range));
     }
     return results;
+}
+
+/// 路由事件
+- (NSString *(^)(id params))ylt_router {
+    @weakify(self);
+    return ^NSString *(id params) {
+        @strongify(self);
+        YLT_Router(self.ylt_currentVC, self, params, nil);
+        
+        return self;
+    };
+}
+
+/// 路由事件
+- (NSString *(^)(id params, void(^completion)(NSError *error, id response)))ylt_routerCallback {
+    @weakify(self);
+    return ^NSString *(id params, void(^completion)(NSError *error, id response)) {
+        @strongify(self);
+        YLT_Router(self.ylt_currentVC, self, params, completion);
+        
+        return self;
+    };
 }
 
 @end

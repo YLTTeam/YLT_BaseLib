@@ -4,19 +4,23 @@ PODS:
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
   - MJExtension (3.2.1)
-  - YLT_BaseLib (0.3.51):
+  - ReactiveObjC (3.1.1)
+  - YLT_BaseLib (0.3.62):
     - FastCoding
     - FMDB
     - MJExtension
+    - ReactiveObjC
 
 DEPENDENCIES:
   - YLT_BaseLib (from `../`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - FastCoding
     - FMDB
     - MJExtension
+  trunk:
+    - ReactiveObjC
 
 EXTERNAL SOURCES:
   YLT_BaseLib:
@@ -26,8 +30,9 @@ SPEC CHECKSUMS:
   FastCoding: 3b590f7143a229780fa744b35084d85d9461587e
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   MJExtension: 635f2c663dcb1bf76fa4b715b2570a5710aec545
-  YLT_BaseLib: 1e5d076ec6ccf10e9591e4af8edaf6f1d9ccf768
+  ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
+  YLT_BaseLib: f78d43014e462d67617aca6ee23016108ca2656c
 
 PODFILE CHECKSUM: 0ff3dcb0ae9200b7c00f320bef560099f6e54756
 
-COCOAPODS: 1.7.2
+COCOAPODS: 1.8.4
