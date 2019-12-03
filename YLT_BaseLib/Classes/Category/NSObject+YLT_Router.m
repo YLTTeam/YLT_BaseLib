@@ -178,10 +178,10 @@ static NSString *webRouterURL = nil;
                 instance = [self safePerformAction:NSSelectorFromString([NSString stringWithFormat:@"%@:", obj]) target:instance params:params];
             } else {
                 instance = nil;
+                NSString *reason = [NSString stringWithFormat:@"路由方法异常 %@  %@", clsname, obj];
+                NSAssert(instance != nil, reason);
             }
         }
-        NSString *reason = [NSString stringWithFormat:@"路由方法异常 %@  %@", clsname, obj];
-        NSAssert(instance != nil, reason);
     }];
     
     YLT_BeginIgnoreUndeclaredSelecror
