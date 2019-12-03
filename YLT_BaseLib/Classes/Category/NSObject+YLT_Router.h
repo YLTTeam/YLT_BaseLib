@@ -69,7 +69,6 @@
  */
 - (id)ylt_routerToClassname:(NSString *)clsname selname:(NSString *)selname isClassMethod:(BOOL)isClassMethod arg:(id)arg completion:(void(^)(NSError *error, id response))completion;
 
-
 /**
  路由数据分析
  
