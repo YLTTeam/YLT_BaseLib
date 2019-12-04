@@ -90,7 +90,6 @@
     YLT_DBHelper.shareInstance.ylt_dbVersion = 2019101102;
     NSLog(@"%@", [YLT_DBHelper shareInstance].ylt_allUserDBPaths);
     
-    
 //    for (NSInteger i = 0; i < 100; i++) {
 //        dispatch_async(dispatch_get_global_queue(0, 0), ^{
 //            self.obj = [TestObject mj_objectWithKeyValues:@{@"name":@"alex", @"age":@12}];
@@ -111,10 +110,10 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-//    [self test];
-    id data = [YLT_RouterManager ylt_routerToClassname:@"RouterA" selname:@"shareInstance.ylt_router?username=vcb&password=123456" isClassMethod:NO arg:@{@"key":@"value"} completion:^(NSError *error, id response) {
-           YLT_Log(@"%@", response);
-       }];
+    [self test];
+//    id data = [YLT_RouterManager ylt_routerToClassname:@"RouterA" selname:@"shareInstance.ylt_router?username=vcb&password=123456" isClassMethod:NO arg:@{@"key":@"value"} completion:^(NSError *error, id response) {
+//           YLT_Log(@"%@", response);
+//       }];
 
 }
 
