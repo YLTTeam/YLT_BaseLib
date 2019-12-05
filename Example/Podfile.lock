@@ -5,7 +5,7 @@ PODS:
   - FMDB/standard (2.7.5)
   - MJExtension (3.2.1)
   - ReactiveObjC (3.1.1)
-  - YLT_BaseLib (0.3.62):
+  - YLT_BaseLib (0.3.66):
     - FastCoding
     - FMDB
     - MJExtension
@@ -31,7 +31,7 @@ SPEC CHECKSUMS:
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   MJExtension: 635f2c663dcb1bf76fa4b715b2570a5710aec545
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
-  YLT_BaseLib: f78d43014e462d67617aca6ee23016108ca2656c
+  YLT_BaseLib: 0b9f96cf15319ad9b8c1c7cc0691e31b14338b34
 
 PODFILE CHECKSUM: 0ff3dcb0ae9200b7c00f320bef560099f6e54756
 

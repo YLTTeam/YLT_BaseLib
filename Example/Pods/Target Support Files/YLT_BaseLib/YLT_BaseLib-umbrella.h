@@ -24,6 +24,7 @@
 #import "NSObject+YLT_ThreadSafe.h"
 #import "NSString+YLT_Extension.h"
 #import "NSTimer+YLT_Extension.h"
+#import "PHAsset+YLT_Extension.h"
 #import "UIApplication+YLT_Extension.h"
 #import "UIDevice+YLT_Extension.h"
 #import "dbSource.h"
