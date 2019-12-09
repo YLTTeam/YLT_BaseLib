@@ -383,18 +383,10 @@ YLT_BeginIgnoreUndeclaredSelecror
                 returnData = [self ylt_routerToURL:selname arg:params completion:completion];
                 *stop = YES;
             } else if ([self respondsToSelector:NSSelectorFromString(selname)]) {
-                if ([selname hasSuffix:@":"]) {
-                    returnData = [self performSelector:NSSelectorFromString(selname) withObject:params];
-                } else {
-                    returnData = [self performSelector:NSSelectorFromString(selname)];
-                }
+                returnData = [self safePerformAction:NSSelectorFromString(selname) target:self params:params];
                 *stop = YES;
             } else if ([self.ylt_currentVC respondsToSelector:NSSelectorFromString(selname)]) {
-                if ([selname hasSuffix:@":"]) {
-                    returnData = [self.ylt_currentVC performSelector:NSSelectorFromString(selname) withObject:params];
-                } else {
-                    returnData = [self.ylt_currentVC performSelector:NSSelectorFromString(selname)];
-                }
+                returnData = [self.ylt_currentVC safePerformAction:NSSelectorFromString(selname) target:self.ylt_currentVC params:params];
                 *stop = YES;
             } else {
                 YLT_LogError(@"事件未适配");

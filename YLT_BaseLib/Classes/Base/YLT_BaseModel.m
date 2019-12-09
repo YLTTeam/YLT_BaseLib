@@ -110,7 +110,7 @@
             data = data.mj_JSONObject;
         }
         if (([[self class] respondsToSelector:@selector(mj_objectWithKeyValues:)] && [data isKindOfClass:[NSDictionary class]]) ||
-            [[self class] respondsToSelector:@selector(mj_objectArrayWithKeyValuesArray:)] && [data isKindOfClass:[NSArray class]]) {
+            ([[self class] respondsToSelector:@selector(mj_objectArrayWithKeyValuesArray:)] && [data isKindOfClass:[NSArray class]])) {
             id result = nil;
             
             if (data) {
