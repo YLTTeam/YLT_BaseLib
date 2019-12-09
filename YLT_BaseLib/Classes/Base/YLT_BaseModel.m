@@ -109,11 +109,17 @@
         if ([data isKindOfClass:[NSString class]] && [data respondsToSelector:@selector(mj_JSONObject)]) {
             data = data.mj_JSONObject;
         }
-        if ([[self class] respondsToSelector:@selector(mj_objectWithKeyValues:)] && [data isKindOfClass:[NSDictionary class]]) {
+        if (([[self class] respondsToSelector:@selector(mj_objectWithKeyValues:)] && [data isKindOfClass:[NSDictionary class]]) ||
+            [[self class] respondsToSelector:@selector(mj_objectArrayWithKeyValuesArray:)] && [data isKindOfClass:[NSArray class]]) {
             id result = nil;
+            
             if (data) {
                 @try {
-                    result = [[self class] mj_objectWithKeyValues:data];
+                    if ([data isKindOfClass:[NSArray class]]) {
+                        result = [[self class] mj_objectArrayWithKeyValuesArray:data];
+                    } else {
+                        result = [[self class] mj_objectWithKeyValues:data];
+                    }
                 } @catch (NSException *exception) {
                     YLT_LogWarn(@"%@", exception);
                 } @finally {
