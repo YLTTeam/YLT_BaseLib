@@ -378,19 +378,24 @@ YLT_BeginIgnoreUndeclaredSelecror
         if (![selname hasSuffix:@":"]) {
             [sels addObject:[NSString stringWithFormat:@"%@:", selname]];
         }
-        [sels enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([selname hasPrefix:@"ylt://"] || [selname hasPrefix:@"http"]) {
-                returnData = [self ylt_routerToURL:selname arg:params completion:completion];
-                *stop = YES;
-            } else if ([self respondsToSelector:NSSelectorFromString(selname)]) {
-                returnData = [self safePerformAction:NSSelectorFromString(selname) target:self params:params];
-                *stop = YES;
-            } else if ([self.ylt_currentVC respondsToSelector:NSSelectorFromString(selname)]) {
-                returnData = [self.ylt_currentVC safePerformAction:NSSelectorFromString(selname) target:self.ylt_currentVC params:params];
-                *stop = YES;
-            } else {
-                YLT_LogError(@"事件未适配");
-            }
+        [sels enumerateObjectsUsingBlock:^(NSString * _Nonnull object, NSUInteger idx, BOOL * _Nonnull selStop) {
+            [[object componentsSeparatedByString:@"."] enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([selname hasPrefix:@"ylt://"] || [selname hasPrefix:@"http"]) {
+                    returnData = [self ylt_routerToURL:selname arg:params completion:completion];
+                    *selStop = YES;
+                } else if (returnData != nil && [returnData respondsToSelector:NSSelectorFromString(obj)]) {
+                    returnData = [self safePerformAction:NSSelectorFromString(obj) target:returnData params:params];
+                    *selStop = YES;
+                } else if ([self respondsToSelector:NSSelectorFromString(obj)]) {
+                    returnData = [self safePerformAction:NSSelectorFromString(obj) target:self params:params];
+                    *selStop = YES;
+                } else if ([self.ylt_currentVC respondsToSelector:NSSelectorFromString(obj)]) {
+                    returnData = [self.ylt_currentVC safePerformAction:NSSelectorFromString(obj) target:self.ylt_currentVC params:params];
+                    *selStop = YES;
+                } else {
+                    YLT_LogError(@"事件未适配");
+                }
+            }];
         }];
     } else {
         YLT_LogError(@"跳转事件为空");
