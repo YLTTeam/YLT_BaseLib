@@ -361,7 +361,7 @@ static NSString *webRouterURL = nil;
         NSArray *tmpArray = [tmpStr componentsSeparatedByString:@"="];
         if (tmpArray.count == 2) {
             [params setObject:tmpArray[1] forKey:tmpArray[0]];
-        }else {
+        } else {
             YLT_LogError(@"参数不合法 : %@",tmpStr);
         }
     }
