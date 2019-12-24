@@ -14,6 +14,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [self ylt_swizzleClassMethod:@selector(URLWithString:) withMethod:@selector(ylt_URLWithString:)];
+        [self ylt_swizzleClassMethod:@selector(fileURLWithPath:) withMethod:@selector(ylt_fileURLWithPath:)];
     });
 }
 
@@ -26,6 +27,17 @@
                                                               kCFStringEncodingUTF8));
     
     return [self ylt_URLWithString:encodedString];
+}
+
++ (NSURL *)ylt_fileURLWithPath:(NSString *)urlString {
+    NSString *encodedString = (NSString *)
+    CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                              (CFStringRef)urlString,
+                                                              (CFStringRef)@"!$&'()*+,-./:;=?@_~%#[]",
+                                                              NULL,
+                                                              kCFStringEncodingUTF8));
+    
+    return [self ylt_fileURLWithPath:encodedString];
 }
 
 @end
