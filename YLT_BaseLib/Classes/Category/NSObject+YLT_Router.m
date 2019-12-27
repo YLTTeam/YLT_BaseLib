@@ -383,15 +383,19 @@ YLT_BeginIgnoreUndeclaredSelecror
                 if ([selname hasPrefix:@"ylt://"] || [selname hasPrefix:@"http"]) {
                     returnData = [self ylt_routerToURL:selname arg:params completion:completion];
                     *selStop = YES;
+                    *stop = YES;
                 } else if (returnData != nil && [returnData respondsToSelector:NSSelectorFromString(obj)]) {
                     returnData = [self safePerformAction:NSSelectorFromString(obj) target:returnData params:params];
                     *selStop = YES;
+                    *stop = YES;
                 } else if ([self respondsToSelector:NSSelectorFromString(obj)]) {
                     returnData = [self safePerformAction:NSSelectorFromString(obj) target:self params:params];
                     *selStop = YES;
+                    *stop = YES;
                 } else if ([self.ylt_currentVC respondsToSelector:NSSelectorFromString(obj)]) {
                     returnData = [self.ylt_currentVC safePerformAction:NSSelectorFromString(obj) target:self.ylt_currentVC params:params];
                     *selStop = YES;
+                    *stop = YES;
                 } else {
                     YLT_LogError(@"事件未适配");
                 }
