@@ -10,7 +10,7 @@
 
 @implementation PHAsset (YLT_Extension)
 
-- (BOOL)isVideo {
+- (BOOL)ylt_isVideo {
     __block BOOL result = NO;
     NSArray<PHAssetResource *> *list = [PHAssetResource assetResourcesForAsset:self];
     [list enumerateObjectsUsingBlock:^(PHAssetResource * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -38,7 +38,7 @@
     return NO;
 }
 
-- (BOOL)isImage {
+- (BOOL)ylt_isImage {
     __block BOOL result = NO;
     NSArray<PHAssetResource *> *list = [PHAssetResource assetResourcesForAsset:self];
     [list enumerateObjectsUsingBlock:^(PHAssetResource * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -51,7 +51,7 @@
     return NO;
 }
 
-- (BOOL)isAudio {
+- (BOOL)ylt_isAudio {
     __block BOOL result = NO;
     NSArray<PHAssetResource *> *list = [PHAssetResource assetResourcesForAsset:self];
     [list enumerateObjectsUsingBlock:^(PHAssetResource * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

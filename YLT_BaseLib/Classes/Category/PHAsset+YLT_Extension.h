@@ -10,12 +10,12 @@
 @interface PHAsset (YLT_Extension)
 
 /** 是否是视频 */
-@property (nonatomic, assign, readonly) BOOL isVideo;
+@property (nonatomic, assign, readonly) BOOL ylt_isVideo;
 
 /** 是否是图像 */
-@property (nonatomic, assign, readonly) BOOL isImage;
+@property (nonatomic, assign, readonly) BOOL ylt_isImage;
 
 /** 是否是音频 */
-@property (nonatomic, assign, readonly) BOOL isAudio;
+@property (nonatomic, assign, readonly) BOOL ylt_isAudio;
 
 @end
