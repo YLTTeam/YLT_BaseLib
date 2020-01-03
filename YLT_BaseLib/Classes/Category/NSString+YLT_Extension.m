@@ -360,13 +360,7 @@
  @return YES:有效 NO:无效
  */
 + (BOOL)ylt_isURL:(NSString *)sender {
-    NSString *pattern = @"^(http||https)://([\\w-]+\.)+[\\w-]+(/[\\w-./?%&=]*)?$";
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
-    if ([pred evaluateWithObject:sender]) {
-        //        BOOL res = [[NSURL URLWithString:self] checkResourceIsReachableAndReturnError:nil];
-        return YES;
-    }
-    return NO;
+    return [sender hasPrefix:@"http://"] || [sender hasPrefix:@"https://"];
 }
 
 /**
