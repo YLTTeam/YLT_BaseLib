@@ -125,18 +125,18 @@
 + (NSString *)ylt_sizeDisplayWithByte:(CGFloat)sizeOfByte {
     NSString *sizeDisplayStr;
     if (sizeOfByte < 1024) {
-        sizeDisplayStr = [NSString stringWithFormat:@"%.2f bytes", sizeOfByte];
+        sizeDisplayStr = [NSString stringWithFormat:@"%.0f bytes", sizeOfByte];
     } else {
         CGFloat sizeOfKB = sizeOfByte/1024;
         if (sizeOfKB < 1024) {
-            sizeDisplayStr = [NSString stringWithFormat:@"%.2f KB", sizeOfKB];
+            sizeDisplayStr = [NSString stringWithFormat:@"%.0f KB", sizeOfKB];
         } else {
             CGFloat sizeOfM = sizeOfKB/1024;
             if (sizeOfM < 1024) {
-                sizeDisplayStr = [NSString stringWithFormat:@"%.2f M", sizeOfM];
+                sizeDisplayStr = [NSString stringWithFormat:@"%.0f M", sizeOfM];
             } else {
                 CGFloat sizeOfG = sizeOfKB/1024;
-                sizeDisplayStr = [NSString stringWithFormat:@"%.2f G", sizeOfG];
+                sizeDisplayStr = [NSString stringWithFormat:@"%.0f G", sizeOfG];
             }
         }
     }
