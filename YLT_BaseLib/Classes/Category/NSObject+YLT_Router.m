@@ -373,6 +373,9 @@ YLT_BeginIgnoreUndeclaredSelecror
 - (id)ylt_routerHandler:(NSString *)selname params:(id)params completion:(void(^)(NSError *error, id response))completion {
     __block id returnData = nil;
     if (selname.ylt_isValid) {
+        while ([selname hasPrefix:@"&"] || [selname hasPrefix:@"$"]) {
+            selname = [selname substringFromIndex:1];
+        }
         NSMutableArray<NSString *> *sels = [[NSMutableArray alloc] init];
         [sels addObject:selname];
         if (![selname hasSuffix:@":"]) {
