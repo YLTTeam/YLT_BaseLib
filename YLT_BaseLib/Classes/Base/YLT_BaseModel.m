@@ -22,10 +22,10 @@
     return [[self class] mj_objectWithKeyValues:self.mj_keyValues];
 }
 
-+ (instancetype)mj_objectWithKeyValues:(id)keyValues context:(NSManagedObjectContext *)context{
++ (instancetype)mj_objectWithKeyValues:(NSMutableDictionary *)keyValues context:(NSManagedObjectContext *)context{
     YLT_BaseModel *res = [super mj_objectWithKeyValues:keyValues context:context];
-    if ([res respondsToSelector:@selector(setYlt_sourceData:)]) {
-        res.ylt_sourceData = keyValues;
+    if ((res.ylt_sourceData == nil) && [res respondsToSelector:@selector(setYlt_sourceData:)]) {
+        res.ylt_sourceData = keyValues.mutableCopy;
     }
     return res;
 }
