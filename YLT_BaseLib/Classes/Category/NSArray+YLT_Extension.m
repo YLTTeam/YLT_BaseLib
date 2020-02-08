@@ -37,7 +37,7 @@
     return result;
 }
 
-- (NSObject *)selectedObject {
+- (NSObject *)ylt_selectedObject {
     if (self.ylt_selectedIndex == -1) {
         return nil;
     }
