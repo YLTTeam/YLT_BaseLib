@@ -13,6 +13,6 @@
 /** 数组元素的选中的索引 */
 @property (nonatomic, assign) NSInteger ylt_selectedIndex;
 /** 数组中选中的元素 */
-@property (nonatomic, strong, readonly) NSObject *ylt_selectedObject;
+@property (nonatomic, strong, readonly) id ylt_selectedObject;
 
 @end

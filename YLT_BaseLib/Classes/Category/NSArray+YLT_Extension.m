@@ -9,6 +9,14 @@
 #import "NSObject+YLT_Extension.h"
 
 @implementation NSArray (YLT_Extension)
+@dynamic ylt_selectedObject;
+
+- (id)ylt_selectedObject {
+    if (self.ylt_selectedIndex == -1) {
+        return nil;
+    }
+    return self[self.ylt_selectedIndex];
+}
 
 - (void)setYlt_selectedIndex:(NSInteger)ylt_selectedIndex {
     if (ylt_selectedIndex == -1) {
@@ -35,13 +43,6 @@
         result = self.count-1;
     }
     return result;
-}
-
-- (NSObject *)ylt_selectedObject {
-    if (self.ylt_selectedIndex == -1) {
-        return nil;
-    }
-    return self[self.ylt_selectedIndex];
 }
 
 @end
