@@ -15,7 +15,11 @@
     if (self.ylt_selectedIndex == -1) {
         return nil;
     }
-    return self[self.ylt_selectedIndex];
+    if (self.count > self.ylt_selectedIndex) {
+        return self[self.ylt_selectedIndex];
+    }
+    
+    return nil;
 }
 
 - (void)setYlt_selectedIndex:(NSInteger)ylt_selectedIndex {
@@ -23,10 +27,13 @@
         objc_setAssociatedObject(self, @selector(ylt_selectedIndex), nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         return;
     }
-    NSObject *obj = [self objectAtIndex:ylt_selectedIndex];
-    if ([obj isKindOfClass:NSObject.class]) {
-        obj.ylt_isSelected = YES;
+    if (self.count > ylt_selectedIndex) {
+        NSObject *obj = self[ylt_selectedIndex];
+        if ([obj isKindOfClass:NSObject.class]) {
+            obj.ylt_isSelected = YES;
+        }
     }
+    
     objc_setAssociatedObject(self, @selector(ylt_selectedIndex), @(ylt_selectedIndex), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
