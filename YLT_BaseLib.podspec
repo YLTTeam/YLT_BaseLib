@@ -30,7 +30,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '9.0'
 
-  s.source_files = 'YLT_BaseLib/Classes/**/*'
+  s.source_files = ['YLT_BaseLib/Classes/**/*.h', 'YLT_BaseLib/Classes/**/*.m']
   
   # s.resource_bundles = {
   #   'YLT_BaseLib' => ['YLT_BaseLib/Assets/*.png']
