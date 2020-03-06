@@ -399,13 +399,13 @@ YLT_BeginIgnoreUndeclaredSelecror
                         returnData = [self.ylt_currentVC safePerformAction:NSSelectorFromString(obj) target:self.ylt_currentVC params:params];
                         *selStop = YES;
                     } else {
-                        YLT_LogError(@"事件未适配");
+                        YLT_LogWarn(@"事件未适配");
                     }
                 }];
             }];
         }
     } else {
-        YLT_LogError(@"跳转事件为空");
+        YLT_LogWarn(@"跳转事件为空");
     }
     if (returnData && [returnData respondsToSelector:@selector(setYlt_completion:)]) {
         [returnData performSelector:@selector(setYlt_completion:) withObject:completion];
