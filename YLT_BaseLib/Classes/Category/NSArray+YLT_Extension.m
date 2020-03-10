@@ -11,7 +11,7 @@
 @implementation NSArray (YLT_Extension)
 @dynamic ylt_selectedObject;
 
-- (id)ylt_selectedObject {
+- (YLT_BaseModel *)ylt_selectedObject {
     if (self.ylt_selectedIndex == -1) {
         return nil;
     }
