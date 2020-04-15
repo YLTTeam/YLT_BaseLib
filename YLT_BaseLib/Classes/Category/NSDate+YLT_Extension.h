@@ -9,6 +9,8 @@
 
 @interface NSDate (YLT_Extension)
 
+@property (nonatomic, strong, readonly) NSCalendar *gregorianCalendar;
+
 /**
  * 获取日、月、年、小时、分钟、秒
  */
@@ -202,5 +204,6 @@
 - (NSInteger) ylt_daysAfterDate: (NSDate *) aDate;
 - (NSInteger) ylt_daysBeforeDate: (NSDate *) aDate;
 - (NSInteger) ylt_distanceInDaysToDate:(NSDate *)anotherDate;
+- (NSDateComponents *)ylt_distanceDate:(NSDate *)anotherDate;
 
 @end
