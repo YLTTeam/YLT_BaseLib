@@ -120,8 +120,6 @@
 - (NSString *)ylt_stringByMessageDate;
 - (NSString *)ylt_stringByTimeHM;
 
-
-
 + (NSCalendar *) ylt_currentCalendar; // avoid bottlenecks
 
 // Relative dates from the current date
@@ -145,7 +143,6 @@
 @property (nonatomic, readonly) NSString *ylt_longString;
 @property (nonatomic, readonly) NSString *ylt_longDateString;
 @property (nonatomic, readonly) NSString *ylt_longTimeString;
-
 
 // Comparing dates
 - (BOOL) ylt_isSameDay: (NSDate *) aDate;
