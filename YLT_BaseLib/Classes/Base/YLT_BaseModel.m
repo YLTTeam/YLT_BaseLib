@@ -24,8 +24,15 @@
 
 + (instancetype)mj_objectWithKeyValues:(NSMutableDictionary *)keyValues context:(NSManagedObjectContext *)context{
     YLT_BaseModel *res = [super mj_objectWithKeyValues:keyValues context:context];
-    if ((res.ylt_sourceData == nil) && [res respondsToSelector:@selector(setYlt_sourceData:)]) {
+    if ([res respondsToSelector:@selector(setYlt_sourceData:)]) {
         res.ylt_sourceData = keyValues.mutableCopy;
+    }
+    return res;
+}
+- (instancetype)mj_setKeyValues:(id)keyValues context:(NSManagedObjectContext *)context {
+    YLT_BaseModel *res = [super mj_setKeyValues:keyValues context:context];
+    if ([res respondsToSelector:@selector(setYlt_sourceData:)]) {
+        res.ylt_sourceData = keyValues;
     }
     return res;
 }
