@@ -360,7 +360,7 @@ static NSString *webRouterURL = nil;
             continue;
         }
         NSRange range = [tmpStr rangeOfString:@"=" options:(0)];
-        [params setObject:[tmpStr substringToIndex:range.location] forKey:[tmpStr substringFromIndex:range.location+1]];
+        [params setObject:[tmpStr substringFromIndex:range.location+1] forKey:[tmpStr substringToIndex:range.location]];
     }
     return params;
 }
