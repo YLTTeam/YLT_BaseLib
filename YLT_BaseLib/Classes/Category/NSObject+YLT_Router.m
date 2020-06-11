@@ -352,18 +352,15 @@ static NSString *webRouterURL = nil;
 }
 
 - (NSDictionary *)ylt_generateParamsString:(NSString *)paramString {
+    paramString = [[paramString componentsSeparatedByString:@"?"] lastObject];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     NSArray *components = [paramString componentsSeparatedByString:@"&"];
     for (NSString *tmpStr in components) {
         if (!tmpStr.ylt_isValid) {
             continue;
         }
-        NSArray *tmpArray = [tmpStr componentsSeparatedByString:@"="];
-        if (tmpArray.count == 2) {
-            [params setObject:tmpArray[1] forKey:tmpArray[0]];
-        } else {
-            YLT_LogError(@"参数不合法 : %@",tmpStr);
-        }
+        NSRange range = [tmpStr rangeOfString:@"=" options:(0)];
+        [params setObject:[tmpStr substringToIndex:range.location] forKey:[tmpStr substringFromIndex:range.location+1]];
     }
     return params;
 }
