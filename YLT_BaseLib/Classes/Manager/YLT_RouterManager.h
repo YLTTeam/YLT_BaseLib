@@ -17,6 +17,12 @@
 + (void)registerWebRouter:(NSString *)webRouter;
 
 /**
+ * @brief 注册路由前缀
+ * @param routerPrefix 前缀字符
+ */
++ (void)registerRouterPrefix:(NSString *)routerPrefix;
+
+/**
  路由  默认路由实例方法
 
  @param routerURL 路由的URL,参数带到URL后面,默认路由实例方法  NSString *routerURL = @"ylt://classname/selectorname?username=alex&password=123456";
