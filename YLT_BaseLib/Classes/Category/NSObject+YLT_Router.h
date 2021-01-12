@@ -7,7 +7,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define YLT_ROUTER_PREFIX @"ylt://"
 //回调的KEY
 #define YLT_ROUTER_COMPLETION @"YLT_ROUTER_COMPLETION"
 
@@ -24,6 +23,12 @@
  @param webRouter webRouter
  */
 - (void)registerWebRouter:(NSString *)webRouter;
+
+/**
+ * @brief 注册路由前缀
+ * @param routerPrefix 前缀字符
+ */
+- (void)registerRouterPrefix:(NSString *)routerPrefix;
 
 /**
  路由  默认路由实例方法
