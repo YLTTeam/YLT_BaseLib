@@ -891,12 +891,12 @@
 
 // 一年中第几周
 - (NSInteger) ylt_weekIndexInYear {
-    NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:self];
+    NSDateComponents *components = [CURRENT_CALENDAR components:(NSWeekCalendarUnit | NSWeekdayCalendarUnit |NSWeekdayOrdinalCalendarUnit) fromDate:self];
     return [components weekOfYear];
 }
 // 一月中第几周
 - (NSInteger) ylt_weekIndexInMonth {
-    NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:self];
+    NSDateComponents *components = [CURRENT_CALENDAR components:(NSWeekCalendarUnit | NSWeekdayCalendarUnit |NSWeekdayOrdinalCalendarUnit) fromDate:self];
     return [components weekOfMonth];
 }
 
