@@ -360,7 +360,7 @@
  @return YES:有效 NO:无效
  */
 + (BOOL)ylt_isURL:(NSString *)sender {
-    return [sender hasPrefix:@"http://"] || [sender hasPrefix:@"https://"];
+    return [sender hasPrefix:@"http://"] || [sender hasPrefix:@"https://"] || [sender hasPrefix:@"http:\/\/"] || [sender hasPrefix:@"https:\/\/"];
 }
 
 /**
