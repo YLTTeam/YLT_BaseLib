@@ -355,7 +355,6 @@
 
 /**
  验证URL
- 
  @param sender 目标字符串
  @return YES:有效 NO:无效
  */
