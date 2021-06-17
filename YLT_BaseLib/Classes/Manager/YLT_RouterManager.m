@@ -33,6 +33,14 @@ YLT_ShareInstance(YLT_RouterManager);
 }
 
 /**
+ * @brief 路由拦截器
+ * @param routerHook 拦截器
+ */
++ (void)registerRouterHook:(NSDictionary *)routerHook {
+    [[YLT_RouterManager shareInstance] registerRouterHook:routerHook];
+}
+
+/**
  路由  默认路由实例方法
  
  @param routerURL 路由的URL,参数带到URL后面,默认路由实例方法  NSString *routerURL = @"ylt://classname/selectorname?username=alex&password=123456";

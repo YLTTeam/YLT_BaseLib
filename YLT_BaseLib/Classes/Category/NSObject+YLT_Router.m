@@ -16,6 +16,7 @@
 
 static NSString *webRouterURL = nil;
 static NSString *RouterPrefix = @"ylt://";
+static NSDictionary *routerHookData = nil;
 
 /**
  注册web路由
@@ -32,6 +33,14 @@ static NSString *RouterPrefix = @"ylt://";
  */
 - (void)registerRouterPrefix:(NSString *)routerPrefix {
     RouterPrefix = routerPrefix;
+}
+
+/**
+ * @brief 路由拦截器
+ * @param routerHook 拦截器
+ */
+- (void)registerRouterHook:(NSDictionary *)routerHook {
+    routerHookData = routerHook;
 }
 
 /**
@@ -56,6 +65,13 @@ static NSString *RouterPrefix = @"ylt://";
  @return 回参
  */
 - (id)ylt_routerToURL:(NSString *)routerURL isClassMethod:(BOOL)isClassMethod arg:(id)arg completion:(void(^)(NSError *error, id response))completion {
+    NSMutableArray *tmpURLs = [routerURL componentsSeparatedByString:@"?"].mutableCopy;
+    NSString *tmpURL = tmpURLs.firstObject;
+    if ([routerHookData.allKeys containsObject:tmpURL]) {
+        tmpURL = routerHookData[tmpURL];
+        [tmpURLs replaceObjectAtIndex:0 withObject:tmpURL];
+        routerURL = [tmpURLs componentsJoinedByString:@"?"];
+    }
     if ([routerURL hasPrefix:RouterPrefix]) {
         NSDictionary *urlParams = [self ylt_analysisURL:routerURL];
         NSString *clsname = ([urlParams.allKeys containsObject:YLT_ROUTER_CLS_NAME])?urlParams[YLT_ROUTER_CLS_NAME]:@"";
