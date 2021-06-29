@@ -285,6 +285,10 @@
     return [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
+    YLT_LogWarn(@"设置的值VALUE:%@ 没有对应的KEY:%@", value, key);
+}
+
 #pragma mark - setter getter
 
 @end
