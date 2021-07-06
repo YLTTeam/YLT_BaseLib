@@ -329,6 +329,8 @@
 		FA096BC0D5E5062B7892FDD8D3907FD7 /* NSString+YLT_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DCA5BBEA5B0FCE6944A565263E623C /* NSString+YLT_Extension.m */; };
 		FAB0632E9FD23993687F91BEDA0C6CFB /* UIDatePicker+RACSignalSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFE2BA3A2C3A195C532090BE7DD8C12 /* UIDatePicker+RACSignalSupport.m */; };
 		FAB7CF107E7E3EE6FA7949CF18B8BA12 /* MJProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F343288664F200450E8FA888B1AA0FF /* MJProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FAE20E78269443810060B454 /* NSURL+YLT_Extension.h in Headers */ = {isa = PBXBuildFile; fileRef = FAE20E76269443810060B454 /* NSURL+YLT_Extension.h */; };
+		FAE20E79269443810060B454 /* NSURL+YLT_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE20E77269443810060B454 /* NSURL+YLT_Extension.m */; };
 		FB1A34EAB1560510FC5A706F291F0A70 /* NSURLConnection+RACSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = FA874AD0C38CDFBB6AC7B2035B2BF5DD /* NSURLConnection+RACSupport.m */; };
 		FBBBC0049DAAB37B3FC2620FB2B64C45 /* YLT_FileHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D6FCE9A21C887FBFB70D41A095B32F8 /* YLT_FileHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FC18C7F069D662C7BEF0E91C6D578F1B /* RACChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = CCF6D3C7638C32906D6C00782A8DC4F6 /* RACChannel.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -830,6 +832,8 @@
 		F9738303F705A790235F58DAF0B99B8B /* RACSubject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACSubject.m; path = ReactiveObjC/RACSubject.m; sourceTree = "<group>"; };
 		F9D8D8797D30FAE422B1889ACE733C6B /* NSTimer+YLT_Extension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSTimer+YLT_Extension.h"; sourceTree = "<group>"; };
 		FA874AD0C38CDFBB6AC7B2035B2BF5DD /* NSURLConnection+RACSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSURLConnection+RACSupport.m"; path = "ReactiveObjC/NSURLConnection+RACSupport.m"; sourceTree = "<group>"; };
+		FAE20E76269443810060B454 /* NSURL+YLT_Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURL+YLT_Extension.h"; sourceTree = "<group>"; };
+		FAE20E77269443810060B454 /* NSURL+YLT_Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURL+YLT_Extension.m"; sourceTree = "<group>"; };
 		FBA6FE843BE3738C21758A0D612A9CD0 /* NSNotificationCenter+RACSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSNotificationCenter+RACSupport.h"; path = "ReactiveObjC/NSNotificationCenter+RACSupport.h"; sourceTree = "<group>"; };
 		FBCC0641498AD5A7A9AD5DCC45A33831 /* NSDictionary+YLT_Log.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+YLT_Log.m"; sourceTree = "<group>"; };
 		FBDEC984D132C686B1F6370957FCE9AF /* UISlider+RACSignalSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UISlider+RACSignalSupport.h"; path = "ReactiveObjC/UISlider+RACSignalSupport.h"; sourceTree = "<group>"; };
@@ -1111,6 +1115,8 @@
 				E536C098CB91C7FB61BA7C17431163CE /* UIApplication+YLT_Extension.m */,
 				C139799F9060403B54EF6717CB5D24DD /* UIDevice+YLT_Extension.h */,
 				41A49BD552A85DD2B669CDB82283B0A4 /* UIDevice+YLT_Extension.m */,
+				FAE20E76269443810060B454 /* NSURL+YLT_Extension.h */,
+				FAE20E77269443810060B454 /* NSURL+YLT_Extension.m */,
 			);
 			name = Category;
 			path = YLT_BaseLib/Classes/Category;
@@ -1611,6 +1617,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAE20E78269443810060B454 /* NSURL+YLT_Extension.h in Headers */,
 				155249620878795472719288F9298509 /* NSArray+YLT_Extension.h in Headers */,
 				AB0779454E34727715F1EA22E9E5E8DE /* NSArray+YLT_Log.h in Headers */,
 				1A37481D0EA1E9C98F48A80341E457C1 /* NSDate+YLT_Extension.h in Headers */,
@@ -2161,6 +2168,7 @@
 				22077CED774E713FD5A6A2D2353F2D55 /* NSObject+YLT_Extension.m in Sources */,
 				D2F3092CFB840A776A086AA1E546CDEE /* NSObject+YLT_Router.m in Sources */,
 				AD6A771D652447ED893E6D815BFCBEFE /* NSObject+YLT_ThreadSafe.m in Sources */,
+				FAE20E79269443810060B454 /* NSURL+YLT_Extension.m in Sources */,
 				FA096BC0D5E5062B7892FDD8D3907FD7 /* NSString+YLT_Extension.m in Sources */,
 				B9D1F02354C6DBB0C2A91650808D5427 /* NSTimer+YLT_Extension.m in Sources */,
 				47DCDDBEB7854586C9BA651B9A257048 /* PHAsset+YLT_Extension.m in Sources */,
